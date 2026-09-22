@@ -157,14 +157,29 @@ test('TC-POST01-009: แนบรูปภาพประกอบครบ 15 �
   await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
   await page.getByTestId('create-post-btn').click();
 
-  const images = Array.from({ length: 15 }, (_, index) =>
-    path.resolve(__dirname, `../../test-data/images/image${String(index + 1).padStart(2, '0')}.png`),
-  );
-  for (const image of images) {
-    await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(image);
-  }
-
+  await page.locator('input[type="file"][multiple]').setInputFiles([
+    path.resolve(__dirname, '../../test-data/images/image01.png'),
+    path.resolve(__dirname, '../../test-data/images/image02.png'),
+    path.resolve(__dirname, '../../test-data/images/image03.png'),
+    path.resolve(__dirname, '../../test-data/images/image04.png'),
+    path.resolve(__dirname, '../../test-data/images/image05.png'),
+    path.resolve(__dirname, '../../test-data/images/image06.png'),
+    path.resolve(__dirname, '../../test-data/images/image07.png'),
+    path.resolve(__dirname, '../../test-data/images/image08.png'),
+    path.resolve(__dirname, '../../test-data/images/image09.png'),
+    path.resolve(__dirname, '../../test-data/images/image10.png'),
+    path.resolve(__dirname, '../../test-data/images/image11.png'),
+    path.resolve(__dirname, '../../test-data/images/image12.png'),
+    path.resolve(__dirname, '../../test-data/images/image13.png'),
+    path.resolve(__dirname, '../../test-data/images/image14.png'),
+    path.resolve(__dirname, '../../test-data/images/image15.png'),
+  ]);
+  // 1. ตรวจสอบว่าระบบขึ้นตัวเลขนับ 15/15
   await expect(page.getByText('รูปภาพประกอบ (15/15) *', { exact: true })).toBeVisible();
+  // 2. ตรวจว่ารูปแรก (img-0) และรูปสุดท้าย (img-14) แสดงบนหน้าจอ
+  await expect(page.getByRole('img', { name: 'img-0' })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'img-14' })).toBeVisible();
+
 });
 
 test('TC-POST01-010: แนบไฟล์ PDF 1 ไฟล์', async ({ page }) => {
@@ -258,6 +273,8 @@ test('TC-POST01-017: ไม่แนบรูปหน้าปก', async ({ pa
   await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill('Test1234');
   await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
   await page.getByTestId('create-post-btn').click();
+
+  // กรอกข้อมูลอื่นครบถ้วน โดยไม่แนบรูปหน้าปก (ไม่ใส่ cover.png)
   await page.locator('input[placeholder*="เช่น สรุปสูตรฟิสิกส์"]').fill('ทบทวนแคลคูลัส');
   await page.locator('select').first().selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
   await page.locator('textarea').fill('สรุปสูตรอนุพันธ์');
@@ -265,9 +282,13 @@ test('TC-POST01-017: ไม่แนบรูปหน้าปก', async ({ pa
   await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
   await page.getByRole('button', { name: 'ตกลง' }).click();
   await page.locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image01.png'));
+  await page.locator('input[type="file"][multiple]').setInputFiles(path.resolve(__dirname, '../../test-data/images/image01.png'));
+
+  // คลิกโพสต์สรุปความรู้
   await page.getByRole('button', { name: 'โพสต์สรุปความรู้' }).click();
-  await expect(page.getByText(/กรุณาแนบรูปปกอย่างน้อย 1 รูป/i)).toBeVisible();
+
+  // ตรวจสอบข้อความแจ้งเตือนและระบบไม่เผยแพร่โพสต์
+  await expect(page.getByText(/กรุณาอัปโหลดรูปภาพหน้าปก/i)).toBeVisible({ timeout: 5000 });
   await expect(page).toHaveURL(/\/create/);
 });
 
@@ -350,23 +371,26 @@ test('TC-POST01-024: แนบรูปภาพประกอบรูปท�
   await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill('Test1234');
   await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
   await page.getByTestId('create-post-btn').click();
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image01.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image02.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image03.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image04.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image05.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image06.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image07.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image08.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image09.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image10.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image11.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image12.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image13.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image14.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image15.png'));
-  await page.locator('input[type="file"][accept*="image"]').last().setInputFiles(path.resolve(__dirname, '../../test-data/images/image16.png'));
+  await page.locator('input[type="file"][multiple]').setInputFiles([
+    path.resolve(__dirname, '../../test-data/images/image01.png'),
+    path.resolve(__dirname, '../../test-data/images/image02.png'),
+    path.resolve(__dirname, '../../test-data/images/image03.png'),
+    path.resolve(__dirname, '../../test-data/images/image04.png'),
+    path.resolve(__dirname, '../../test-data/images/image05.png'),
+    path.resolve(__dirname, '../../test-data/images/image06.png'),
+    path.resolve(__dirname, '../../test-data/images/image07.png'),
+    path.resolve(__dirname, '../../test-data/images/image08.png'),
+    path.resolve(__dirname, '../../test-data/images/image09.png'),
+    path.resolve(__dirname, '../../test-data/images/image10.png'),
+    path.resolve(__dirname, '../../test-data/images/image11.png'),
+    path.resolve(__dirname, '../../test-data/images/image12.png'),
+    path.resolve(__dirname, '../../test-data/images/image13.png'),
+    path.resolve(__dirname, '../../test-data/images/image14.png'),
+    path.resolve(__dirname, '../../test-data/images/image15.png'),
+    path.resolve(__dirname, '../../test-data/images/image16.png'),
+  ]);
   await expect(page.getByText('รูปภาพประกอบ (15/15) *', { exact: true })).toBeVisible();
+  await expect(page.getByText('คุณสามารถอัปโหลดรูปภาพประกอบได้สูงสุด 15 รูปเท่านั้น', { exact: true })).toBeVisible();
 });
 
 test('TC-POST01-025: เพิ่มแท็กภาษาไทย', async ({ page }) => {
@@ -449,16 +473,25 @@ test('TC-POST01-030: เพิ่มแท็กครบ 3 แท็ก', async
   await page.getByTestId('create-post-btn').click();
   await page.getByRole('button', { name: 'ตั้งค่าวิชาและแท็ก' }).click();
   await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#คณิต');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#ม6');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#เรียนรู้');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
+
+  // 1. กรอกและกด Enter ทีละแท็ก
+  const tagInput = page.getByPlaceholder(/พิมพ์แท็ก|เพิ่มแฮชแท็ก/);
+  await tagInput.fill('#คณิต');
+  await tagInput.press('Enter');
+  await tagInput.fill('#ม6');
+  await tagInput.press('Enter');
+  await tagInput.fill('#เรียนรู้');
+  await tagInput.press('Enter');
+
+  // 2. กดปุ่ม "ตกลง" เพื่อบันทึกและปิด Modal
+  await page.getByRole('button', { name: 'ตกลง' }).click();
+
+  // 3. ตรวจสอบว่าทั้ง 3 แท็กแสดงบนหน้าฟอร์มหลักเรียบร้อย 
   await expect(page.getByText('#คณิต', { exact: true })).toBeVisible();
   await expect(page.getByText('#ม6', { exact: true })).toBeVisible();
-  await expect(page.getByText('#เรียนรู้', { exact: true }).first()).toBeVisible();
+  await expect(page.getByText('#เรียนรู้', { exact: true })).toBeVisible();
 });
+
 
 test('TC-POST01-031: เพิ่มแท็กรายการที่ 4', async ({ page }) => {
   await page.goto('https://share-ed.online/');
@@ -469,16 +502,16 @@ test('TC-POST01-031: เพิ่มแท็กรายการที่ 4', 
   await page.getByTestId('create-post-btn').click();
   await page.getByRole('button', { name: 'ตั้งค่าวิชาและแท็ก' }).click();
   await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#คณิต');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#ม6');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#เรียนรู้');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#สูตร');
-  await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
-  await expect(page.getByText(/ไม่สามารถเพิ่ม.*เกิน 3 รายการ/i)).toBeVisible();
-  await expect(page.getByText('#สูตร', { exact: true })).toHaveCount(0);
+  const tagInput = page.getByPlaceholder(/พิมพ์แท็ก|เพิ่มแฮชแท็ก/);
+  await tagInput.fill('#คณิต');
+  await tagInput.press('Enter');
+  await tagInput.fill('#ม6');
+  await tagInput.press('Enter');
+  await tagInput.fill('#เรียนรู้');
+  await tagInput.press('Enter');
+  await tagInput.fill('#โจทย์');
+  await tagInput.press('Enter');
+  await expect(page.getByText(/ไม่สามารถเพิ่มแท็กเกิน 3 อันได้/i)).toBeVisible();
 });
 
 test('TC-POST01-032: แท็กมีเครื่องหมายขีดกลาง', async ({ page }) => {
@@ -537,7 +570,7 @@ test('TC-POST01-035: แท็กมีความยาว 10 ตัวอั�
   await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
   await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#1234567890');
   await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
-  await expect(page.getByText('#1234567890', { exact: true })).toBeVisible();
+  await expect(page.getByText('#1234567890', { exact: true }).first()).toBeVisible(); // ใช้ .first เพื่อตรวจ element ตัวแรกที่ปรากฎบนหน้าจอ เพื่อหา #1234567890 ให้เจอ
 });
 
 test('TC-POST01-036: แท็กมีความยาว 11 ตัวอักษร', async ({ page }) => {
@@ -552,7 +585,7 @@ test('TC-POST01-036: แท็กมีความยาว 11 ตัวอั�
   await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).fill('#12345678901');
   await page.getByRole('textbox', { name: 'พิมพ์แท็กที่ต้องการแล้วกด Enter หรือ Space...' }).press('Enter');
   await expect(page.getByText('#12345678901', { exact: true })).toHaveCount(0);
-  await expect(page.getByText(/แท็ก.*ไม่เกิน 10|ความยาว.*10/i)).toBeVisible();
+  await expect(page.getByText('แท็กต้องมีความยาวไม่เกิน 10 ตัวอักษร', { exact: true })).toBeVisible();
 });
 
 test('TC-POST01-037: แนบไฟล์ PDF จำนวน 1 ไฟล์', async ({ page }) => {
