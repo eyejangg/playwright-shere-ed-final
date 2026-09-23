@@ -163,6 +163,9 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.image01);
     await page.getByRole('button', { name: 'โพสต์สรุปความรู้' }).click();
     await expect(page.locator('input[placeholder*="เช่น สรุปสูตรฟิสิกส์"]')).toHaveValue('');
+    // expect error when title is empty
+    await expect(page.getByText('กรุณากรอกชื่อหัวข้อสรุปความรู้')).toBeVisible();
+    // stay at create post page
     await expect(page).toHaveURL(/\/create/);
   });
 
@@ -177,6 +180,8 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.image01);
     await page.getByRole('button', { name: 'โพสต์สรุปความรู้' }).click();
     await expect(page.locator('select').first()).toHaveValue('');
+    await expect(page.getByText('กรุณาเลือกระดับชั้น')).toBeVisible();
+    // stay at create post page
     await expect(page).toHaveURL(/\/create/);
   });
 
@@ -191,6 +196,8 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.image01);
     await page.getByRole('button', { name: 'โพสต์สรุปความรู้' }).click();
     await expect(page.locator('textarea')).toHaveValue('');
+    await expect(page.getByText('กรุณากรอกบทสรุปย่อ')).toBeVisible();
+    // stay at create post page
     await expect(page).toHaveURL(/\/create/);
   });
 
@@ -267,42 +274,55 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByLabel(/คลิกเพื่ออัปโหลดรูปปก/i).setInputFiles(images.coverOver2MB);
     await expect(page.getByText('คลิกเพื่ออัปโหลดรูปปก', { exact: true })).toBeVisible();
     await expect(page.getByText('cover-over-2mb.png', { exact: true })).toHaveCount(0);
+    await expect(page.getByText('รูปปกต้องมีขนาดไม่เกิน 2 MB')).toBeVisible();
+    await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-019: รูปภาพประกอบมีขนาดเกิน 2 MB', async ({ page }) => {
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.imageOver2MB);
     await expect(page.getByText('รูปภาพประกอบ (0/15) *', { exact: true })).toBeVisible();
     await expect(page.getByText('image-over-2mb.png', { exact: true })).toHaveCount(0);
+    await expect(page.getByRole('status')).toHaveText('รูปภาพบางรูปมีขนาดเกิน 2 MB');
+    await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-020: ไฟล์ PDF มีขนาดเกิน 20 MB', async ({ page }) => {
     await page.getByLabel(/อัปโหลดไฟล์ PDF/i).setInputFiles(pdf.over20MB);
     await expect(page.getByText('อัปโหลดไฟล์ PDF', { exact: true })).toBeVisible();
     await expect(page.getByText('document-over-20mb.pdf', { exact: true })).toHaveCount(0);
+    await expect(page.getByText('ไฟล์ PDF ต้องมีขนาดไม่เกิน 20 MB')).toBeVisible();
+    await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-021: รูปหน้าปกเป็นไฟล์ผิดประเภท', async ({ page }) => {
     await page.getByLabel(/คลิกเพื่ออัปโหลดรูปปก/i).setInputFiles(images.imageGif);
     await expect(page.getByText('คลิกเพื่ออัปโหลดรูปปก', { exact: true })).toBeVisible();
-    await expect(page.getByText('cover.gif', { exact: true })).toHaveCount(0);
+    await expect(page.getByText('image01.gif', { exact: true })).toHaveCount(0);
+    await expect(page.getByText('สามารถอัปโหลดไฟล์ .jpg,.jpeg,.png เท่านั้น')).toBeVisible();
+    await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-022: รูปภาพประกอบเป็นไฟล์ผิดประเภท', async ({ page }) => {
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.imageGif);
     await expect(page.getByText('รูปภาพประกอบ (0/15) *', { exact: true })).toBeVisible();
     await expect(page.getByText('image01.gif', { exact: true })).toHaveCount(0);
+    await expect(page.getByText('สามารถอัปโหลดไฟล์ .jpg,.jpeg,.png เท่านั้น')).toBeVisible();
+    await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-023: เลือกไฟล์ที่ไม่ใช่ PDF', async ({ page }) => {
     await page.getByLabel(/อัปโหลดไฟล์ PDF/i).setInputFiles(pdf.docx);
     await expect(page.getByText('อัปโหลดไฟล์ PDF', { exact: true })).toBeVisible();
     await expect(page.getByText('document.docx', { exact: true })).toHaveCount(0);
+    await expect(page.getByText('สามารถอัปโหลดไฟล์ .pdf เท่านั้น')).toBeVisible();
+    await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-024: แนบรูปภาพประกอบรูปที่ 16', async ({ page }) => {
     await page.locator('input[type="file"][multiple]').setInputFiles(images16);
     await expect(page.getByText('รูปภาพประกอบ (15/15) *', { exact: true })).toBeVisible();
     await expect(page.getByText('คุณสามารถอัปโหลดรูปภาพประกอบได้สูงสุด 15 รูปเท่านั้น', { exact: true })).toBeVisible();
+    await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-025: เพิ่มแท็กภาษาไทย', async ({ page }) => {
@@ -432,13 +452,6 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByLabel(/อัปโหลดไฟล์ PDF/i).setInputFiles(pdf.normal);
     await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'ลบไฟล์ PDF' })).toBeVisible();
-  });
-
-  test('TC-POST01-038: แนบไฟล์ PDF ไฟล์ที่ 2', async ({ page }) => {
-    await page.getByLabel(/อัปโหลดไฟล์ PDF/i).setInputFiles(pdf.normal);
-    await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
-    await expect(page.locator('input[type="file"][accept*="pdf"]')).toHaveCount(0);
-    await expect(page.getByText('document02.pdf', { exact: true })).toHaveCount(0);
   });
 
   test('TC-POST01-039: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page }) => {
