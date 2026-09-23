@@ -35,7 +35,8 @@ module.exports = defineConfig({
     baseURL: process.env.BASE_URL || 'https://share-ed.online/',
     headless: true,
     screenshot: 'only-on-failure',
-    video: 'on',
+    // video: 'on',
+    video: 'retain-on-failure',
     // ใช้สถานะ Login ที่บันทึกไว้ จาก global-setup
     storageState: 'playwright/.auth/member.json',
 
