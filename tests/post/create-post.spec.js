@@ -535,6 +535,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
       await page.getByRole('button', { name: 'ใช่, ลบเลย' }).click();
 
       // ตรวจข้อความลบสำเร็จ
+      await page.waitForTimeout(5_000);
       await expect(page.getByRole('dialog', { name: 'ลบสำเร็จ!' })).toBeVisible();
       await expect(page.getByText('โพสต์ของคุณถูกลบเรียบร้อยแล้ว')).toBeVisible();
       await page.getByRole('button', { name: 'OK' }).click();
