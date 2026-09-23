@@ -282,7 +282,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.imageOver2MB);
     await expect(page.getByText('รูปภาพประกอบ (0/15) *', { exact: true })).toBeVisible();
     await expect(page.getByText('image-over-2mb.png', { exact: true })).toHaveCount(0);
-    await expect(page.getByRole('status')).toHaveText('รูปภาพบางรูปมีขนาดเกิน 2 MB');
+    await expect(page.getByRole('status')).toHaveText('รูปภาพประกอบต้องมีขนาดไม่เกิน 2 MB');
     await expect(page).toHaveURL(/\/create/);
   });
 
@@ -402,6 +402,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await tagInput.fill('#โจทย์');
     await tagInput.press('Enter');
     await expect(page.getByText(/ไม่สามารถเพิ่ม(แท็ก)?เกิน 3 อัน/i)).toBeVisible();
+    await expect(page.getByText('#โจทย์', { exact: true })).toHaveCount(0);
   });
 
   test('TC-POST01-032: แท็กมีเครื่องหมายขีดกลาง', async ({ page }) => {
@@ -454,7 +455,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await expect(page.getByRole('button', { name: 'ลบไฟล์ PDF' })).toBeVisible();
   });
 
-  test('TC-POST01-039: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page }) => {
+  test('TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page }) => {
     test.setTimeout(120_000);
     const postTitle = `TC-POST01-039 ทบทวนแคลคูลัส ${Date.now()}`;
     await page.getByLabel(/คลิกเพื่ออัปโหลดรูปปก/i).setInputFiles(images.coverPng);
