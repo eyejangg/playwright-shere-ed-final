@@ -680,6 +680,92 @@ playwright-test-results
 
 แม้มี Test Fail ขั้นตอน Upload Artifact ยังทำงาน ตราบใดที่ Workflow ไม่ถูกยกเลิก
 
+## การรัน Test ด้วย Docker
+
+สามารถรัน Test ทั้งหมดผ่าน Docker ได้ เพื่อความสะดวกในการทำงานร่วมกันโดยไม่ต้องกังวลเรื่องสภาพแวดล้อมหรือ dependencies ในเครื่อง
+
+### ลำดับขั้นตอนการทำงาน (Workflow)
+
+```text
+1. เปิด Docker Desktop ในเครื่อง
+         ↓
+2. Build Docker Image (ทำครั้งแรก หรือเมื่อมีการแก้โค้ด)
+         ↓
+3. สั่ง docker run พร้อมส่ง Email/Password และ Mount Volume
+         ↓
+4. เปิดดู HTML Report บนเครื่อง
+```
+
+---
+
+### ขั้นตอนที่ 1: ตรวจสอบความพร้อม
+
+- ติดตั้งและเปิดโปรแกรม **Docker Desktop**
+- ตรวจสอบว่าคำสั่ง docker ใช้งานได้:
+  ```powershell
+  docker --version
+  ```
+
+---
+
+### ขั้นตอนที่ 2: Build Docker Image
+
+เปิด PowerShell ในโฟลเดอร์โปรเจกต์ แล้วรัน:
+
+```powershell
+docker build -t playwright-tests .
+```
+
+> **คำอธิบาย:** คำสั่งนี้จะอ่าน [Dockerfile](file:///d:/playwright-shere-ed-final/Dockerfile) เพื่อดาวน์โหลดสภาพแวดล้อม Playwright และติดตั้ง dependencies อัตโนมัติ
+
+---
+
+### ขั้นตอนที่ 3: สั่งรัน Test
+
+รันคำสั่งโดยส่งค่าบัญชีผู้ใช้ผ่าน `-e` และเชื่อมโฟลเดอร์ Report ออกมาที่เครื่องเราผ่าน `-v`:
+
+#### รันทุก Test Case (39 เคส):
+```powershell
+docker run --rm `
+  -v ${PWD}/playwright-report:/app/playwright-report `
+  -v ${PWD}/test-results:/app/test-results `
+  -e MEMBER_EMAIL="your_email@example.com" `
+  -e MEMBER_PASSWORD="your_password" `
+  playwright-tests
+```
+
+#### รันเฉพาะเคสที่ต้องการ (เช่น TC-POST01-039):
+```powershell
+docker run --rm `
+  -v ${PWD}/playwright-report:/app/playwright-report `
+  -v ${PWD}/test-results:/app/test-results `
+  -e MEMBER_EMAIL="your_email@example.com" `
+  -e MEMBER_PASSWORD="your_password" `
+  playwright-tests npx playwright test tests/post/create-post.spec.js --grep "TC-POST01-039"
+```
+
+---
+
+### ขั้นตอนที่ 4: เปิดดู Report หลังรันเสร็จ
+
+เนื่องจากเราตั้งค่า `-v` (Volume Mount) ไว้ ไฟล์รายงานจะถูกซิงค์ออกมาที่เครื่องทันที
+
+#### วิธีที่ 1: เปิดผ่านเครื่องเรา (แนะนำ)
+```powershell
+npx.cmd playwright show-report
+```
+*หรือดับเบิลคลิกไฟล์ `playwright-report/index.html` บนเว็บเบราว์เซอร์*
+
+#### วิธีที่ 2: เปิด Report ผ่าน Web Server ใน Docker
+```powershell
+docker run --rm -it -p 9323:9323 `
+  -v ${PWD}/playwright-report:/app/playwright-report `
+  playwright-tests npx playwright show-report --host 0.0.0.0 --port 9323
+```
+จากนั้นเปิดเว็บเบราว์เซอร์ไปที่: `http://localhost:9323`
+
+---
+
 ## ปัญหาที่พบบ่อย
 
 ### PowerShell ไม่อนุญาตให้รัน `npx.ps1`
