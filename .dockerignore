@@ -1,0 +1,11 @@
+node_modules
+test-results
+playwright-report
+playwright/.auth
+.git
+.github
+.env
+.env.*
+*.log
+*.webm
+*.zip

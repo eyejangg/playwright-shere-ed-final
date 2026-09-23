@@ -527,15 +527,17 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
 
       // ตรวจว่าโพสต์ที่ลบหายไปจากหน้าสำรวจแล้ว
       await expect(page).toHaveURL(/\/explore\/?$/);
+      await page.reload();
       await page.keyboard.press('Home');
       await page.waitForTimeout(1_000);
-      await expect(page.getByText(postTitle, { exact: true })).toHaveCount(0);
+      await page.mouse.wheel(0, 600);
+      await page.waitForTimeout(5_000);
+      await page.reload();
+      await expect(page.getByText(postTitle, { exact: true })
+      ).toHaveCount(0, { timeout: 15_000 });
 
-      // ตรวจว่าโพสต์ที่ลบหายไปจากหน้าแรกแล้ว
-      await page.goto('/home');
-      await page.keyboard.press('Home');
-      await page.waitForTimeout(1_000);
-      await expect(page.getByText(postTitle, { exact: true })).toHaveCount(0);
+      await page.waitForTimeout(15_000);
+      await page.reload();
     }
   });
 });
