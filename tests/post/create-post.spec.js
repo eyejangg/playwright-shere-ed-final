@@ -537,7 +537,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
       // ตรวจข้อความลบสำเร็จ
       await page.waitForTimeout(5_000);
       await expect(page.getByRole('dialog', { name: 'ลบสำเร็จ!' })).toBeVisible();
-      await expect(page.getByText('โพสต์ของคุณถูกลบเรียบร้อยแล้ว')).toBeVisible();
+      await expect(page.getByText('โพสต์ถูกลบแล้ว คุณสามารถกู้คืนได้ภายใน 5 นาที')).toBeVisible();
       await page.getByRole('button', { name: 'OK' }).click();
 
       // ตรวจว่าโพสต์ที่ลบหายไปจากหน้าสำรวจแล้ว
