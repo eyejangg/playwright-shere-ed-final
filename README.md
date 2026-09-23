@@ -88,6 +88,298 @@ playwright-shere-ed-final/
 5. Playwright รัน Test Case ด้วย Chromium
 6. หลังทดสอบ ระบบสร้าง HTML report, video, screenshot และ trace ตามการตั้งค่า
 
+## การใช้งาน Docker
+
+### Docker ใช้ทำไม
+
+Docker ใช้สร้างสภาพแวดล้อมสำหรับรัน Playwright ให้เหมือนกันทุกเครื่อง ภายใน Docker image มี Linux, Node.js, Chromium และ Browser dependencies ที่ Playwright ต้องใช้ครบแล้ว
+
+ปัญหาที่ Docker ช่วยลดได้:
+
+- เครื่องผู้ทดสอบแต่ละคนใช้ Node.js หรือ Browser คนละเวอร์ชัน
+- เครื่องใหม่ยังไม่ได้ติดตั้ง Chromium หรือ Browser dependencies
+- Test รันผ่านในเครื่องหนึ่ง แต่ Fail อีกเครื่องหนึ่งเพราะ environment ไม่เหมือนกัน
+- ต้องเสียเวลาติดตั้งเครื่องมือใหม่ทุกครั้งที่เปลี่ยนเครื่อง
+
+เมื่อใช้ Docker ผู้ใช้งานต้องมีเพียง Docker Desktop จากนั้น Build และ Run image ด้วยคำสั่งเดียวกัน
+
+Docker ในโปรเจกต์นี้ใช้สำหรับ:
+
+1. ให้สมาชิกในทีมรัน Test บนเครื่องตัวเองได้เหมือนกัน
+2. แยก dependencies ของ Playwright ออกจากเครื่องผู้ใช้งาน
+3. รัน Test ทั้ง 39 เคสด้วย Chromium
+4. ส่ง HTML Report, Video, Screenshot และ Trace กลับมาไว้ที่เครื่อง
+
+Docker ไม่ได้ใช้สำหรับ Deploy เว็บไซต์ SHARE-ED และไม่ได้เป็นตัวควบคุม Automation ตามเวลา หน้าที่ดังกล่าวเป็นของ GitHub Actions
+
+โครงสร้างที่เลือกใช้คือ:
+
+```text
+การรันในเครื่อง:
+ผู้ใช้งาน → Docker → Playwright → SHARE-ED → Report
+
+การรันอัตโนมัติ:
+GitHub Push → GitHub Actions → Playwright → SHARE-ED → Artifact
+```
+
+GitHub Actions สามารถรัน Playwright โดยตรงได้ จึงไม่จำเป็นต้อง Build Docker image ซ้ำทุกครั้ง Dockerfile จะเก็บไว้สำหรับการรันในเครื่องและแชร์ environment ให้สมาชิกในทีม
+
+### ไฟล์ Docker ที่เพิ่มในโปรเจกต์
+
+```text
+Dockerfile
+.dockerignore
+```
+
+`Dockerfile` ใช้ Playwright image เวอร์ชันเดียวกับ `package-lock.json`:
+
+```dockerfile
+FROM mcr.microsoft.com/playwright:v1.63.0-noble
+```
+
+การใช้เวอร์ชันตรงกันมีความสำคัญ เพราะถ้า Playwright package และ Browser image คนละเวอร์ชัน อาจเกิดปัญหาหา Browser executable ไม่พบ
+
+Dockerfile ทำงานตามลำดับ:
+
+1. ใช้ Playwright image `v1.63.0-noble`
+2. กำหนดโฟลเดอร์ทำงานเป็น `/app`
+3. กำหนด `CI=true`
+4. คัดลอก `package.json` และ `package-lock.json`
+5. ติดตั้ง packages ด้วย `npm ci`
+6. คัดลอก Test, Config และ Test data เข้า image
+7. เตรียมโฟลเดอร์ session และผลทดสอบ
+8. รันไฟล์ `tests/post/create-post.spec.js` ด้วย Chromium
+
+คำสั่งเริ่มต้นของ Container:
+
+```dockerfile
+CMD ["npx", "playwright", "test", "tests/post/create-post.spec.js", "--project=chromium"]
+```
+
+ดังนั้นหากรัน Container โดยไม่ส่งคำสั่งเพิ่มเติม ระบบจะรัน Test การสร้างโพสต์ทั้ง 39 เคส
+
+### หน้าที่ของ `.dockerignore`
+
+`.dockerignore` ป้องกันไม่ให้ไฟล์ที่ไม่จำเป็นถูกส่งเข้า Docker build context เช่น:
+
+```text
+node_modules
+test-results
+playwright-report
+playwright/.auth
+.git
+.env
+```
+
+เหตุผลสำคัญคือ:
+
+- ลดขนาด Docker image
+- Build เร็วขึ้น
+- ไม่คัดลอก Report เก่าเข้า image
+- ไม่คัดลอก session Login เข้า image
+- ไม่คัดลอก Environment Variables หรือไฟล์ลับเข้า image
+
+### Build Docker image
+
+เปิด Docker Desktop และรอจน Docker Engine พร้อมทำงาน จากนั้นเปิด Terminal ที่โฟลเดอร์โปรเจกต์:
+
+```cmd
+cd D:\playwright-shere-ed-final
+docker build -t share-ed-playwright .
+```
+
+ชื่อ image ที่ได้:
+
+```text
+share-ed-playwright:latest
+```
+
+ตรวจสอบ image:
+
+```cmd
+docker images share-ed-playwright
+```
+
+หากมีการแก้ Test, Config, `global-setup.js` หรือ Test data ต้อง Build image ใหม่ก่อนรัน:
+
+```cmd
+docker build -t share-ed-playwright .
+```
+
+หากต้องการ Build ใหม่ทั้งหมดโดยไม่ใช้ cache:
+
+```cmd
+docker build --no-cache -t share-ed-playwright .
+```
+
+### การส่งข้อมูล Login เข้า Container
+
+บัญชีทดสอบต้องส่งผ่าน Environment Variables:
+
+```text
+MEMBER_EMAIL
+MEMBER_PASSWORD
+BASE_URL
+```
+
+`global-setup.js` อ่านค่าเหล่านี้แล้วนำไป Login และบันทึก session ลง:
+
+```text
+playwright/.auth/member.json
+```
+
+ไม่ควรเขียน Email และ Password ตายตัวไว้ใน source code หรือ Dockerfile เพราะผู้ที่ได้รับ image สามารถตรวจสอบข้อมูลภายใน image ได้
+
+### รัน Docker ผ่าน Command Prompt
+
+ใช้ `^` สำหรับต่อคำสั่งหลายบรรทัด และห้ามมีช่องว่างหลัง `^`:
+
+```cmd
+docker run --rm --ipc=host ^
+-e "MEMBER_EMAIL=ใส่อีเมลบัญชีทดสอบ" ^
+-e "MEMBER_PASSWORD=ใส่รหัสผ่านบัญชีทดสอบ" ^
+-e "BASE_URL=https://share-ed.online/" ^
+--mount "type=bind,source=%cd%\test-results,target=/app/test-results" ^
+--mount "type=bind,source=%cd%\playwright-report,target=/app/playwright-report" ^
+share-ed-playwright
+```
+
+หาก Command Prompt แสดง `More?` หมายความว่ากำลังรอคำสั่งบรรทัดต่อไป ถือเป็นการทำงานปกติ
+
+ห้ามเริ่มคำสั่งด้วย `-e` โดยไม่มี `docker run` และห้ามใช้ backtick แบบ PowerShell ใน Command Prompt
+
+### รัน Docker ผ่าน PowerShell
+
+PowerShell ใช้ backtick สำหรับต่อบรรทัด:
+
+```powershell
+docker run --rm --ipc=host `
+  -e "MEMBER_EMAIL=ใส่อีเมลบัญชีทดสอบ" `
+  -e "MEMBER_PASSWORD=ใส่รหัสผ่านบัญชีทดสอบ" `
+  -e "BASE_URL=https://share-ed.online/" `
+  -v "${PWD}/test-results:/app/test-results" `
+  -v "${PWD}/playwright-report:/app/playwright-report" `
+  share-ed-playwright
+```
+
+### ความหมายของ Docker options
+
+| Option | ความหมาย |
+|---|---|
+| `--rm` | ลบ Container หลังรันเสร็จ แต่ไม่ลบ image และไฟล์ Report ที่ mount ไว้ |
+| `--ipc=host` | ให้ Chromium ใช้ shared memory ของ host ลดปัญหา Browser crash |
+| `-e` | ส่ง Environment Variable เข้า Container |
+| `--mount` หรือ `-v` | เชื่อมโฟลเดอร์ในเครื่องกับโฟลเดอร์ภายใน Container |
+| `share-ed-playwright` | ชื่อ Docker image ที่ใช้รัน |
+
+หากไม่ mount `test-results` และ `playwright-report` ไฟล์ผลทดสอบจะถูกลบตาม Container เนื่องจากใช้ `--rm`
+
+### รันเฉพาะ TC-POST01-039 ใน Docker
+
+Command Prompt:
+
+```cmd
+docker run --rm --ipc=host -e "MEMBER_EMAIL=ใส่อีเมลบัญชีทดสอบ" -e "MEMBER_PASSWORD=ใส่รหัสผ่านบัญชีทดสอบ" -e "BASE_URL=https://share-ed.online/" --mount "type=bind,source=%cd%\test-results,target=/app/test-results" --mount "type=bind,source=%cd%\playwright-report,target=/app/playwright-report" share-ed-playwright npx playwright test tests/post/create-post.spec.js --project=chromium --grep TC-POST01-039
+```
+
+คำสั่งที่เขียนต่อท้ายชื่อ image จะใช้แทน `CMD` ใน Dockerfile
+
+### ผลการทดลอง Docker ในเครื่อง
+
+ได้ Build image จริงด้วยคำสั่ง:
+
+```cmd
+docker build -t share-ed-playwright .
+```
+
+ผลการ Build:
+
+```text
+Image: share-ed-playwright:latest
+Exit code: 0
+```
+
+จากนั้นทดลองรัน Test ทั้ง 39 เคสใน Container:
+
+```text
+Running 39 tests using 1 worker
+38 passed
+1 failed
+```
+
+Docker สามารถทำงานได้ครบดังนี้:
+
+- เปิด Chromium ใน Container
+- Login ด้วยบัญชี Member
+- รัน Test Case ทั้ง 39 เคส
+- อัปโหลดไฟล์จาก `test-data`
+- สร้างและตรวจโพสต์
+- บันทึก Video, Screenshot และ Trace
+- สร้าง HTML Report
+- เขียน Report กลับมายังโฟลเดอร์ในเครื่อง
+
+Test ที่ Fail คือ `TC-POST01-039` ในขั้นตอนตรวจสอบหลังลบโพสต์ ระบบแสดงข้อความว่าลบสำเร็จ แต่ยังพบชื่อโพสต์ในหน้า Explore แม้ Reload หน้าแล้ว:
+
+```text
+Expected: 0
+Received: 1
+```
+
+Assertion ที่พบปัญหา:
+
+```js
+await expect(
+  page.getByText(postTitle, { exact: true })
+).toHaveCount(0);
+```
+
+ผลนี้แสดงว่า Docker ทำงานถูกต้อง แต่ Test ตรวจพบพฤติกรรมของระบบ SHARE-ED ที่ไม่ตรงกับ Expected Result จึงไม่ควรแก้ assertion เพียงเพื่อให้ Test ผ่าน
+
+### ตำแหน่งผลการทดสอบจาก Docker
+
+```text
+test-results/
+playwright-report/
+```
+
+เปิด HTML Report:
+
+```cmd
+npx.cmd playwright show-report
+```
+
+หาก port เดิมถูกใช้งาน:
+
+```cmd
+npx.cmd playwright show-report --port 9324
+```
+
+### ปัญหา Docker ที่เคยพบ
+
+#### `'-e' is not recognized`
+
+เกิดจากรันเฉพาะบรรทัด `-e` หรือใช้รูปแบบ PowerShell ใน Command Prompt ต้องเริ่มด้วย `docker run` และใช้ `^` ต่อบรรทัด
+
+#### Login Timeout
+
+```text
+TimeoutError: waiting for locator('[data-testid="create-post-btn"]')
+```
+
+หมายความว่า Login ไม่สำเร็จ ให้ตรวจ `MEMBER_EMAIL`, `MEMBER_PASSWORD` และตรวจว่าไม่มีช่องว่างหลัง `^`
+
+#### Test Exit Code 1
+
+ไม่ได้หมายความว่า Docker เสียเสมอไป ต้องอ่านผล Playwright ด้านบน หาก Container รัน Test ได้และมีบาง Test Fail Docker จะส่ง Exit Code 1 ตามผล Test
+
+#### แก้โค้ดแล้ว Docker ยังใช้โค้ดเดิม
+
+Docker image เก็บ source code ตอน Build ต้อง Build ใหม่หลังแก้ไฟล์:
+
+```cmd
+docker build -t share-ed-playwright .
+```
+
 ## วิธีรัน Test
 
 ### รัน Test ทั้งโปรเจกต์
@@ -427,4 +719,3 @@ await page.locator('main').getByText('คณิตศาสตร์', { exact: 
 - Test data ถูก commit ครบหรือไม่
 - Browser ถูกติดตั้งด้วย `playwright install --with-deps chromium` หรือไม่
 - เปิด `trace.zip`, screenshot และ video จาก Artifact เพื่อดูจุดที่ผิดพลาด
-
