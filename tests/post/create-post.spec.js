@@ -470,7 +470,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.image01);
     await page.getByLabel(/อัปโหลดไฟล์ PDF/i).setInputFiles(pdf.normal);
     await page.getByRole('button', { name: 'โพสต์สรุปความรู้' }).click();
-    await expect(page.getByRole('heading', { name: 'โพสต์สำเร็จ!' })).toBeVisible({ timeout: 60_000 });
+    await expect(page.getByRole('heading', { name: 'โพสต์สำเร็จ!' })).toBeVisible({ timeout: 60000 });
     await expect(page.getByText('โพสต์สรุปความรู้เรียบร้อยแล้ว')).toBeVisible();
     await page.getByRole('button', { name: 'OK' }).click();
     await expect(page).toHaveURL(/\/home\/?$/);
@@ -479,8 +479,8 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     try {
       const createdPost = page.getByText(postTitle, { exact: true }).first();
       await createdPost.scrollIntoViewIfNeeded();
-      await expect(createdPost).toBeVisible({ timeout: 15_000 });
-      await page.waitForTimeout(1_000);
+      await expect(createdPost).toBeVisible({ timeout: 15000 });
+      await page.waitForTimeout(1000);
       await createdPost.click();
       await expect(page).toHaveURL(/\/post\/[^/]+$/);
 
@@ -488,25 +488,25 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
       await expect(page.getByRole('heading', { name: postTitle, exact: true })).toBeVisible();
       await expect(page.locator('main').getByText('คณิตศาสตร์', { exact: true }).first()).toBeVisible();
       await expect(page.locator('main').getByText('มัธยมศึกษาตอนปลาย', { exact: true }).first()).toBeVisible();
-      await page.waitForTimeout(1_000);
+      await page.waitForTimeout(1000);
 
       // เลื่อนลงไปตรวจบทสรุปย่อ
       const summary = page.getByText('สรุปสูตรอนุพันธ์', { exact: true });
       await summary.scrollIntoViewIfNeeded();
       await expect(summary).toBeVisible();
-      await page.waitForTimeout(1_000);
+      await page.waitForTimeout(1000);
 
       // เลื่อนลงไปตรวจรายละเอียดเพิ่มเติม
       const detail = page.getByText('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์', { exact: true });
       await detail.scrollIntoViewIfNeeded();
       await expect(detail).toBeVisible();
-      await page.waitForTimeout(1_000);
+      await page.waitForTimeout(1000);
 
       // เลื่อนลงไปตรวจรูปภาพประกอบ
       const galleryImage = page.getByRole('img', { name: 'gallery-0' });
       await galleryImage.scrollIntoViewIfNeeded();
       await expect(galleryImage).toBeVisible();
-      await page.waitForTimeout(1_000);
+      await page.waitForTimeout(1000);
 
       // เลื่อนลงไปตรวจไฟล์ PDF
       const pdfHeading = page.getByRole('heading', { name: 'ไฟล์เอกสาร PDF' });
@@ -514,13 +514,13 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
       await expect(pdfHeading).toBeVisible();
       await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
       await expect(page.getByRole('link', { name: 'ดาวน์โหลด' })).toHaveAttribute('href', /\.pdf$/);
-      await page.waitForTimeout(1_000);
+      await page.waitForTimeout(1000);
 
       // เลื่อนลงไปตรวจแฮชแท็ก
       const tag = page.getByText('#สรุปย่อ', { exact: true });
       await tag.scrollIntoViewIfNeeded();
       await expect(tag).toBeVisible();
-      await page.waitForTimeout(1_000);
+      await page.waitForTimeout(1000);
     } finally {
       // กลับหน้าแรกและค้นหาโพสต์จากชื่อที่สร้างในเคสนี้
       await page.goto('/home');
@@ -532,26 +532,26 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
       // ลบโพสต์
       await page.getByRole('button', { name: 'ลบโพสต์' }).click();
       await expect(page.getByRole('dialog', { name: /คุณต้องการลบโพสต์/ })).toBeVisible();
+      await expect(page.getByText(`คุณต้องการลบโพสต์ "${postTitle}" ใช่หรือไม่?`)).toBeVisible();
       await page.getByRole('button', { name: 'ใช่, ลบเลย' }).click();
 
       // ตรวจข้อความลบสำเร็จ
-      await page.waitForTimeout(5_000);
-      await expect(page.getByRole('dialog', { name: 'ลบสำเร็จ!' })).toBeVisible();
-      await expect(page.getByText('โพสต์ถูกลบแล้ว คุณสามารถกู้คืนได้ภายใน 5 นาที')).toBeVisible();
+      await expect(page.getByRole('dialog', { name: /ลบสำเร็จ!/ })).toBeVisible();
+      await expect(page.getByText('โพสต์และไฟล์ที่เกี่ยวข้องถูกลบถาวรแล้ว')).toBeVisible();
       await page.getByRole('button', { name: 'OK' }).click();
 
       // ตรวจว่าโพสต์ที่ลบหายไปจากหน้าสำรวจแล้ว
-      await expect(page).toHaveURL(/\/explore\/?$/);
+      await expect(page).toHaveURL(/\/home\/?$/);
       await page.reload();
       await page.keyboard.press('Home');
-      await page.waitForTimeout(1_000);
+      await page.waitForTimeout(1000);
       await page.mouse.wheel(0, 600);
-      await page.waitForTimeout(5_000);
+      await page.waitForTimeout(5000);
       await page.reload();
       await expect(page.getByText(postTitle, { exact: true })
-      ).toHaveCount(0, { timeout: 15_000 });
+      ).toHaveCount(0, { timeout: 15000 });
 
-      await page.waitForTimeout(15_000);
+      await page.waitForTimeout(15000);
       await page.reload();
     }
   });
