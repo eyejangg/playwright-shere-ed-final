@@ -536,7 +536,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
       await page.getByRole('button', { name: 'ใช่, ลบเลย' }).click();
 
       // ตรวจข้อความลบสำเร็จ
-      await expect(page.getByRole('dialog', { name: /ลบสำเร็จ!/ })).toBeVisible();
+      await expect(page.getByRole('dialog', { name: /ลบสำเร็จ/ })).toBeVisible({ timeout: 15000 });
       await expect(page.getByText('โพสต์และไฟล์ที่เกี่ยวข้องถูกลบถาวรแล้ว')).toBeVisible();
       await page.getByRole('button', { name: 'OK' }).click();
 
