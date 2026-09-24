@@ -37,12 +37,13 @@ module.exports = defineConfig({
     screenshot: 'only-on-failure',
     // video: 'on',
     video: 'retain-on-failure',
+
     // ใช้สถานะ Login ที่บันทึกไว้ จาก global-setup
     storageState: 'playwright/.auth/member.json',
 
     /* Collect trace for every test run (both passed and failed) */
     // trace: 'on',
-    // trace: 'retain-on-failure',
+    trace: 'retain-on-failure',
     // trace: 'on-first-retry',
   },
 

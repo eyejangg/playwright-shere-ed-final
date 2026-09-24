@@ -76,8 +76,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByLabel(/คลิกเพื่ออัปโหลดรูปปก/i).setInputFiles(images.coverPng);
     await page.locator('input[placeholder*="เช่น สรุปสูตรฟิสิกส์"]').fill('ทบทวนแคลคูลัส');
     await page.locator('select').first().selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
-    await page.locator('textarea').fill('สรุปสูตรอนุพันธ์');
-
+    await page.getByPlaceholder(/อธิบายสั้นๆ/).fill('สรุปสูตรอนุพันธ์');
     await page.getByRole('button', { name: 'ตั้งค่าวิชาและแท็ก' }).click();
     await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
     await page.getByRole('button', { name: '#สรุปย่อ' }).click();
@@ -88,7 +87,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.image01);
 
     await expect(page.locator('input[placeholder*="เช่น สรุปสูตรฟิสิกส์"]')).toHaveValue('ทบทวนแคลคูลัส');
-    await expect(page.locator('textarea')).toHaveValue('สรุปสูตรอนุพันธ์');
+    await expect(page.getByPlaceholder(/อธิบายสั้นๆ/)).toHaveValue('สรุปสูตรอนุพันธ์');
     await expect(page.locator('[contenteditable="true"]')).toContainText('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
     await expect(page.getByText(/คณิตศาสตร์/).last()).toBeVisible();
     await expect(page.getByText(/สรุปย่อ/).last()).toBeVisible();
@@ -155,7 +154,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
   test('TC-POST01-012: ไม่กรอกชื่อหัวข้อสรุป', async ({ page }) => {
     await page.getByLabel(/คลิกเพื่ออัปโหลดรูปปก/i).setInputFiles(images.coverPng);
     await page.locator('select').first().selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
-    await page.locator('textarea').fill('สรุปสูตรอนุพันธ์');
+    await page.getByPlaceholder(/อธิบายสั้นๆ/).fill('สรุปสูตรอนุพันธ์');
     await page.getByRole('button', { name: 'ตั้งค่าวิชาและแท็ก' }).click();
     await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
     await page.getByRole('button', { name: 'ตกลง' }).click();
@@ -172,7 +171,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
   test('TC-POST01-013: ไม่เลือกระดับชั้น', async ({ page }) => {
     await page.getByLabel(/คลิกเพื่ออัปโหลดรูปปก/i).setInputFiles(images.coverPng);
     await page.locator('input[placeholder*="เช่น สรุปสูตรฟิสิกส์"]').fill('ทบทวนแคลคูลัส');
-    await page.locator('textarea').fill('สรุปสูตรอนุพันธ์');
+    await page.getByPlaceholder(/อธิบายสั้นๆ/).fill('สรุปสูตรอนุพันธ์');
     await page.getByRole('button', { name: 'ตั้งค่าวิชาและแท็ก' }).click();
     await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
     await page.getByRole('button', { name: 'ตกลง' }).click();
@@ -195,7 +194,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
     await page.locator('div').filter({ hasText: /^รูปภาพประกอบ/ }).locator('input[type="file"]').setInputFiles(images.image01);
     await page.getByRole('button', { name: 'โพสต์สรุปความรู้' }).click();
-    await expect(page.locator('textarea')).toHaveValue('');
+    await expect(page.getByPlaceholder(/อธิบายสั้นๆ/)).toHaveValue('');
     await expect(page.getByText('กรุณากรอกบทสรุปย่อ')).toBeVisible();
     // stay at create post page
     await expect(page).toHaveURL(/\/create/);
@@ -210,7 +209,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     // 3. ระดับชั้น
     await page.locator('select').first().selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
     // 4. บทสรุปย่อ
-    await page.locator('textarea').fill('สรุปสูตรอนุพันธ์');
+    await page.getByPlaceholder(/อธิบายสั้นๆ/).fill('สรุปสูตรอนุพันธ์');
     // 5. ไม่เลือกหมวดหมู่วิชา (ข้ามการตั้งค่าวิชา)
     // 6. รายละเอียดเพิ่มเติม
     await page.locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
@@ -233,7 +232,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     // 3. ระดับชั้น
     await page.locator('select').first().selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
     // 4. บทสรุปย่อ
-    await page.locator('textarea').fill('สรุปสูตรอนุพันธ์');
+    await page.getByPlaceholder(/อธิบายสั้นๆ/).fill('สรุปสูตรอนุพันธ์');
     // 5. ตั้งค่าหมวดหมู่วิชา
     await page.getByRole('button', { name: 'ตั้งค่าวิชาและแท็ก' }).click();
     await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
@@ -255,7 +254,8 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     // กรอกข้อมูลอื่นครบถ้วน โดยไม่แนบรูปหน้าปก (ไม่ใส่ cover.png)
     await page.locator('input[placeholder*="เช่น สรุปสูตรฟิสิกส์"]').fill('ทบทวนแคลคูลัส');
     await page.locator('select').first().selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
-    await page.locator('textarea').fill('สรุปสูตรอนุพันธ์');
+    await page.getByPlaceholder(/อธิบายสั้นๆ/).fill('สรุปสูตรอนุพันธ์');
+
     await page.getByRole('button', { name: 'ตั้งค่าวิชาและแท็ก' }).click();
     await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
     await page.getByRole('button', { name: 'ตกลง' }).click();
@@ -461,7 +461,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByLabel(/คลิกเพื่ออัปโหลดรูปปก/i).setInputFiles(images.coverPng);
     await page.locator('input[placeholder*="เช่น สรุปสูตรฟิสิกส์"]').fill(postTitle);
     await page.locator('select').first().selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
-    await page.locator('textarea').fill('สรุปสูตรอนุพันธ์');
+    await page.getByPlaceholder(/อธิบายสั้นๆ/).fill('สรุปสูตรอนุพันธ์');
     await page.getByRole('button', { name: 'ตั้งค่าวิชาและแท็ก' }).click();
     await page.locator('select').last().selectOption({ label: 'คณิตศาสตร์' });
     await page.getByRole('button', { name: '#สรุปย่อ' }).click();
@@ -535,7 +535,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
       await expect(page.getByText(`คุณต้องการลบโพสต์ "${postTitle}" ใช่หรือไม่?`)).toBeVisible();
       await page.getByRole('button', { name: 'ใช่, ลบเลย' }).click();
 
-      // ตรวจข้อความลบสำเร็จ
+      // ตรวจข้อความลบสำเร็จ 
       await expect(page.getByRole('dialog', { name: /ลบสำเร็จ/ })).toBeVisible({ timeout: 15000 });
       await expect(page.getByText('โพสต์และไฟล์ที่เกี่ยวข้องถูกลบถาวรแล้ว')).toBeVisible();
       await page.getByRole('button', { name: 'OK' }).click();
