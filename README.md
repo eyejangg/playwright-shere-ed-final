@@ -1,6 +1,6 @@
 # Playwright Automation Testing — SHARE-ED
 
-โปรเจกต์นี้ใช้ Playwright สำหรับทดสอบระบบ SHARE-ED โดยไฟล์ `tests/post/create-post.spec.js` มี Test Case การสร้างโพสต์ตั้งแต่ `TC-POST01-001` ถึง `TC-POST01-039`
+โปรเจกต์นี้ใช้ Playwright สำหรับทดสอบระบบ SHARE-ED โดยไฟล์ `tests/post/create-post.spec.js` มี Test Case การสร้างโพสต์ตั้งแต่ `TC-POST01-001` ถึง `TC-POST01-038` (ทั้งหมด 38 เคส)
 
 ## สิ่งที่ต้องติดตั้ง
 
@@ -70,7 +70,7 @@ playwright-shere-ed-final/
 │   └── test-data.js             # รวม path ของไฟล์ทดสอบ
 ├── tests/
 │   └── post/
-│       └── create-post.spec.js  # TC-POST01-001 ถึง TC-POST01-039
+│       └── create-post.spec.js  # TC-POST01-001 ถึง TC-POST01-038 (38 เคส)
 ├── global-setup.js              # เข้าสู่ระบบและบันทึก session ก่อนรัน Test
 ├── playwright.config.js         # การตั้งค่า browser, video, trace และ report
 ├── package.json                 # Scripts และ dependencies
@@ -274,12 +274,12 @@ docker run --rm --ipc=host `
 
 หากไม่ mount `test-results` และ `playwright-report` ไฟล์ผลทดสอบจะถูกลบตาม Container เนื่องจากใช้ `--rm`
 
-### รันเฉพาะ TC-POST01-039 ใน Docker
+### รันเฉพาะ TC-POST01-038 ใน Docker
 
 Command Prompt:
 
 ```cmd
-docker run --rm --ipc=host -e "MEMBER_EMAIL=ใส่อีเมลบัญชีทดสอบ" -e "MEMBER_PASSWORD=ใส่รหัสผ่านบัญชีทดสอบ" -e "BASE_URL=https://share-ed.online/" --mount "type=bind,source=%cd%\test-results,target=/app/test-results" --mount "type=bind,source=%cd%\playwright-report,target=/app/playwright-report" share-ed-playwright npx playwright test tests/post/create-post.spec.js --project=chromium --grep TC-POST01-039
+docker run --rm --ipc=host -e "MEMBER_EMAIL=ใส่อีเมลบัญชีทดสอบ" -e "MEMBER_PASSWORD=ใส่รหัสผ่านบัญชีทดสอบ" -e "BASE_URL=https://share-ed.online/" --mount "type=bind,source=%cd%\test-results,target=/app/test-results" --mount "type=bind,source=%cd%\playwright-report,target=/app/playwright-report" share-ed-playwright npx playwright test tests/post/create-post.spec.js --project=chromium --grep TC-POST01-038
 ```
 
 คำสั่งที่เขียนต่อท้ายชื่อ image จะใช้แทน `CMD` ใน Dockerfile
@@ -299,11 +299,11 @@ Image: share-ed-playwright:latest
 Exit code: 0
 ```
 
-จากนั้นทดลองรัน Test ทั้ง 39 เคสใน Container:
+จากนั้นทดลองรัน Test ทั้ง 38 เคสใน Container:
 
 ```text
-Running 39 tests using 1 worker
-38 passed
+Running 38 tests using 1 worker
+37 passed
 1 failed
 ```
 
@@ -311,14 +311,14 @@ Docker สามารถทำงานได้ครบดังนี้:
 
 - เปิด Chromium ใน Container
 - Login ด้วยบัญชี Member
-- รัน Test Case ทั้ง 39 เคส
+- รัน Test Case ทั้ง 38 เคส
 - อัปโหลดไฟล์จาก `test-data`
 - สร้างและตรวจโพสต์
 - บันทึก Video, Screenshot และ Trace
 - สร้าง HTML Report
 - เขียน Report กลับมายังโฟลเดอร์ในเครื่อง
 
-Test ที่ Fail คือ `TC-POST01-039` ในขั้นตอนตรวจสอบหลังลบโพสต์ ระบบแสดงข้อความว่าลบสำเร็จ แต่ยังพบชื่อโพสต์ในหน้า Explore แม้ Reload หน้าแล้ว:
+Test ที่ Fail คือ `TC-POST01-038` ในขั้นตอนตรวจสอบหลังลบโพสต์ ระบบแสดงข้อความว่าลบสำเร็จ แต่ยังพบชื่อโพสต์ในหน้า Explore แม้ Reload หน้าแล้ว:
 
 ```text
 Expected: 0
@@ -388,35 +388,57 @@ docker build -t share-ed-playwright .
 npm test
 ```
 
-### รัน Test การสร้างโพสต์ทั้งหมด 39 เคส
+### รัน Test การสร้างโพสต์ทั้งหมด 38 เคส
 
-```powershell
-npx.cmd playwright test tests/post/create-post.spec.js --project=chromium
-```
-
-หรือใช้ npm script:
+รันผ่าน npm script (แนะนำบน Windows เพื่อลดปัญหา path และ execution policy):
 
 ```powershell
 npm run test:post
 ```
 
-### รันเฉพาะ TC-POST01-039
+หรือรันผ่านคำสั่ง Playwright:
 
 ```powershell
-npx.cmd playwright test tests/post/create-post.spec.js --project=chromium --grep "TC-POST01-039"
+npx.cmd playwright test tests/post/create-post.spec.js --project=chromium
 ```
 
-### รันแบบเห็นหน้าต่าง Browser
+> **ข้อควรระวังบน Windows:** ต้องใช้เครื่องหมาย Slash (`/`) เช่น `tests/post/...` เสมอ ห้ามใช้ Backslash (`\`) เช่น `tests\post\...` เพราะ Playwright จะตีจำเป็น Regular Expression และทำให้เกิดข้อผิดพลาด `Error: No tests found`
+
+### รันเฉพาะ Test Case ที่ต้องการ (เช่น TC-POST01-038)
+
+ใช้ flag `-g` (หรือ `--grep`) เพื่อระบุชื่อ Test Case:
 
 ```powershell
-npx.cmd playwright test tests/post/create-post.spec.js --project=chromium --grep "TC-POST01-039" --headed
+npx.cmd playwright test tests/post/create-post.spec.js -g "TC-POST01-038"
+```
+
+> **หมายเหตุ:** ต้องใส่ `-g` นำหน้าเสมอ หากใส่ชื่อ Test Case เข้าไปตรงๆ Playwright จะเข้าใจว่าเป็นชื่อไฟล์และแจ้ง `Error: No tests found` และในไฟล์นี้ Test Case สุดท้ายคือ `TC-POST01-038` (ไม่ใช่ 039)
+
+### รันแบบเปิด UI Mode (แนะนำ สะดวกที่สุด)
+
+เปิดหน้าต่าง Playwright UI เพื่อคลิกเลือกรันทีละเคส ดูผลลัพธ์ขั้นตอนย่อยและ Time Travel Debug ได้ทันที ไม่ต้องพิมพ์ regex หรือจำคำสั่ง:
+
+```powershell
+npm run test:ui
+```
+
+หรือ:
+
+```powershell
+npx.cmd playwright test --ui
+```
+
+### รันแบบเห็นหน้าต่าง Browser (Headed)
+
+```powershell
+npx.cmd playwright test tests/post/create-post.spec.js -g "TC-POST01-038" --headed
 ```
 
 ### รันแบบ Debug ทีละขั้นตอน
 
 ```powershell
 $env:PWDEBUG="1"
-npx.cmd playwright test tests/post/create-post.spec.js --project=chromium --grep "TC-POST01-039" --headed
+npx.cmd playwright test tests/post/create-post.spec.js -g "TC-POST01-038" --headed
 ```
 
 หลัง Debug เสร็จ สามารถลบค่า `PWDEBUG` ได้ด้วย:
@@ -450,42 +472,44 @@ const postTitle = `TC-POST01-039 ทบทวนแคลคูลัส ${Date.
 await page.getByText(postTitle, { exact: true }).first().click();
 ```
 
-## TC-POST01-039 ทำอะไรบ้าง
+## TC-POST01-038 ทำอะไรบ้าง
 
-Test Case นี้ทำงานดังนี้:
+Test Case นี้ทดสอบการเผยแพร่โพสต์แบบใส่ข้อมูลครบทุกฟิลด์ (`TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน`) โดยมีขั้นตอนดังนี้:
 
-1. กรอกข้อมูลฟิลด์บังคับ
-2. อัปโหลดรูปปก
-3. เลือกระดับชั้น
-4. เลือกหมวดวิชาและแท็ก
-5. กรอกรายละเอียดเพิ่มเติม
-6. อัปโหลดรูปภาพประกอบและ PDF
-7. กดโพสต์สรุปความรู้
-8. ตรวจข้อความโพสต์สำเร็จ
-9. ตรวจว่าโพสต์ปรากฏบนหน้าแรก
-10. เปิดรายละเอียดโพสต์
-11. ตรวจชื่อ หมวดวิชา ระดับชั้น บทสรุป รายละเอียด รูปภาพ PDF และแท็ก
-12. ลบโพสต์ที่สร้างขึ้น
-13. ตรวจว่าโพสต์หายจากหน้า Explore
-14. ตรวจว่าโพสต์หายจากหน้า Home
+1. กรอกข้อมูลฟิลด์บังคับ: แนบรูปปก, กรอกหัวข้อโพสต์, เลือกระดับชั้น, กรอกบทสรุปย่อ
+2. กำหนดหมวดวิชาและแท็ก: เลือกวิชาคณิตศาสตร์ และเลือกแท็ก `#สรุปย่อ`
+3. กรอกรายละเอียดเนื้อหาเพิ่มเติม
+4. แนบรูปภาพประกอบ และแนบไฟล์ PDF (`document.pdf`)
+5. กดปุ่ม "โพสต์สรุปความรู้" และตรวจยืนยันข้อความ "โพสต์สำเร็จ!"
+6. ตรวจสอบว่าระบบนำทางกลับหน้าแรก (`/home`) และพบโพสต์ที่เพิ่งสร้าง
+7. คลิกเข้าสู่หน้ารายละเอียดของโพสต์ (`/post/:id`)
+8. ตรวจสอบข้อมูลในโพสต์: ชื่อหัวข้อ, หมวดวิชา, ระดับชั้น, บทสรุปย่อ, รายละเอียด, รูปภาพประกอบ
+9. ตรวจสอบไฟล์เอกสาร PDF (`document.pdf` และปุ่มดาวน์โหลดลิงก์ `.pdf`)
+10. ตรวจสอบแฮชแท็ก (`#สรุปย่อ`)
+11. ส่วน Cleanup ในบล็อก `finally`:
+    - ย้อนกลับมาที่หน้าแรก (`/home`) และค้นหาโพสต์ทดสอบ
+    - คลิกเข้าโพสต์ แล้วกดปุ่ม "ลบโพสต์"
+    - กดยืนยันการลบ ("ใช่, ลบเลย")
+    - กดยืนยัน Pop-up ยืนยันลบสำเร็จ ("ลบสำเร็จ!")
+    - ตรวจสอบว่าระบบนำทางสู่หน้าสำรวจ (`/explore`) แล้วตรวจนับว่าโพสต์ที่ถูกลบต้องไม่ปรากฏอีก (`toHaveCount(0)`)
 
-ขั้นตอนลบอยู่ใน `finally` เพื่อให้ระบบพยายามลบโพสต์ แม้ assertion ก่อนหน้าจะ Fail
+ขั้นตอนลบอยู่ใน `finally` เพื่อให้ระบบพยายามลบโพสต์ทดสอบเสมอ แม้ assertion ก่อนหน้าจะ Fail
 
-## Known Defect ของ TC-POST01-039
+## Known Defect ของ TC-POST01-038
 
-ไฟล์ที่อัปโหลดมีชื่อ `document.pdf` แต่หน้ารายละเอียดโพสต์แสดงชื่อที่ระบบสร้างใหม่ เช่น:
+1. **ชื่อไฟล์ PDF แสดงผลไม่ตรงกับชื่อต้นฉบับ:**  
+   ไฟล์ที่อัปโหลดมีชื่อ `document.pdf` แต่หน้ารายละเอียดโพสต์แสดงชื่อที่ระบบสุ่มสร้างใหม่ เช่น:
+   ```text
+   xbughsemnw...pdf
+   ```
+   Test จึงตรวจชื่อเดิมด้วยคำสั่ง:
+   ```js
+   await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
+   ```
+   ถ้าระบบยังแสดงชื่อสุ่ม Test Case จะ Fail ซึ่งเป็นผลที่ถูกต้องสำหรับ defect นี้ แต่ส่วน `finally` จะยังคงลบโพสต์ทดสอบออกตามปกติ
 
-```text
-xbughsemnw...pdf
-```
-
-Test จึงตรวจชื่อเดิมด้วยคำสั่ง:
-
-```js
-await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
-```
-
-ถ้าระบบยังแสดงชื่อสุ่ม Test Case จะ Fail ซึ่งเป็นผลที่ถูกต้องสำหรับ defect นี้ แต่ส่วน `finally` จะยังลบโพสต์ทดสอบออก
+2. **การลบโพสต์ในหน้า Explore:**  
+   หลังยืนยันการลบโพสต์สำเร็จแล้ว บางครั้งในหน้า `/explore` ยังคงแสดงชื่อโพสต์เดิมอยู่ (เกิดจากแคชฝั่งเซิร์ฟเวอร์ยังไม่อัปเดตทันที) ทำให้ assertion ตรวจนับจำนวนเป็น 0 ไม่ผ่าน
 
 ## Video, Screenshot และ Trace
 
@@ -724,7 +748,7 @@ docker build -t playwright-tests .
 
 รันคำสั่งโดยส่งค่าบัญชีผู้ใช้ผ่าน `-e` และเชื่อมโฟลเดอร์ Report ออกมาที่เครื่องเราผ่าน `-v`:
 
-#### รันทุก Test Case (39 เคส):
+#### รันทุก Test Case (38 เคส):
 ```powershell
 docker run --rm `
   -v ${PWD}/playwright-report:/app/playwright-report `
@@ -734,14 +758,14 @@ docker run --rm `
   playwright-tests
 ```
 
-#### รันเฉพาะเคสที่ต้องการ (เช่น TC-POST01-039):
+#### รันเฉพาะเคสที่ต้องการ (เช่น TC-POST01-038):
 ```powershell
 docker run --rm `
   -v ${PWD}/playwright-report:/app/playwright-report `
   -v ${PWD}/test-results:/app/test-results `
   -e MEMBER_EMAIL="your_email@example.com" `
   -e MEMBER_PASSWORD="your_password" `
-  playwright-tests npx playwright test tests/post/create-post.spec.js --grep "TC-POST01-039"
+  playwright-tests npx playwright test tests/post/create-post.spec.js --grep "TC-POST01-038"
 ```
 
 ---
@@ -767,6 +791,53 @@ docker run --rm -it -p 9323:9323 `
 ---
 
 ## ปัญหาที่พบบ่อย
+
+### Error: No tests found
+
+ข้อความ Error:
+
+```text
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+
+**สาเหตุและวิธีแก้ไข:**
+
+1. **ใช้เครื่องหมาย Backslash (`\`) บน Windows (พบบ่อยที่สุด):**
+   - ❌ `npx playwright test tests\post\create-post.spec.js` (บน Windows สัญลักษณ์ `\` จะถูกตีความเป็น Regex escape sequence เช่น `\p`, `\c` ทำให้ค้นหาไฟล์ไม่พบ)
+   - ✅ ให้เปลี่ยนมาใช้ Slash (`/`) เสมอ:
+     ```powershell
+     npx.cmd playwright test tests/post/create-post.spec.js
+     ```
+     หรือรันผ่าน npm script ใน `package.json` (สะดวกและปลอดภัยที่สุด):
+     ```powershell
+     npm run test:post
+     ```
+
+2. **ต้องการรันเฉพาะชื่อ Test Case แต่ไม่ได้ใส่ flag `-g` (หรือ `--grep`):**
+   - ❌ `npx.cmd playwright test "TC-POST01-038"` (หากไม่ใส่ `-g` Playwright จะเข้าใจว่าข้อความนั้นคือ **ชื่อไฟล์** ไม่ใช่ชื่อ Test Case จึงแจ้ง No tests found)
+   - ✅ ต้องระบุ `-g` หรือ `--grep` นำหน้าเสมอ:
+     ```powershell
+     npx.cmd playwright test -g "TC-POST01-038"
+     ```
+     หรือระบุทั้งชื่อไฟล์และชื่อเคส:
+     ```powershell
+     npx.cmd playwright test tests/post/create-post.spec.js -g "TC-POST01-038"
+     ```
+
+3. **ระบุชื่อ Test Case หรือชื่อโฟลเดอร์ผิด:**
+   - ในไฟล์ `tests/post/create-post.spec.js` มีทั้งหมด 38 เคส เคสสุดท้ายตั้งชื่อว่า `TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน` (หากเผลอระบุ `--grep "TC-POST01-039"` จะหาไม่พบ)
+   - ตรวจสอบชื่อโฟลเดอร์: โฟลเดอร์ในโปรเจกต์นี้คือ `tests/post/` (ไม่มี `s` หลัง post)
+
+4. **ชื่อ Test Case มีตัวอักษรพิเศษของ Regex:**
+   - หากชื่อ Test มีสัญลักษณ์ เช่น `( )`, `[ ]`, `$`, `*`, `+`, `?` ให้ครอบด้วยเครื่องหมายคำพูด (Quote) หรือระบุเฉพาะคีย์เวิร์ดสั้นๆ เช่น `-g "TC-POST01-038"`
+
+5. **แนะนำให้ใช้ Playwright UI Mode:**
+   - สามารถคลิกเลือกรัน Test แต่ละข้อผ่านหน้าจอ UI ได้สะดวก ไม่ต้องพิมพ์คำสั่ง Regex เอง:
+     ```powershell
+     npm run test:ui
+     ```
 
 ### PowerShell ไม่อนุญาตให้รัน `npx.ps1`
 
