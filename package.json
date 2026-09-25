@@ -6,6 +6,9 @@
   "scripts": {
     "test": "playwright test",
     "test:post": "playwright test tests/post/create-post.spec.js --project=chromium",
+    "generate:media": "node scripts/generate-educational-media.js",
+    "create:posts": "playwright test tests/post/create-post.spec.js -g \"สร้างโพสต์:\" --project=chromium",
+    "delete:posts": "playwright test tests/post/create-post.spec.js -g \"ลบโพสต์\" --project=chromium",
     "test:ui": "playwright test --ui"
   },
   "keywords": [],

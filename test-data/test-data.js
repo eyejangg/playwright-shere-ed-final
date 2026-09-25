@@ -44,9 +44,12 @@ const images16 = [
     imagePath('image16.png'),
 ];
 
+const { educationalPosts } = require('./educational/posts-data');
+
 module.exports = {
     images,
     pdf,
     images15,
-    images16
+    images16,
+    educationalPosts
 };
