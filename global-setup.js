@@ -24,7 +24,7 @@ async function globalSetup() {
 
 
     // 3. รอให้ระบบล็อกอินสำเร็จจริง โดยรอให้ปุ่ม "สร้างโพสต์" โผล่ขึ้นมาก่อน
-    await page.waitForSelector('[data-testid="create-post-btn"]');
+    await page.waitForSelector('[test-data="create-post-button"]');
     await page.waitForTimeout(1000);
 
     // 4. บันทึก Cookie และ LocalStorage (Access Token จาก Supabase) ลงไฟล์ JSON

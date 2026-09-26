@@ -31,6 +31,9 @@ module.exports = defineConfig({
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    // กำหนดให้ getByTestId ค้นหาผ่าน attribute "test-data"
+    testIdAttribute: 'test-data',
+
     // เว็บหลัก
     baseURL: process.env.BASE_URL || 'https://share-ed.online/',
     headless: true,
