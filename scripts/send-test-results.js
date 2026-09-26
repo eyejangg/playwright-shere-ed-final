@@ -124,8 +124,8 @@ const summary = {
 
 console.log(summary);
 
-const webhookUrl =
-    'https://unpremonished-lizzette-semiproductive.ngrok-free.dev/webhook/playwright-results';
+const webhookUrl = 'https://unpremonished-lizzette-semiproductive.ngrok-free.dev/webhook/playwright-results';
+
 
 // ยิง webhook ส่งข้อมูลไปยัง n8n 
 fetch(webhookUrl, {

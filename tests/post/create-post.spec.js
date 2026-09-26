@@ -111,12 +111,14 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
     await page.getByTestId('confirm-category-tags-button').click();
-    await expect(page.getByText('คณิตศาสตร์', { exact: true }).last()).toBeVisible();
+    // [INTENTIONAL FAIL FOR n8n TEST] คาดหวัง 'ฟิสิกส์' แทน 'คณิตศาสตร์'
+    await expect(page.getByText('ฟิสิกส์', { exact: true }).last()).toBeVisible({ timeout: 3000 });
   });
 
   test('TC-POST01-005: แนบรูปหน้าปก PNG', async ({ page }) => {
     await page.getByTestId('cover-file-input').setInputFiles(images.coverPng);
-    await expect(page.getByRole('img', { name: 'Cover' })).toBeVisible();
+    // [INTENTIONAL FAIL FOR n8n TEST] คาดหวังรูป 'WrongCoverImage'
+    await expect(page.getByRole('img', { name: 'WrongCoverImage' })).toBeVisible({ timeout: 3000 });
     await expect(page.getByTestId('remove-cover-button')).toBeVisible();
   });
 
@@ -134,8 +136,8 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
 
   test('TC-POST01-008: แนบรูปภาพประกอบ 1 รูป', async ({ page }) => {
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
-    // 2. ตรวจสอบว่าระบบขึ้นตัวเลขนับ 1/15
-    await expect(page.getByText('รูปภาพประกอบ (1/15) *', { exact: true })).toBeVisible();
+    // [INTENTIONAL FAIL FOR n8n TEST] คาดหวัง 'รูปภาพประกอบ (99/15) *'
+    await expect(page.getByText('รูปภาพประกอบ (99/15) *', { exact: true })).toBeVisible({ timeout: 3000 });
     await expect(page.getByRole('img', { name: 'img-0' })).toBeVisible();
     await expect(page.getByTestId('remove-supporting-image-button-0')).toBeVisible();
   });
