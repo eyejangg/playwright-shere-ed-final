@@ -21,8 +21,8 @@ test.describe('ทดสอบขั้นตอนการเข้าสู�
     await expect(page.getByRole('heading', { name: 'ยินดีต้อนรับสู่ SHARE-ED' })).toBeVisible();
 
     // ผลลัพธ์ที่คาดหวัง 2: แสดงเมนูสร้างโพสต์หลังเข้าสู่ระบบ
-    await expect(page.getByTestId('create-post-btn')).toBeVisible();
-    await page.getByTestId('create-post-btn').click();
+    await expect(page.getByTestId('create-post-button')).toBeVisible();
+    await page.getByTestId('create-post-button').click();
 
     // ผลลัพธ์ที่คาดหวัง 3: แสดงหน้าสร้างโพสต์สำเร็จ
     await expect(page).toHaveURL(/share-ed\.online\/create/);

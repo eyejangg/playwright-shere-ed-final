@@ -1,4 +1,4 @@
-const { chromium } = require('@playwright/test');
+const { chromium, expect } = require('@playwright/test');
 
 async function globalSetup() {
     // 1. เปิด Browser จำลองขึ้นมาเงียบๆ
@@ -16,16 +16,21 @@ async function globalSetup() {
     await page.getByRole('link', { name: 'เข้าสู่ระบบ' }).click();
     await page.getByRole('textbox', { name: 'อีเมล' }).fill('member01@test.com');
     await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill('Test1234');
+
     // await page.getByRole('textbox', { name: 'อีเมล' }) // github action ENV
     //     .fill(email);
     // await page.getByRole('textbox', { name: 'รหัสผ่าน' }) // github action ENV
     //     .fill(password);
+
     await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
 
 
-    // 3. รอให้ระบบล็อกอินสำเร็จจริง โดยรอให้ปุ่ม "สร้างโพสต์" โผล่ขึ้นมาก่อน
-    await page.waitForSelector('[data-testid="create-post-btn"]');
+    // 3. รอให้ระบบล็อกอินสำเร็จจริง โดยอยู่หน้า Share home
+
     await page.waitForTimeout(1000);
+    await expect(page).toHaveURL('https://share-ed.online/home');
+    await page.waitForTimeout(1000);
+
 
     // 4. บันทึก Cookie และ LocalStorage (Access Token จาก Supabase) ลงไฟล์ JSON
     await page.context().storageState({

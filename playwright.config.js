@@ -23,8 +23,13 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['list'], ['html', { open: 'never' }]],
-  outputDir: process.env.TEST_OUTPUT_DIR || 'test-results',
+  reporter: [
+    ['list'],
+    ['html', { open: 'never' }],
+    ['json', { outputFile: 'test-results/results.json' }]
+  ],
+  outputDir: 'test-results',
+
 
   // global setup: รันล็อกอินอัตโนมัติก่อนเริ่มเทสทุกครั้ง 
   globalSetup: require.resolve('./global-setup'),
@@ -40,7 +45,7 @@ module.exports = defineConfig({
 
     // ใช้สถานะ Login ที่บันทึกไว้ จาก global-setup
     storageState: 'playwright/.auth/member.json',
-
+    testIdAttribute: 'test-data',
     /* Collect trace for every test run (both passed and failed) */
     // trace: 'on',
     trace: 'retain-on-failure',
