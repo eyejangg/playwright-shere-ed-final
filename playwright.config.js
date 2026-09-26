@@ -36,6 +36,9 @@ module.exports = defineConfig({
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    // กำหนดให้ getByTestId ค้นหาผ่าน attribute "test-data"
+    testIdAttribute: 'test-data',
+
     // เว็บหลัก
     baseURL: process.env.BASE_URL || 'https://share-ed.online/',
     headless: true,
@@ -45,7 +48,6 @@ module.exports = defineConfig({
 
     // ใช้สถานะ Login ที่บันทึกไว้ จาก global-setup
     storageState: 'playwright/.auth/member.json',
-    testIdAttribute: 'test-data',
     /* Collect trace for every test run (both passed and failed) */
     // trace: 'on',
     trace: 'retain-on-failure',

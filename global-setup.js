@@ -25,8 +25,8 @@ async function globalSetup() {
     await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
 
 
-    // 3. รอให้ระบบล็อกอินสำเร็จจริง โดยอยู่หน้า Share home
-
+    // 3. รอให้ระบบล็อกอินสำเร็จจริง โดยรอให้ปุ่ม "สร้างโพสต์" โผล่ขึ้นมาก่อน
+    await page.waitForSelector('[test-data="create-post-button"]');
     await page.waitForTimeout(1000);
     await expect(page).toHaveURL('https://share-ed.online/home');
     await page.waitForTimeout(1000);
