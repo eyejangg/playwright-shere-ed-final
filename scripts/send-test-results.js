@@ -61,14 +61,19 @@ function collectFailedTests(suites) {
                     // Retry 2 → passed
                     // ดังนั้นจึงต้องวน results ทุกตัว
                     for (const result of test.results || []) {
-
+                          console.log(
+    'TEST:',
+    spec.title,
+    '| STATUS:',
+    result.status
+  );
                         // ==============================
                         // 4. ตรวจว่า Test Failed หรือไม่
                         // ==============================
                         // result.status คือสถานะการ Execute จริง
                         // ตัวอย่าง: "passed", "failed", "skipped"
                         // ถ้า status เป็น failed แสดงว่าเจอ Test ที่ไม่ผ่าน
-                        if (result.status === 'failed') {
+                        if (['failed', 'timedOut', 'interrupted'].includes(result.status)) {
                             // เก็บข้อมูล Test Case ที่ไม่ผ่านลงใน failedTests Array
                             failedTests.push({
                                 title: spec.title,
