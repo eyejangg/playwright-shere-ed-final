@@ -6,8 +6,12 @@
   "scripts": {
     "test": "playwright test",
     "test:post": "playwright test tests/post/create-post.spec.js --project=chromium",
-    "test:ui": "playwright test --ui"
+    "test:lifecycle": "playwright test tests/post/lifecycle-flow.spec.js --project=chromium --headed",
+    "test:headed": "playwright test --project=chromium --headed",
+    "test:ui": "playwright test --ui",
+    "test:sync-sheet": "node scripts/sync-test-to-sheet.js"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",

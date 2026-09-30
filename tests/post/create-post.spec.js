@@ -1,6 +1,6 @@
 // @ts-check
-const { test, expect } = require('@playwright/test');
-const { images, pdf, images15, images16 } = require('../../test-data/test-data');
+const { test, expect, publishPost } = require('./post-helpers');
+const { images, pdf, images05, images06, generateUniqueTitle } = require('../../test-data/test-data');
 // ==============================
 // Login Test
 // ==============================
@@ -26,7 +26,7 @@ test.describe('ทดสอบขั้นตอนการเข้าสู�
 
     // ผลลัพธ์ที่คาดหวัง 3: แสดงหน้าสร้างโพสต์สำเร็จ
     await expect(page).toHaveURL(/share-ed\.online\/create/);
-    await expect(page.getByRole('heading', { name: 'แบ่งปันความรู้ของคุณ' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'สร้างโพสต์สรุปความรู้' })).toBeVisible();
   });
 });
 
@@ -49,7 +49,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     // ถ้า TC นี้ต้องการเข้า /create โดยตรง ด้วยตัวเอง ให้เปิด //awiat ซะ
     //await page.goto('/create');
 
-    await expect(page.getByRole('heading', { name: 'แบ่งปันความรู้ของคุณ' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'สร้างโพสต์สรุปความรู้' })).toBeVisible();
 
     // ตรวจสอบฟิลด์อินพุตและปุ่มหลักด้วย test-data
     await expect(page.getByTestId('cover-file-input')).toBeAttached();
@@ -92,8 +92,8 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('post-summary-input').fill('สรุปสูตรอนุพันธ์');
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('suggested-hashtag-button-4').click();
-    await page.getByTestId('confirm-category-tags-button').click();
+    await page.getByRole('button', { name: '#สรุปย่อ', exact: true }).click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
     await page.getByTestId('post-content-input').locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
     await page.getByTestId('pdf-file-input').setInputFiles(pdf.normal);
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
@@ -110,46 +110,49 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
   test('TC-POST01-004: เลือกหมวดหมู่วิชา 1 หมวด', async ({ page }) => {
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('confirm-category-tags-button').click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
     await expect(page.getByText('คณิตศาสตร์', { exact: true }).last()).toBeVisible();
   });
 
   test('TC-POST01-005: แนบรูปหน้าปก PNG', async ({ page }) => {
     await page.getByTestId('cover-file-input').setInputFiles(images.coverPng);
     await expect(page.getByRole('img', { name: 'Cover' })).toBeVisible();
+    await expect.poll(() => page.getByRole('img', { name: 'Cover' }).evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
     await expect(page.getByTestId('remove-cover-button')).toBeVisible();
   });
 
   test('TC-POST01-006: แนบรูปหน้าปก JPG', async ({ page }) => {
     await page.getByTestId('cover-file-input').setInputFiles(images.coverJpg);
     await expect(page.getByRole('img', { name: 'Cover' })).toBeVisible();
+    await expect.poll(() => page.getByRole('img', { name: 'Cover' }).evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
     await expect(page.getByTestId('remove-cover-button')).toBeVisible();
   });
 
   test('TC-POST01-007: แนบรูปหน้าปกขนาดเท่ากับ 2 MB', async ({ page }) => {
     await page.getByTestId('cover-file-input').setInputFiles(images.coverPng);
     await expect(page.getByRole('img', { name: 'Cover' })).toBeVisible();
+    await expect.poll(() => page.getByRole('img', { name: 'Cover' }).evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
     await expect(page.getByTestId('remove-cover-button')).toBeVisible();
   });
 
   test('TC-POST01-008: แนบรูปภาพประกอบ 1 รูป', async ({ page }) => {
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
-    // 2. ตรวจสอบว่าระบบขึ้นตัวเลขนับ 1/15
-    await expect(page.getByText('รูปภาพประกอบ (1/15) *', { exact: true })).toBeVisible();
+    // 2. ตรวจสอบว่าระบบขึ้นตัวเลขนับ 1/5
+    await expect(page.getByText('รูปภาพประกอบ (1/5) *', { exact: true })).toBeVisible();
     await expect(page.getByRole('img', { name: 'img-0' })).toBeVisible();
     await expect(page.getByTestId('remove-supporting-image-button-0')).toBeVisible();
   });
 
-  test('TC-POST01-009: แนบรูปภาพประกอบครบ 15 รูป', async ({ page }) => {
+  test('TC-POST01-009: แนบรูปภาพประกอบครบ 5 รูป', async ({ page }) => {
 
-    await page.getByTestId('supporting-images-file-input').setInputFiles(images15);
-    // 1. ตรวจสอบว่าระบบขึ้นตัวเลขนับ 15/15
-    await expect(page.getByText('รูปภาพประกอบ (15/15) *', { exact: true })).toBeVisible();
-    // 2. ตรวจว่ารูปแรก (img-0) และรูปสุดท้าย (img-14) แสดงบนหน้าจอ
+    await page.getByTestId('supporting-images-file-input').setInputFiles(images05);
+    // 1. ตรวจสอบว่าระบบขึ้นตัวเลขนับ 5/5
+    await expect(page.getByText('รูปภาพประกอบ (5/5) *', { exact: true })).toBeVisible();
+    // 2. ตรวจว่ารูปแรก (img-0) และรูปสุดท้าย (img-4) แสดงบนหน้าจอ
     await expect(page.getByRole('img', { name: 'img-0' })).toBeVisible();
-    await expect(page.getByRole('img', { name: 'img-14' })).toBeVisible();
+    await expect(page.getByRole('img', { name: 'img-4' })).toBeVisible();
     await expect(page.getByTestId('remove-supporting-image-button-0')).toBeVisible();
-    await expect(page.getByTestId('remove-supporting-image-button-14')).toBeVisible();
+    await expect(page.getByTestId('remove-supporting-image-button-4')).toBeVisible();
 
   });
 
@@ -169,7 +172,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('post-summary-input').fill('สรุปสูตรอนุพันธ์');
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('confirm-category-tags-button').click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
     await page.getByTestId('post-content-input').locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
     await page.getByTestId('publish-post-button').click();
@@ -186,7 +189,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('post-summary-input').fill('สรุปสูตรอนุพันธ์');
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('confirm-category-tags-button').click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
     await page.getByTestId('post-content-input').locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
     await page.getByTestId('publish-post-button').click();
@@ -202,7 +205,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('education-level-select').selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('confirm-category-tags-button').click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
     await page.getByTestId('post-content-input').locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
     await page.getByTestId('publish-post-button').click();
@@ -248,7 +251,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     // 5. ตั้งค่าหมวดหมู่วิชา
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('confirm-category-tags-button').click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
     // 6. ไม่กรอกรายละเอียดเพิ่มเติม (เว้น [contenteditable="true"] ไว้)
     // 7. รูปภาพประกอบ (เจาะจงโซนรูปภาพประกอบด้านล่าง)
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
@@ -270,7 +273,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
 
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('confirm-category-tags-button').click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
     await page.getByTestId('post-content-input').locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
 
@@ -286,13 +289,13 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('cover-file-input').setInputFiles(images.coverOver2MB);
     await expect(page.getByText('คลิกเพื่ออัปโหลดรูปปก', { exact: true })).toBeVisible();
     await expect(page.getByText('cover-over-2mb.png', { exact: true })).toHaveCount(0);
-    await expect(page.getByText('รูปปกต้องมีขนาดไม่เกิน 2 MB')).toBeVisible();
+    await expect(page.getByRole('status')).toHaveText('รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB');
     await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-019: รูปภาพประกอบมีขนาดเกิน 2 MB', async ({ page }) => {
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.imageOver2MB);
-    await expect(page.getByText('รูปภาพประกอบ (0/15) *', { exact: true })).toBeVisible();
+    await expect(page.getByText('รูปภาพประกอบ (0/5) *', { exact: true })).toBeVisible();
     await expect(page.getByText('image-over-2mb.png', { exact: true })).toHaveCount(0);
     await expect(page.getByRole('status')).toHaveText('รูปภาพประกอบต้องมีขนาดไม่เกิน 2 MB');
     await expect(page).toHaveURL(/\/create/);
@@ -310,15 +313,15 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('cover-file-input').setInputFiles(images.imageGif);
     await expect(page.getByText('คลิกเพื่ออัปโหลดรูปปก', { exact: true })).toBeVisible();
     await expect(page.getByText('image01.gif', { exact: true })).toHaveCount(0);
-    await expect(page.getByText('สามารถอัปโหลดไฟล์ .jpg,.jpeg,.png เท่านั้น')).toBeVisible();
+    await expect(page.getByRole('status')).toHaveText('รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น');
     await expect(page).toHaveURL(/\/create/);
   });
 
   test('TC-POST01-022: รูปภาพประกอบเป็นไฟล์ผิดประเภท', async ({ page }) => {
     await page.getByTestId('supporting-images-file-input').setInputFiles(images.imageGif);
-    await expect(page.getByText('รูปภาพประกอบ (0/15) *', { exact: true })).toBeVisible();
+    await expect(page.getByText('รูปภาพประกอบ (0/5) *', { exact: true })).toBeVisible();
     await expect(page.getByText('image01.gif', { exact: true })).toHaveCount(0);
-    await expect(page.getByText('สามารถอัปโหลดไฟล์ .jpg,.jpeg,.png เท่านั้น')).toBeVisible();
+    await expect(page.getByRole('status')).toHaveText('รูปภาพต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น');
     await expect(page).toHaveURL(/\/create/);
   });
 
@@ -330,10 +333,12 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await expect(page).toHaveURL(/\/create/);
   });
 
-  test('TC-POST01-024: แนบรูปภาพประกอบรูปที่ 16', async ({ page }) => {
-    await page.getByTestId('supporting-images-file-input').setInputFiles(images16);
-    await expect(page.getByText('รูปภาพประกอบ (15/15) *', { exact: true })).toBeVisible();
-    await expect(page.getByText('คุณสามารถอัปโหลดรูปภาพประกอบได้สูงสุด 15 รูปเท่านั้น', { exact: true })).toBeVisible();
+  test('TC-POST01-024: แนบรูปภาพประกอบรูปที่ 6', async ({ page }) => {
+    await page.getByTestId('supporting-images-file-input').setInputFiles(images06);
+    await expect(page.getByRole('status')).toContainText('อัปโหลดรูปภาพประกอบได้สูงสุด 5 รูป');
+    await expect(page.getByText('รูปภาพประกอบ (5/5) *', { exact: true })).toBeVisible();
+    await expect(page.getByRole('img', { name: /^img-\d+$/ })).toHaveCount(5);
+    await expect(page.getByRole('img', { name: 'img-5', exact: true })).toHaveCount(0);
     await expect(page).toHaveURL(/\/create/);
   });
 
@@ -392,7 +397,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await tagInput.press('Enter');
 
     // 2. กดปุ่ม "ตกลง" เพื่อบันทึกและปิด Modal
-    await page.getByTestId('confirm-category-tags-button').click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
 
     // 3. ตรวจสอบว่าทั้ง 3 แท็กแสดงบนหน้าฟอร์มหลักเรียบร้อย 
     await expect(page.getByText('#คณิต', { exact: true })).toBeVisible();
@@ -411,10 +416,15 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await tagInput.press('Enter');
     await tagInput.fill('#เรียนรู้');
     await tagInput.press('Enter');
-    await tagInput.fill('#โจทย์');
-    await tagInput.press('Enter');
-    await expect(page.getByText(/ไม่สามารถเพิ่ม(แท็ก)?เกิน 3 อัน/i)).toBeVisible();
-    await expect(page.getByText('#โจทย์', { exact: true })).toHaveCount(0);
+    await expect(tagInput).toHaveCount(0);
+    await expect(page.getByText('แฮชแท็ก (3/3)', { exact: true })).toBeVisible();
+    await page.getByRole('button', { name: '#สรุปย่อ', exact: true }).click();
+    await expect(page.getByText('แฮชแท็ก (3/3)', { exact: true })).toBeVisible();
+    await page.getByRole('button', { name: 'เสร็จสิ้น', exact: true }).click();
+    await expect(page.getByText('#คณิต', { exact: true })).toBeVisible();
+    await expect(page.getByText('#ม6', { exact: true })).toBeVisible();
+    await expect(page.getByText('#เรียนรู้', { exact: true })).toBeVisible();
+    await expect(page.getByText('#สรุปย่อ', { exact: true })).toHaveCount(0);
   });
 
   test('TC-POST01-032: แท็กมีเครื่องหมายขีดกลาง', async ({ page }) => {
@@ -444,20 +454,22 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await expect(page.getByText(/แท็กต้องไม่มีอักษรพิเศษ/i)).toBeVisible();
   });
 
-  test('TC-POST01-035: แท็กมีความยาว 10 ตัวอักษร', async ({ page }) => {
+  test('TC-POST01-035: แท็กมีความยาว 10 ตัวอักษร (รวม #)', async ({ page }) => {
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('hashtag-input').fill('#1234567890');
+    // #123456789 ความยาว 10 ตัวอักษรรวมเครื่องหมาย #
+    await page.getByTestId('hashtag-input').fill('#123456789');
     await page.getByTestId('hashtag-input').press('Enter');
-    await expect(page.getByText('#1234567890', { exact: true }).first()).toBeVisible(); // ใช้ .first เพื่อตรวจ element ตัวแรกที่ปรากฎบนหน้าจอ เพื่อหา #1234567890 ให้เจอ
+    await expect(page.getByText('#123456789', { exact: true }).first()).toBeVisible();
   });
 
-  test('TC-POST01-036: แท็กมีความยาว 11 ตัวอักษร', async ({ page }) => {
+  test('TC-POST01-036: แท็กมีความยาว 11 ตัวอักษร (รวม #)', async ({ page }) => {
     await page.getByTestId('category-tags-settings-button').click();
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('hashtag-input').fill('#12345678901');
+    // #1234567890 ความยาว 11 ตัวอักษรรวมเครื่องหมาย #
+    await page.getByTestId('hashtag-input').fill('#1234567890');
     await page.getByTestId('hashtag-input').press('Enter');
-    await expect(page.getByText('#12345678901', { exact: true })).toHaveCount(0);
+    await expect(page.getByText('#1234567890', { exact: true })).toHaveCount(0);
     await expect(page.getByText('แท็กต้องมีความยาวไม่เกิน 10 ตัวอักษร', { exact: true })).toBeVisible();
   });
 
@@ -467,104 +479,22 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await expect(page.getByTestId('remove-pdf-button')).toBeVisible();
   });
 
-  test('TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page }) => {
+  test('TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page, artifacts }) => {
     test.setTimeout(120_000);
-    const postTitle = `TC-POST01-038 ทบทวนแคลคูลัส ${Date.now()}`;
-    await page.getByTestId('cover-file-input').setInputFiles(images.coverPng);
-    await page.getByTestId('post-title-input').fill(postTitle);
-    await page.getByTestId('education-level-select').selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
-    await page.getByTestId('post-summary-input').fill('สรุปสูตรอนุพันธ์');
-    await page.getByTestId('category-tags-settings-button').click();
-    await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
-    await page.getByTestId('suggested-hashtag-button-4').click();
-    await page.getByTestId('confirm-category-tags-button').click();
-    await page.getByTestId('post-content-input').locator('[contenteditable="true"]').fill('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์');
-    await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
-    await page.getByTestId('pdf-file-input').setInputFiles(pdf.normal);
-    await page.getByTestId('publish-post-button').click();
-    await expect(page.getByRole('heading', { name: 'โพสต์สำเร็จ!' })).toBeVisible({ timeout: 60000 });
-    await expect(page.getByText('โพสต์สรุปความรู้เรียบร้อยแล้ว')).toBeVisible();
-    await page.getByRole('button', { name: 'OK' }).click();
-    await expect(page).toHaveURL(/\/home\/?$/);
-    await expect(page.getByRole('heading', { name: 'โพสต์สำเร็จ!' })).toBeHidden();
-
-    try {
-      const createdPost = page.getByText(postTitle, { exact: true }).first();
-      await createdPost.scrollIntoViewIfNeeded();
-      await expect(createdPost).toBeVisible({ timeout: 15000 });
-      await page.waitForTimeout(1000);
-      await createdPost.click();
-      await expect(page).toHaveURL(/\/post\/[^/]+$/);
-
-      // ตรวจชื่อ หมวดวิชา และระดับชั้น
-      await expect(page.getByRole('heading', { name: postTitle, exact: true })).toBeVisible();
-      await expect(page.getByText(/คณิตศาสตร์/).first()).toBeVisible();
-      await expect(page.getByText(/มัธยมศึกษาตอนปลาย/).first()).toBeVisible();
-      await page.waitForTimeout(1000);
-
-      // เลื่อนลงไปตรวจบทสรุปย่อ
-      const summary = page.getByText('สรุปสูตรอนุพันธ์', { exact: true });
-      await summary.scrollIntoViewIfNeeded();
-      await expect(summary).toBeVisible();
-      await page.waitForTimeout(1000);
-
-      // เลื่อนลงไปตรวจรายละเอียดเพิ่มเติม
-      const detail = page.getByText('ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์', { exact: true });
-      await detail.scrollIntoViewIfNeeded();
-      await expect(detail).toBeVisible();
-      await page.waitForTimeout(1000);
-
-      // เลื่อนลงไปตรวจรูปภาพประกอบ
-      const galleryImage = page.getByRole('img', { name: 'gallery-0' });
-      await galleryImage.scrollIntoViewIfNeeded();
-      await expect(galleryImage).toBeVisible();
-      await page.waitForTimeout(1000);
-
-      // เลื่อนลงไปตรวจไฟล์ PDF
-      const pdfHeading = page.getByRole('heading', { name: 'ไฟล์เอกสาร PDF' });
-      await pdfHeading.scrollIntoViewIfNeeded();
-      await expect(pdfHeading).toBeVisible();
-      await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
-      await expect(page.getByRole('button', { name: 'ดาวน์โหลด' })).toBeVisible();
-      await page.waitForTimeout(1000);
-
-      // เลื่อนลงไปตรวจแฮชแท็ก
-      const tag = page.getByText('#สรุปย่อ', { exact: true });
-      await tag.scrollIntoViewIfNeeded();
-      await expect(tag).toBeVisible();
-      await page.waitForTimeout(1000);
-    } finally {
-      // กลับหน้าแรกและค้นหาโพสต์จากชื่อที่สร้างในเคสนี้
-      await page.goto('/home');
-      const postToDelete = page.getByText(postTitle, { exact: true }).first();
-      await expect(postToDelete).toBeVisible({ timeout: 15_000 });
-      await postToDelete.click();
-      await expect(page).toHaveURL(/\/post\/[^/]+$/);
-
-      // ลบโพสต์
-      await page.getByRole('button', { name: 'ลบโพสต์' }).click();
-      await expect(page.getByRole('dialog', { name: /คุณต้องการลบโพสต์/ })).toBeVisible();
-      await expect(page.getByText(`คุณต้องการลบโพสต์ "${postTitle}" ใช่หรือไม่?`)).toBeVisible();
-      await page.getByRole('button', { name: 'ใช่, ลบเลย' }).click();
-
-      // ตรวจข้อความลบสำเร็จ 
-      await expect(page.getByRole('dialog', { name: /ลบสำเร็จ/ })).toBeVisible({ timeout: 15000 });
-      await expect(page.getByText('โพสต์และไฟล์ที่เกี่ยวข้องถูกลบถาวรแล้ว')).toBeVisible();
-      await page.getByRole('button', { name: 'OK' }).click();
-
-      // ตรวจว่าโพสต์ที่ลบหายไปจากหน้าสำรวจแล้ว
-      await expect(page).toHaveURL(/\/home\/?$/);
-      await page.reload();
-      await page.keyboard.press('Home');
-      await page.waitForTimeout(1000);
-      await page.mouse.wheel(0, 600);
-      await page.waitForTimeout(5000);
-      await page.reload();
-      await expect(page.getByText(postTitle, { exact: true })
-      ).toHaveCount(0, { timeout: 15000 });
-
-      await page.waitForTimeout(15000);
-      await page.reload();
-    }
+    const title = generateUniqueTitle('TC-POST01-038 ทบทวนแคลคูลัส');
+    const postUrl = await publishPost(page, artifacts, {
+      title, summary: 'สรุปสูตรอนุพันธ์', withPdf: true, tag: '#สรุปย่อ',
+    });
+    await expect(page).toHaveURL(postUrl);
+    await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
+    await expect(page.getByText('คณิตศาสตร์', { exact: true }).first()).toBeVisible();
+    await expect(page.getByText('มัธยมศึกษาตอนปลาย', { exact: true }).first()).toBeVisible();
+    await expect(page.getByText('สรุปสูตรอนุพันธ์', { exact: true })).toBeVisible();
+    await expect(page.getByText('เนื้อหาตัวอย่างสำหรับทดสอบ TC-02', { exact: true })).toBeVisible();
+    await expect(page.getByRole('img', { name: 'gallery-0', exact: true })).toBeVisible();
+    await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'ดาวน์โหลด', exact: true })).toBeVisible();
+    await expect(page.getByText('#สรุปย่อ', { exact: true })).toBeVisible();
   });
+
 });

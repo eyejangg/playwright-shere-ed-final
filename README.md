@@ -1,6 +1,8 @@
 # Playwright Automation Testing — SHARE-ED
 
-โปรเจกต์นี้ใช้ Playwright สำหรับทดสอบระบบ SHARE-ED โดยไฟล์ `tests/post/create-post.spec.js` มี Test Case การสร้างโพสต์ตั้งแต่ `TC-POST01-001` ถึง `TC-POST01-038` (ทั้งหมด 38 เคส)
+โปรเจกต์นี้ใช้ Playwright สำหรับทดสอบระบบ SHARE-ED (ครอบคลุมทั้งการสร้างโพสต์, แบบร่าง, แก้ไข, ลบ และวงจรชีวิตครบถ้วน)
+
+> 📖 **คู่มือคำสั่งฉบับเต็ม:** ดูตัวอย่างคำสั่งรันทีละเคส, รวมเคส, โหมด Debug, UI และ Sync Sheet ได้ที่ 👉 [PLAYWRIGHT_COMMANDS.md](PLAYWRIGHT_COMMANDS.md)
 
 ## สิ่งที่ต้องติดตั้ง
 
@@ -386,6 +388,14 @@ docker build -t share-ed-playwright .
 
 ```powershell
 npm test
+```
+
+### รัน Test ทั้งหมดพร้อมอัปเดตผลลง Google Sheets อัตโนมัติ
+
+คำสั่งนี้จะรัน Test ทุกชุดจนจบ จากนั้นจะเปิด Google Sheet และอัปเดตสถานะ `Pass / Fail`, วันที่ และข้อมูล Automation ให้อัตโนมัติ:
+
+```powershell
+npm run test:sync-sheet
 ```
 
 ### รัน Test การสร้างโพสต์ทั้งหมด 38 เคส

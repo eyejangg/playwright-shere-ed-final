@@ -1,4 +1,5 @@
 const path = require('path');
+const { randomUUID } = require('node:crypto');
 
 const images = {
     coverPng: path.resolve(__dirname, 'images/cover.png'),
@@ -20,6 +21,19 @@ const pdf = {
 function imagePath(fileName) {
     return path.resolve(__dirname, `images/${fileName}`);
 }
+
+const images05 = [
+    imagePath('image01.png'),
+    imagePath('image02.png'),
+    imagePath('image03.png'),
+    imagePath('image04.png'),
+    imagePath('image05.png'),
+];
+
+const images06 = [
+    ...images05,
+    imagePath('image06.png'),
+];
 
 const images15 = [
     imagePath('image01.png'),
@@ -44,9 +58,22 @@ const images16 = [
     imagePath('image16.png'),
 ];
 
+function generateUniqueTitle(prefix = 'AutoTest') {
+    const run = process.env.GITHUB_RUN_ID || 'local';
+    return `${prefix} ${run}-${randomUUID().slice(0, 8)}`.slice(0, 100);
+}
+
+const authPaths = {
+    memberA: path.resolve(__dirname, '../playwright/.auth/member-a.json'),
+};
+
 module.exports = {
     images,
     pdf,
+    images05,
+    images06,
     images15,
-    images16
+    images16,
+    generateUniqueTitle,
+    authPaths,
 };

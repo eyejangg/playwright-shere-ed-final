@@ -1,15 +1,22 @@
-name: POST Test Report - 39 Cases
+name: SHARE-ED Automation Test Suite
 
 on:
   workflow_dispatch:
-
-  push:
-    branches:
-      - main
-
-  pull_request:
-    branches:
-      - main
+    inputs:
+      test_suite:
+        description: 'เลือกชุดทดสอบที่ต้องการรัน'
+        required: true
+        default: 'lifecycle'
+        type: choice
+        options:
+          - lifecycle
+          - create
+          - draft
+          - edit
+          - delete
+          - detail
+          - all
+          - sync-sheet
 
 permissions:
   contents: read
@@ -21,7 +28,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
       - name: Checkout source code
@@ -39,21 +46,35 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Run all 39 POST test cases
-        run: >
-          npx playwright test
-          tests/post/create-post.spec.js
-          --project=chromium
+      - name: Run Playwright Tests
+        run: |
+          if [ "${{ github.event.inputs.test_suite }}" = "lifecycle" ]; then
+            npx playwright test tests/post/lifecycle-flow.spec.js --project=chromium
+          elif [ "${{ github.event.inputs.test_suite }}" = "create" ]; then
+            npx playwright test tests/post/create-post.spec.js --project=chromium
+          elif [ "${{ github.event.inputs.test_suite }}" = "draft" ]; then
+            npx playwright test tests/post/draft-post.spec.js --project=chromium
+          elif [ "${{ github.event.inputs.test_suite }}" = "edit" ]; then
+            npx playwright test tests/post/edit-post.spec.js --project=chromium
+          elif [ "${{ github.event.inputs.test_suite }}" = "delete" ]; then
+            npx playwright test tests/post/delete-post.spec.js --project=chromium
+          elif [ "${{ github.event.inputs.test_suite }}" = "detail" ]; then
+            npx playwright test tests/post/detail-post.spec.js --project=chromium
+          elif [ "${{ github.event.inputs.test_suite }}" = "sync-sheet" ]; then
+            npm run test:sync-sheet
+          else
+            npx playwright test tests/post/ --project=chromium --workers=1
+          fi
         env:
-          MEMBER_EMAIL: ${{ secrets.MEMBER_EMAIL }}
-          MEMBER_PASSWORD: ${{ secrets.MEMBER_PASSWORD }}
+          MEMBER_A_EMAIL: ${{ secrets.MEMBER_A_EMAIL || secrets.MEMBER_EMAIL }}
+          MEMBER_A_PASSWORD: ${{ secrets.MEMBER_A_PASSWORD || secrets.MEMBER_PASSWORD }}
           BASE_URL: https://share-ed.online/
 
       - name: Upload HTML report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v5
         with:
-          name: playwright-report-39-test-cases
+          name: playwright-report
           path: playwright-report/
           retention-days: 30
 
