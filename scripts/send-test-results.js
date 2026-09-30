@@ -22,6 +22,7 @@ function flattenSteps(steps, parentPath = []) {
   });
 }
 
+// โฟลอ่านข้อมูล 
 function buildSummary(report, stepReport = { attempts: [] }) {
   // แปลงรายงานดิบเป็นข้อมูลที่ Workflow ใช้ โดยคงผลทุก attempt ไว้ตรวจย้อนหลัง
   const tests = [];
@@ -89,7 +90,7 @@ function buildSummary(report, stepReport = { attempts: [] }) {
     runErrors: report.errors || [],
   };
 }
-
+    
 async function main() {
   // หา root จากตำแหน่งสคริปต์ เพื่ออ่านรายงานจากโปรเจกต์นี้เสมอ
   const repo = path.resolve(__dirname, '..');
