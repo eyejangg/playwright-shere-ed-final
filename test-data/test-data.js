@@ -1,6 +1,8 @@
 const path = require('path');
 const { randomUUID } = require('node:crypto');
 
+// อธิบายตอนพรีเซนต์: รวม path ของไฟล์แนบให้ Test และ helper ใช้ชุดข้อมูลเดียวกัน
+// path.resolve ทำให้ได้ absolute path โดยอิงโฟลเดอร์ไฟล์นี้
 const images = {
     coverPng: path.resolve(__dirname, 'images/cover.png'),
     coverJpg: path.resolve(__dirname, 'images/cover.jpg'),
@@ -9,6 +11,7 @@ const images = {
     image01: path.resolve(__dirname, 'images/image01.png'),
 };
 
+// PDF ที่แนบในเคสกรอกข้อมูลครบและเคสเผยแพร่โพสต์
 const pdf = {
     normal: path.resolve(__dirname, 'pdf/document.pdf'),
 };
@@ -25,6 +28,8 @@ const pdf = {
  * @returns {string} ชื่อโพสต์ที่ไม่ซ้ำกัน ความยาวไม่เกิน 100 ตัวอักษร
  */
 function generateUniqueTitle(prefix = 'AutoTest') {
+    // ใช้ชื่อเดียวกันตลอดเคสนั้นทั้งตอนสร้าง ตรวจผล และ Cleanup
+    // รหัสสุ่มช่วยลดโอกาสชื่อชน แต่ไม่ได้รับประกันความไม่ซ้ำแบบฐานข้อมูล
     // 1. ตรวจสอบว่ารันอยู่ที่ไหน: ถ้ารันบน GitHub จะได้เลขรอบรัน (Run ID) ถ้ารันในเครื่องจะได้คำว่า 'local'
     const run = process.env.GITHUB_RUN_ID || 'local';
 

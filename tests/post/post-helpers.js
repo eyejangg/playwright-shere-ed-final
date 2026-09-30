@@ -1,4 +1,7 @@
 // @ts-check
+// อธิบายตอนพรีเซนต์: helper รวมขั้นตอนกรอก/เผยแพร่โพสต์และ Cleanup ที่ใช้ซ้ำได้
+// จุดที่ควรเปิดอธิบาย: fillRequiredFields → publishPost → artifacts fixture
+// test.step ที่เพิ่มช่วยให้ Reporter และ n8n เห็นชื่อขั้นตอน ไม่ได้เปลี่ยน expected
 const { test: base, expect } = require('@playwright/test');
 const { images, pdf } = require('../../test-data/test-data');
 
@@ -126,6 +129,8 @@ async function fillRequiredFields(page, {
   const isEdit = editPath.test(page.url());
   const prefix = isEdit ? 'edit-' : '';
 
+  // แบ่งงานกรอกฟอร์มเป็น test.step เพื่อระบุได้ว่าเฟลที่ไฟล์แนบ หมวดหมู่ หรือเนื้อหา
+
   await test.step('แนบหน้าปกและกรอกข้อมูลบังคับ', async () => {
     if (isEdit && await page.getByTestId('remove-edit-cover-button').count()) {
       await page.getByTestId('remove-edit-cover-button').click();
@@ -167,6 +172,7 @@ async function fillRequiredFields(page, {
  * @returns {Promise<string>} URL ของโพสต์ที่สร้างเสร็จ
  */
 async function publishPost(page, artifacts, options) {
+  // ลงทะเบียนชื่อก่อนสร้าง เผื่อสร้างสำเร็จแต่การตรวจสอบภายหลังเฟล ยังมีชื่อให้ Cleanup
   artifacts.track(options.title);
 
   await test.step('เปิดหน้าสร้างโพสต์', async () => {
@@ -184,6 +190,7 @@ async function publishPost(page, artifacts, options) {
   const url = await test.step('เปิดรายละเอียดโพสต์ที่เผยแพร่', async () => {
     return await openPost(page, options.title);
   });
+  // จด URL ที่สร้างไว้สำหรับตรวจยืนยันการลบหลังจบเคส
   artifacts.rememberUrl(options.title, url);
   return url;
 }
@@ -234,6 +241,8 @@ async function deleteCurrentPost(page) {
  * @param {{ title: string, aliases: string[], url: string }} item
  */
 async function cleanupTitle(page, item) {
+  // ค้นเฉพาะชื่อ/ชื่อเดิมที่ fixture ติดตามไว้ในโปรไฟล์ของบัญชีทดสอบ
+  // ตรวจทั้งโพสต์เผยแพร่และแบบร่าง แล้วลบรายการที่พบผ่าน UI
   for (const tab of ['posts', 'drafts']) {
     await openOwnProfileTab(page, tab);
     for (const title of item.aliases) {
@@ -258,6 +267,8 @@ async function cleanupTitle(page, item) {
     }
   }
 
+  // หากรู้ URL ให้เปิดกลับไปตรวจว่ารายละเอียดและปุ่มลบของโพสต์ไม่แสดงแล้ว
+  // เป็นการตรวจผลผ่าน UI ไม่ใช่การ query ฐานข้อมูลโดยตรง
   if (item.url) {
     await page.goto(item.url);
     await page.waitForLoadState('networkidle');
@@ -271,21 +282,25 @@ async function cleanupTitle(page, item) {
  * ติดตามโพสต์และแบบร่างที่สร้างในแต่ละเคส และสั่งลบทิ้งอัตโนมัติเมื่อเคสนั้นรันจบ
  */
 const test = base.extend({
+  // Fixture คือส่วนเตรียม/เก็บกวาดของแต่ละเคส; auto: true ทำให้ทำงานอัตโนมัติ
   artifacts: [async ({ page }, use) => {
     /** @type {Array<{ title: string, aliases: string[], url: string }>} */
     const items = [];
     const artifacts = {
       track(title) {
+        // จดเฉพาะชื่อโพสต์ของเคสนี้และหลีกเลี่ยงการจดชื่อเดิมซ้ำ
         if (!items.some((item) => item.aliases.includes(title))) {
           items.push({ title, aliases: [title], url: '' });
         }
       },
       rememberUrl(title, url) {
+        // ผูกชื่อที่ลงทะเบียนแล้วกับ URL ของโพสต์
         const item = items.find((entry) => entry.title === title);
         if (!item) throw new Error(`Untracked post: ${title}`);
         item.url = url;
       },
       rename(oldTitle, newTitle) {
+        // รองรับการเปลี่ยนชื่อโดยเก็บ aliases ไว้ให้ค้น Cleanup ได้ทั้งชื่อเก่าและใหม่
         const item = items.find((entry) => entry.aliases.includes(oldTitle));
         if (!item) throw new Error(`Untracked post: ${oldTitle}`);
         item.aliases.push(newTitle);
@@ -294,11 +309,16 @@ const test = base.extend({
     };
 
     try {
+      // ส่ง artifacts ให้ตัว Test ใช้งาน; รอจน Test จบก่อนเข้าสู่ finally
       await use(artifacts);
     } finally {
+      // finally ทำให้พยายาม Cleanup ทั้งเมื่อ Test ผ่านและเมื่อเกิด assertion error
+      // หาก process ถูกปิดทันทีหรือเว็บล่ม Cleanup ยังอาจทำไม่สำเร็จได้
       const failures = [];
+      // ลบย้อนลำดับการสร้าง และหากรายการหนึ่งผิดพลาดยังลองลบรายการอื่นต่อ
       for (const item of [...items].reverse()) {
         try {
+          // ตั้งชื่อ Cleanup ให้ Reporter เก็บผลผ่าน/เฟลเป็นหลักฐานอีกขั้นตอนหนึ่ง
           await test.step('Cleanup: ลบโพสต์ทดสอบและตรวจสอบว่าลบแล้ว', async () => {
             await cleanupTitle(page, item);
           });
@@ -307,15 +327,18 @@ const test = base.extend({
         }
       }
       if (failures.length) {
+        // รายงานความล้มเหลว Cleanup แทนการซ่อน error แม้ขั้นตอนหลักจะผ่านแล้ว
         throw new Error(`Test data cleanup failed:\n${failures.join('\n')}`);
       }
       if (items.length) {
+        // แนบรายการที่เก็บกวาดแล้วในรายงาน Playwright สำหรับตรวจย้อนหลัง
         await base.info().attach('created-posts-cleaned', {
           body: JSON.stringify(items),
           contentType: 'application/json',
         });
       }
     }
+  // ให้ fixture มีเวลาสูงสุด 120 วินาทีสำหรับงานของ fixture รวม Cleanup
   }, { auto: true, timeout: 120_000 }],
 });
 

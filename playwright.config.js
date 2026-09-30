@@ -23,12 +23,17 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  // อธิบายตอนพรีเซนต์: Reporter ทั้งสี่ทำงานร่วมกันในการรัน Test
+  // list แสดงผลใน Terminal; custom Reporter เก็บชื่อ test.step ลง steps.json
+  // html เปิดดูผลและหลักฐานได้; json เก็บ results.json สำหรับสคริปต์ส่ง n8n
   reporter: [
     ['list'],
     ['./scripts/step-reporter.js'], // เก็บ test.step รวม hook และ cleanup
     ['html', { open: 'never' }],
     ['json', { outputFile: 'test-results/results.json' }]
   ],
+  // โฟลเดอร์หลักฐานของรอบทดสอบ เช่น screenshot, video และ trace
+  // หากต้องเก็บหลายรอบ ควรสำรองก่อนเริ่มรอบใหม่
   outputDir: 'test-results',
 
 
@@ -43,14 +48,17 @@ module.exports = defineConfig({
     // เว็บหลัก
     baseURL: process.env.BASE_URL || 'https://share-ed.online/',
     headless: true,
+    // เก็บภาพเฉพาะเคสเฟล เพื่อให้ตรวจสภาพหน้าเว็บขณะเกิดปัญหาได้
     screenshot: 'only-on-failure',
     // video: 'on',
+    // เก็บวิดีโอไว้เมื่อเฟล; ไม่ส่งไฟล์เหล่านี้เข้า n8n ในสคริปต์ปัจจุบัน
     video: 'retain-on-failure',
 
     // ใช้สถานะ Login ที่บันทึกไว้ จาก global-setup
     storageState: 'playwright/.auth/member.json',
     /* Collect trace for every test run (both passed and failed) */
     // trace: 'on',
+    // Trace บันทึกการกระทำและสภาพเว็บเพื่อไล่ตรวจย้อนหลัง เก็บไว้เมื่อเคสเฟล
     trace: 'retain-on-failure',
     // trace: 'on-first-retry',
   },
