@@ -1,150 +1,95 @@
-const fs = require('fs'); // File System ของ Node.js ใช้สำหรับอ่าน/เขียนไฟล์
+const fs = require('node:fs');
+const path = require('node:path');
 
-const report = JSON.parse( // <<<< js object
-    fs.readFileSync('test-results/results.json', 'utf8')
-    // อ่านไฟล์ results.json 
-    // และแปลงจากข้อความ JSON เป็น JavaScript Object เพื่อให้เรียกใช้ข้อมูลข้างในได้
-);
+const failedStatuses = new Set(['failed', 'timedOut', 'interrupted']);
 
-
-const stats = report.stats;
-// result.json / stats ดูได้เลยใน stats บรรทัดท้ายสุด
-// เพื่อให้รู้ว่า มีจำนวน ผ่านเท่าไหร่ เฟลเท่าไหร่ หรือ ผลอื่นเท่าไหร่
-// total = จำนวนที่เทสทั้งหมด
-// passed = จำนวนที่เทสผ่าน
-// failed = จำนวนที่เทสไม่ผ่าน
-// skipped = จำนวนที่เทสข้าม
-// flaky = จำนวนที่เทสกระพือ
-// duration = ระยะเวลาที่ใช้ในการเทส
-
-
-const failedTests = []; // เก็บ Test ที่ เฟล เลยต้องเปิด array ว่างไว้เก็บข้อมูลเทสที่มันเฟล
-
-// ฟังก์ชันสำหรับค้นหา Test Case ที่รันแล้วมีสถานะ Failed
-// รับ suites เข้ามา ซึ่งเป็นรายการกลุ่ม Test จาก Playwright JSON Report
-// ใช้ Recursion เพื่อให้ฟังก์ชันสามารถค้นหา Test ที่ Failed ลงไปใน Suite
-function collectFailedTests(suites) {
-    // วนดู Suite ทีละตัว
-    // Suite อาจเป็นไฟล์ Test หรือกลุ่มที่เกิดจาก test.describe()
-    for (const suite of suites) {
-        // แสดงชื่อ Suite ที่กำลังตรวจสอบ
-        // ใช้สำหรับ Debug ว่าฟังก์ชันกำลังเดินผ่าน Suite ไหนอยู่
-        console.log('Suite:', suite.title);
-
-        // ==============================
-        // 1. ตรวจ Test Case ใน Suite นี้
-        // ==============================
-        // เช็คก่อนว่า Suite นี้มี specs หรือไม่
-        // specs คือรายการ Test Case เช่น test('TC-POST01-001...', ...)
-        if (suite.specs) {
-            // วน Test Case ทีละตัว
-            for (const spec of suite.specs) {
-                // spec คือ Test Case หนึ่งตัว
-                // เช่น: TC-POST01-001: สมาชิกเข้าสู่หน้าสร้างโพสต์
-                // ชื่อ Test Case สามารถอ่านได้จาก: spec.title
-
-                // ==============================
-                // 2. ตรวจการรันของ Test Case
-                // ==============================
-                // spec.tests เก็บข้อมูลการรันของ Test Case
-                // เช่น การรันบน chromium, firefox หรือ webkit
-                // ใช้ || [] เพื่อป้องกัน Error ถ้า spec.tests ไม่มีข้อมูลจะใช้ Array ว่างแทน
-                for (const test of spec.tests || []) {
-
-                    // ==============================
-                    // 3. ตรวจผลการรันแต่ละรอบ
-                    // ==============================
-                    // test.results เก็บผลการ Execute Test
-                    // อาจมีหลาย Result ได้ เช่นกรณีเปิด Retry
-                    // รอบแรก  → failed
-                    // Retry 1 → failed
-                    // Retry 2 → passed
-                    // ดังนั้นจึงต้องวน results ทุกตัว
-                    for (const result of test.results || []) {
-                          console.log(
-    'TEST:',
-    spec.title,
-    '| STATUS:',
-    result.status
-  );
-                        // ==============================
-                        // 4. ตรวจว่า Test Failed หรือไม่
-                        // ==============================
-                        // result.status คือสถานะการ Execute จริง
-                        // ตัวอย่าง: "passed", "failed", "skipped"
-                        // ถ้า status เป็น failed แสดงว่าเจอ Test ที่ไม่ผ่าน
-                        if (['failed', 'timedOut', 'interrupted'].includes(result.status)) {
-                            // เก็บข้อมูล Test Case ที่ไม่ผ่านลงใน failedTests Array
-                            failedTests.push({
-                                title: spec.title,
-                                file: spec.file,
-                                line: result.error?.location?.line || null,
-                                column: result.error?.location?.column || null,
-                                error: result.error?.message || 'Unknown error',
-                                duration: result.duration
-                            });
-                        }
-                    }
-                }
-            }
-        }
-
-        // ==========================================
-        // 5. ตรวจว่ามี Suite ลูกซ้อนอยู่หรือไม่
-        // ==========================================
-        // Playwright สามารถมี test.describe() ซ้อนกันได้
-        // ตัวอย่าง: Suite A └── Suite B └── Suite C
-        // เพราะฉะนั้นเราไม่รู้ล่วงหน้าว่าจะซ้อนกันกี่ชั้น
-        if (suite.suites) {
-            // เรียกฟังก์ชัน collectFailedTests() ตัวเดิมอีกครั้ง แต่ส่ง Suite ลูกเข้าไปตรวจ
-            // วิธีที่ฟังก์ชันเรียกตัวเองแบบนี้เรียกว่า Recursion
-            collectFailedTests(suite.suites);
-        }
-    }
+// รองรับ JSON report เดิม หากไม่มี sidecar จาก step-reporter.
+function flattenSteps(steps, parentPath = []) {
+  return (steps || []).flatMap(step => {
+    const stepPath = [...parentPath, step.title];
+    return [{ title: step.title, path: stepPath,
+      status: step.error ? 'failed' : 'passed', duration: step.duration,
+      error: step.error?.message || null, location: null },
+      ...flattenSteps(step.steps, stepPath)];
+  });
 }
 
-// ==========================================
-// จุดเริ่มต้นของการค้นหา
-// ==========================================
-// report คือข้อมูลทั้งหมดที่อ่านมาจาก results.json
-// report.suites คือ Suites ชั้นนอกสุด
-// เราจึงส่ง report.suites เข้าไปให้ฟังก์ชันเพื่อเริ่มค้นหา Test ที่ Failed ตั้งแต่ชั้นแรก
-collectFailedTests(report.suites);
-// แสดงข้อมูล Test ที่ Failed ที่เก็บไว้ใน Array
-console.log('Failed Tests:', failedTests);
-
-
-
-
-// เปลี่ยน json ใหญ่ๆให้เป็น การสร้าง summary เล็กๆออกมา
-const summary = {
+function buildSummary(report, stepReport = { attempts: [] }) {
+  const tests = [];
+  function visit(suites) {
+    for (const suite of suites || []) {
+      for (const spec of suite.specs || []) {
+        for (const test of spec.tests || []) {
+          const attempts = (test.results || []).map(result => {
+            // startTime ป้องกันอ่าน steps.json เก่าที่มาจากการรันคนละรอบ.
+            const recorded = (stepReport.attempts || []).find(attempt =>
+              attempt.testId === spec.id && attempt.retry === result.retry &&
+              attempt.startTime === result.startTime);
+            const steps = recorded?.steps || flattenSteps(result.steps);
+            const failedSteps = steps.filter(step => step.status === 'failed');
+            // parent และ child อาจมี error เดียวกัน เลือกขั้นตอนย่อยที่ลึกที่สุด.
+            const deepest = failedSteps.reduce((best, step) =>
+              !best || step.path.length > best.path.length ? step : best, null);
+            const errors = (result.errors?.length ? result.errors : result.error ? [result.error] : [])
+              .map(error => error.message || error.value || 'Unknown error');
+            const isFailed = failedStatuses.has(result.status);
+            const failureType = !isFailed ? null : 'test';
+            return {
+              retry: result.retry || 0, status: result.status, duration: result.duration,
+              error: errors[0] || null, errors,
+              line: result.error?.location?.line || result.errorLocation?.line || null,
+              column: result.error?.location?.column || result.errorLocation?.column || null,
+              steps, failed_step: deepest?.title || null,
+              failed_step_path: deepest?.path || null,
+              failed_steps: failedSteps, failure_type: failureType,
+            };
+          });
+          // สรุปผลรอบสุดท้าย ป้องกัน retry ที่ผ่านแล้วถูกนับเป็น Failed ซ้ำ.
+          const last = attempts.at(-1);
+          tests.push({ title: spec.title, file: spec.file,
+            project: test.projectName, outcome: test.status,
+            ...(last || { status: 'notRun', steps: [], failed_step: null, failure_type: null }),
+            attempts });
+        }
+      }
+      visit(suite.suites);
+    }
+  }
+  visit(report.suites);
+  const stats = report.stats;
+  return {
     total: stats.expected + stats.unexpected + stats.skipped + stats.flaky,
-    passed: stats.expected,
-    failed: stats.unexpected,
-    skipped: stats.skipped,
-    flaky: stats.flaky,
-    duration: Math.round(stats.duration),
-    failedTests: failedTests, // เพิ่มข้อมูล Test ที่ Failed
-};
+    passed: stats.expected, failed: stats.unexpected,
+    skipped: stats.skipped, flaky: stats.flaky, duration: Math.round(stats.duration),
+    tests,
+    failedTests: tests.filter(test => failedStatuses.has(test.status)),
+    runErrors: report.errors || [],
+  };
+}
 
-console.log(summary);
+async function main() {
+  const repo = path.resolve(__dirname, '..');
+  const report = JSON.parse(fs.readFileSync(path.join(repo, 'test-results/results.json'), 'utf8'));
+  const stepPath = path.join(repo, 'test-results/steps.json');
+  const stepReport = fs.existsSync(stepPath) ? JSON.parse(fs.readFileSync(stepPath, 'utf8')) : undefined;
+  const summary = buildSummary(report, stepReport);
+  fs.writeFileSync(path.join(repo, 'test-results/summary.json'), JSON.stringify(summary, null, 2));
+  console.log(JSON.stringify(summary, null, 2));
+  // เรียนรู้และตรวจ payload ได้โดยไม่ส่ง webhook.
+  if (process.argv.includes('--dry-run')) return;
+  const webhookUrl = process.env.N8N_WEBHOOK_URL ||
+    'https://unpremonished-lizzette-semiproductive.ngrok-free.dev/webhook/playwright-results';
+  const response = await fetch(webhookUrl, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(summary), signal: AbortSignal.timeout(30_000),
+  });
+  if (!response.ok) throw new Error(`n8n returned HTTP ${response.status}: ${await response.text()}`);
+  console.log('Sent to n8n successfully:', await response.text());
+}
 
-const webhookUrl = 'https://unpremonished-lizzette-semiproductive.ngrok-free.dev/webhook/playwright-results';
-
-
-// ยิง webhook ส่งข้อมูลไปยัง n8n 
-fetch(webhookUrl, {
-    method: 'POST', // post ใน ทิคเก้ตแรก
-    headers: {
-        'Content-Type': 'application/json', // กำหนดว่าข้อมูลที่ส่งเป็น json
-    },
-    body: JSON.stringify(summary), // แปลง js object เป็น json string
-})
-    .then(response => response.text()) // รับค่าจากทิคเก้ต 2
-    .then(data => {
-        console.log('Sent to n8n successfully'); // แสดงว่าส่งสำเร็จ
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Failed to send to n8n:', error); // แสดงว่าส่งไม่สำเร็จ
-    });
+// import ฟังก์ชันไปตรวจได้โดยไม่ส่งข้อมูลออกไป.
+module.exports = { buildSummary, flattenSteps };
+if (require.main === module) main().catch(error => {
+  console.error('Failed to send to n8n:', error.message);
+  process.exitCode = 1;
+});

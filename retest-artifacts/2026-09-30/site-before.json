@@ -1,0 +1,207 @@
+{
+  "form": "SHARE-ED\nหน้าหลัก\nสำรวจเนื้อหา\nโพสต์ยอดนิยม\nสร้างโพสต์\nสร้างโพสต์สรุปความรู้\n\nแบ่งปันความรู้ของคุณให้เพื่อนๆ ได้เรียนรู้ไปด้วยกัน\n\nรูปปก *\nไม่เกิน 2 MB\n\nแนะนำอัตราส่วน 16:9 (เช่น 1280×720px) เพื่อให้แสดงผลสวยที่สุด\n\nคลิกเพื่ออัปโหลดรูปปก\nอัตราส่วน 16:9 (1280×720px) ขนาดไม่เกิน 2 MB\nชื่อหัวข้อสรุป *\n0/100 ตัวอักษร\nระดับชั้น\n*\nเลือกระดับชั้น\nมัธยมศึกษาตอนต้น\nมัธยมศึกษาตอนปลาย\nมหาวิทยาลัย\nบทสรุปย่อ (Summary)\n*\n0/200 ตัวอักษร\nหมวดหมู่วิชาและแฮชแท็ก\n*\nกรุณาเลือกหมวดหมู่วิชา *\nยังไม่มีแฮชแท็ก (สามารถเพิ่มแท็กช่วยให้ค้นหาง่ายขึ้น)\nตั้งค่าวิชาและแท็ก\nรายละเอียดเพิ่มเติม\n*\n\n\n\n\nเพิ่มรูปจากปุ่มใน toolbar, ลากไฟล์ หรือวางจาก clipboard (สูงสุด 5 รูป, JPEG, PNG และ WEBP, รูปละไม่เกิน 2 MB)\n\nไฟล์เอกสาร PDF (ถ้ามี)\nPDF ไม่เกิน 20 MB\nอัปโหลดไฟล์ PDF\nPDF ไม่เกิน 20 MB\nรูปภาพประกอบ (0/5) *\nไม่เกินรูปละ 2 MB\nยกเลิก\nบันทึกแบบร่าง\nโพสต์สรุปความรู้\nSHARE-ED\n\nพื้นที่สำหรับแบ่งปันความรู้ดีๆ\nเพื่อการศึกษาไทย\n\nติดต่อแอดมิน\nshare_ed@gmail.com\nเกี่ยวกับเรา",
+  "fields": [
+    {
+      "id": "create-post-button",
+      "tag": "A",
+      "text": "สร้างโพสต์",
+      "accept": null,
+      "maxLength": null
+    },
+    {
+      "id": "cover-file-input",
+      "tag": "INPUT",
+      "text": "",
+      "accept": ".jpg,.jpeg,.png,.apng",
+      "maxLength": null
+    },
+    {
+      "id": "post-title-input",
+      "tag": "INPUT",
+      "text": "",
+      "accept": null,
+      "maxLength": "100"
+    },
+    {
+      "id": "education-level-select",
+      "tag": "SELECT",
+      "text": "เลือกระดับชั้นมัธยมศึกษาตอนต้นมัธยมศึกษาตอนปลายมหาวิทยาลัย",
+      "accept": null,
+      "maxLength": null
+    },
+    {
+      "id": "post-summary-input",
+      "tag": "TEXTAREA",
+      "text": "",
+      "accept": null,
+      "maxLength": null
+    },
+    {
+      "id": "category-tags-settings-button",
+      "tag": "BUTTON",
+      "text": "ตั้งค่าวิชาและแท็ก",
+      "accept": null,
+      "maxLength": null
+    },
+    {
+      "id": "post-content-input",
+      "tag": "DIV",
+      "text": " เพิ่มรูปจากปุ่มใน toolbar, ลากไฟล์ หรือวางจาก clipboard (สูงสุด 5 รูป, JPEG, PNG และ WEBP, รูปละไม่เกิน 2 MB)",
+      "accept": null,
+      "maxLength": null
+    },
+    {
+      "id": "content-image-file-input",
+      "tag": "INPUT",
+      "text": "",
+      "accept": "image/jpeg,image/png,image/webp",
+      "maxLength": null
+    },
+    {
+      "id": "pdf-file-input",
+      "tag": "INPUT",
+      "text": "",
+      "accept": ".pdf,application/pdf",
+      "maxLength": null
+    },
+    {
+      "id": "supporting-images-file-input",
+      "tag": "INPUT",
+      "text": "",
+      "accept": ".jpg,.jpeg,.png,image/jpeg,image/png",
+      "maxLength": null
+    },
+    {
+      "id": "cancel-create-post-button",
+      "tag": "BUTTON",
+      "text": "ยกเลิก",
+      "accept": null,
+      "maxLength": null
+    },
+    {
+      "id": "save-draft-button",
+      "tag": "BUTTON",
+      "text": "บันทึกแบบร่าง",
+      "accept": null,
+      "maxLength": null
+    },
+    {
+      "id": "publish-post-button",
+      "tag": "BUTTON",
+      "text": "โพสต์สรุปความรู้",
+      "accept": null,
+      "maxLength": null
+    }
+  ],
+  "categoryDialog": "SHARE-ED\nหน้าหลัก\nสำรวจเนื้อหา\nโพสต์ยอดนิยม\nสร้างโพสต์\nสร้างโพสต์สรุปความรู้\n\nแบ่งปันความรู้ของคุณให้เพื่อนๆ ได้เรียนรู้ไปด้วยกัน\n\nรูปปก *\nไม่เกิน 2 MB\n\nแนะนำอัตราส่วน 16:9 (เช่น 1280×720px) เพื่อให้แสดงผลสวยที่สุด\n\nคลิกเพื่ออัปโหลดรูปปก\nอัตราส่วน 16:9 (1280×720px) ขนาดไม่เกิน 2 MB\nชื่อหัวข้อสรุป *\n0/100 ตัวอักษร\nระดับชั้น\n*\nเลือกระดับชั้น\nมัธยมศึกษาตอนต้น\nมัธยมศึกษาตอนปลาย\nมหาวิทยาลัย\nบทสรุปย่อ (Summary)\n*\n0/200 ตัวอักษร\nหมวดหมู่วิชาและแฮชแท็ก\n*\nกรุณาเลือกหมวดหมู่วิชา *\nยังไม่มีแฮชแท็ก (สามารถเพิ่มแท็กช่วยให้ค้นหาง่ายขึ้น)\nตั้งค่าวิชาและแท็ก\nรายละเอียดเพิ่มเติม\n*\n\n\n\n\nเพิ่มรูปจากปุ่มใน toolbar, ลากไฟล์ หรือวางจาก clipboard (สูงสุด 5 รูป, JPEG, PNG และ WEBP, รูปละไม่เกิน 2 MB)\n\nไฟล์เอกสาร PDF (ถ้ามี)\nPDF ไม่เกิน 20 MB\nอัปโหลดไฟล์ PDF\nPDF ไม่เกิน 20 MB\nรูปภาพประกอบ (0/5) *\nไม่เกินรูปละ 2 MB\nยกเลิก\nบันทึกแบบร่าง\nโพสต์สรุปความรู้\nตั้งค่าวิชาและแท็ก\nหมวดหมู่วิชา\n*\nเลือกหมวดหมู่วิชา\nคณิตศาสตร์\nคอมพิวเตอร์และเทคโนโลยี\nเคมี\nชีววิทยา\nฟิสิกส์\nภาษาไทย\nภาษาอังกฤษ\nวิทยาศาสตร์\nสังคมศึกษา\nอื่นๆ\nแฮชแท็ก (0/3)\nกด Enter เพื่อเพิ่มแท็ก\nแท็กแนะนำที่น่าสนใจ:\n#สรุป\n#ความรู้\n#โน้ตเรียน\n#สาระ\n#ทบทวน\n#สรุปย่อ\n#บทเรียน\n#อ่านสอบ\nเสร็จสิ้น\nSHARE-ED\n\nพื้นที่สำหรับแบ่งปันความรู้ดีๆ\nเพื่อการศึกษาไทย\n\nติดต่อแอดมิน\nshare_ed@gmail.com\nเกี่ยวกับเรา",
+  "categoryFields": [
+    {
+      "id": "create-post-button",
+      "tag": "A",
+      "text": "สร้างโพสต์"
+    },
+    {
+      "id": "cover-file-input",
+      "tag": "INPUT",
+      "text": ""
+    },
+    {
+      "id": "post-title-input",
+      "tag": "INPUT",
+      "text": ""
+    },
+    {
+      "id": "education-level-select",
+      "tag": "SELECT",
+      "text": "เลือกระดับชั้นมัธยมศึกษาตอนต้นมัธยมศึกษาตอนปลายมหาวิทยาลัย"
+    },
+    {
+      "id": "post-summary-input",
+      "tag": "TEXTAREA",
+      "text": ""
+    },
+    {
+      "id": "category-tags-settings-button",
+      "tag": "BUTTON",
+      "text": "ตั้งค่าวิชาและแท็ก"
+    },
+    {
+      "id": "post-content-input",
+      "tag": "DIV",
+      "text": " เพิ่มรูปจากปุ่มใน toolbar, ลากไฟล์ หรือวางจาก clipboard (สูงสุด 5 รูป, JPEG, PNG และ WEBP, รูปละไม่เกิน 2 MB)"
+    },
+    {
+      "id": "content-image-file-input",
+      "tag": "INPUT",
+      "text": ""
+    },
+    {
+      "id": "pdf-file-input",
+      "tag": "INPUT",
+      "text": ""
+    },
+    {
+      "id": "supporting-images-file-input",
+      "tag": "INPUT",
+      "text": ""
+    },
+    {
+      "id": "cancel-create-post-button",
+      "tag": "BUTTON",
+      "text": "ยกเลิก"
+    },
+    {
+      "id": "save-draft-button",
+      "tag": "BUTTON",
+      "text": "บันทึกแบบร่าง"
+    },
+    {
+      "id": "publish-post-button",
+      "tag": "BUTTON",
+      "text": "โพสต์สรุปความรู้"
+    },
+    {
+      "id": "close-category-tags-modal-button",
+      "tag": "BUTTON",
+      "text": ""
+    },
+    {
+      "id": "category-select",
+      "tag": "SELECT",
+      "text": "เลือกหมวดหมู่วิชาคณิตศาสตร์คอมพิวเตอร์และเทคโนโลยีเคมีชีววิทยาฟิสิกส์ภาษาไทยภาษาอังกฤษวิทยาศาสตร์สังคมศึกษาอื่นๆ"
+    },
+    {
+      "id": "hashtag-input",
+      "tag": "INPUT",
+      "text": ""
+    }
+  ],
+  "validations": {
+    "coverSize": [
+      "รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB"
+    ],
+    "coverType": [
+      "รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น"
+    ],
+    "imageType": [
+      "รูปภาพต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น"
+    ]
+  },
+  "profileUrl": "https://share-ed.online/profile/d391ef3d-06c5-4518-8fa1-375c066d6945",
+  "posts": [
+    "Testeye",
+    "เกี่ยวกับฉัน (Bio)",
+    "TC-LIFE-001 (แก้ไขแล้ว) ฟิสิกส์ ม.ปลาย 1790748677196",
+    "สรุป 12 Tenses ภาษาอังกฤษ ฉบับเข้าใจง่าย ใช้งานได้จริง",
+    "Data Structures & Algorithms พื้นฐานสำหรับผู้เริ่มต้น",
+    "สรุปชีววิทยา: เซลล์และการแบ่งเซลล์ ไมโทซิส vs ไมโอซิส",
+    "สรุปฟิสิกส์ ม.ปลาย: กฎการเคลื่อนที่และแรงของนิวตัน",
+    "สรุปสูตร แคลคูลัส ม.ปลาย: ลิมิต อนุพันธ์ และปริพันธ์"
+  ],
+  "drafts": [
+    "Testeye",
+    "เกี่ยวกับฉัน (Bio)",
+    "Untitled draft",
+    "Untitled draft"
+  ]
+}

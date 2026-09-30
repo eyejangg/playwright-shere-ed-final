@@ -1,0 +1,2057 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\playwright-shere-ed-final\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/post",
+      "--project=chromium",
+      "--reporter=list,json,html",
+      "--output=retest-artifacts/2026-09-30/full-final"
+    ],
+    "configFile": "D:\\playwright-shere-ed-final\\playwright.config.js",
+    "rootDir": "D:/playwright-shere-ed-final/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "D:\\playwright-shere-ed-final\\global-setup.js",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/playwright-shere-ed-final/retest-artifacts/2026-09-30/full-final",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/playwright-shere-ed-final/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ],
+      [
+        "html"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "post\\create-post.spec.js",
+      "file": "post/create-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "ทดสอบขั้นตอนการเข้าสู่ระบบ",
+          "file": "post/create-post.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST01-001: สมาชิกเข้าสู่หน้าสร้างโพสต์",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2904,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:23:52.531Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-8dc297b5043a7e06a761",
+              "file": "post/create-post.spec.js",
+              "line": 12,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "ทดสอบการสร้างโพสต์",
+          "file": "post/create-post.spec.js",
+          "line": 37,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST01-002: ตรวจสอบฟิลด์ในหน้าสร้างโพสต์",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2755,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:23:55.623Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-0d0f3d2ba57c16a459f3",
+              "file": "post/create-post.spec.js",
+              "line": 47,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-003: กรอกข้อมูลโพสต์ครบถ้วนและแนบไฟล์",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3096,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:23:58.408Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-bca83f538726e30b3d79",
+              "file": "post/create-post.spec.js",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-004: เลือกหมวดหมู่วิชา 1 หมวด",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2760,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:01.524Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-c959f2dd85fc2d211c67",
+              "file": "post/create-post.spec.js",
+              "line": 110,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-005: แนบรูปหน้าปก PNG",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2469,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:04.305Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-7fe73d25031edbce5669",
+              "file": "post/create-post.spec.js",
+              "line": 117,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-006: แนบรูปหน้าปก JPG",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2406,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:06.794Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-27069124b9d913e6655c",
+              "file": "post/create-post.spec.js",
+              "line": 124,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-007: แนบรูปหน้าปกขนาดเท่ากับ 2 MB",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2464,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:09.221Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-6766421ed32f8ec27aa4",
+              "file": "post/create-post.spec.js",
+              "line": 131,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-008: แนบรูปภาพประกอบ 1 รูป",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2349,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:11.705Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-69ff791980a5abc08f0a",
+              "file": "post/create-post.spec.js",
+              "line": 138,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-009: แนบรูปภาพประกอบครบ 5 รูป",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2529,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:14.071Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-a3e716565de67336718f",
+              "file": "post/create-post.spec.js",
+              "line": 146,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-010: แนบไฟล์ PDF 1 ไฟล์",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2290,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:16.622Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-24f3f12083b735c5d88c",
+              "file": "post/create-post.spec.js",
+              "line": 159,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-011: แนบไฟล์ PDF ขนาดเท่ากับ 20 MB",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2261,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:18.937Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-eb40dffd0b687056d2ee",
+              "file": "post/create-post.spec.js",
+              "line": 164,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-012: ไม่กรอกชื่อหัวข้อสรุป",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2944,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:21.216Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-e9e5b1ea9ba3816ff042",
+              "file": "post/create-post.spec.js",
+              "line": 169,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-013: ไม่เลือกระดับชั้น",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3342,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:24.178Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-7192ee6a6059b2cc3a9c",
+              "file": "post/create-post.spec.js",
+              "line": 186,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-014: ไม่กรอกบทสรุปย่อ",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3320,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:27.543Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-efd445163ad321dff668",
+              "file": "post/create-post.spec.js",
+              "line": 202,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-015: ไม่เลือกหมวดหมู่วิชา",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2765,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:30.886Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-a18a5c02b127d2a0c640",
+              "file": "post/create-post.spec.js",
+              "line": 218,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-016: ไม่กรอกรายละเอียดเพิ่มเติม",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3009,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:33.677Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-c415ebae14cff544688e",
+              "file": "post/create-post.spec.js",
+              "line": 241,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-017: ไม่แนบรูปหน้าปก",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2868,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:36.717Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-fb70eeb3b9c8a826f7e8",
+              "file": "post/create-post.spec.js",
+              "line": 267,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-018: รูปหน้าปกมีขนาดเกิน 2 MB",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2444,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:39.607Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-0a0bde15096fe8ee4782",
+              "file": "post/create-post.spec.js",
+              "line": 288,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-019: รูปภาพประกอบมีขนาดเกิน 2 MB",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2594,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:42.077Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-02485c7efae8a8699c60",
+              "file": "post/create-post.spec.js",
+              "line": 296,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-020: ไฟล์ PDF มีขนาดเกิน 20 MB",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2160,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:44.697Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-0b8235f15a098c20b196",
+              "file": "post/create-post.spec.js",
+              "line": 304,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-021: รูปหน้าปกเป็นไฟล์ผิดประเภท",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2201,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:46.882Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-f17fd630e21e0f7e997f",
+              "file": "post/create-post.spec.js",
+              "line": 312,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-022: รูปภาพประกอบเป็นไฟล์ผิดประเภท",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2478,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:49.107Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-9e507c511c658b9be65e",
+              "file": "post/create-post.spec.js",
+              "line": 320,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-023: เลือกไฟล์ที่ไม่ใช่ PDF",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2327,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:51.604Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-38d2de844e77ebf92846",
+              "file": "post/create-post.spec.js",
+              "line": 328,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-024: แนบรูปภาพประกอบรูปที่ 6",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2486,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:53.951Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-db9c7e82e5e94a063197",
+              "file": "post/create-post.spec.js",
+              "line": 336,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-025: เพิ่มแท็กภาษาไทย",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2646,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:56.454Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-80fc6a65672e8aed1b3f",
+              "file": "post/create-post.spec.js",
+              "line": 345,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-026: เพิ่มแท็กภาษาอังกฤษ",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2568,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:24:59.117Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-8e8d816b2f4e51d136bc",
+              "file": "post/create-post.spec.js",
+              "line": 353,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-027: เพิ่มแท็กที่มีตัวเลข",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2746,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:01.710Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-75f62cf23afa19d0c442",
+              "file": "post/create-post.spec.js",
+              "line": 361,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-028: ระบบเติมเครื่องหมาย # ให้แท็กอัตโนมัติ",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2713,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:04.482Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-f9c33f5df198efdbbe13",
+              "file": "post/create-post.spec.js",
+              "line": 369,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-029: แท็กมีเครื่องหมาย # อยู่แล้ว",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2842,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:07.218Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-864528677b18f6e567eb",
+              "file": "post/create-post.spec.js",
+              "line": 377,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-030: เพิ่มแท็กครบ 3 แท็ก",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3861,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:10.083Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-90940b4de8d4336161a0",
+              "file": "post/create-post.spec.js",
+              "line": 386,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-031: เพิ่มแท็กรายการที่ 4",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 8322,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('hashtag-input')\nExpected: disabled\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" getByTestId('hashtag-input') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('hashtag-input')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('hashtag-input')\nExpected: disabled\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" getByTestId('hashtag-input') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('hashtag-input')\u001b[22m\n\n    at D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js:419:28",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js",
+                          "column": 28,
+                          "line": 419
+                        },
+                        "snippet": "  417 |     await tagInput.fill('#เรียนรู้');\n  418 |     await tagInput.press('Enter');\n> 419 |     await expect(tagInput).toBeDisabled();\n      |                            ^\n  420 |     await expect(page.getByText('แฮชแท็ก (3/3)', { exact: true })).toBeVisible();\n  421 |     await expect(page.getByRole('button', { name: '#สรุปย่อ', exact: true })).toBeDisabled();\n  422 |     await expect(page.getByText('#โจทย์', { exact: true })).toHaveCount(0);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js",
+                            "column": 28,
+                            "line": 419
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('hashtag-input')\nExpected: disabled\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" getByTestId('hashtag-input') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('hashtag-input')\u001b[22m\n\n\n  417 |     await tagInput.fill('#เรียนรู้');\n  418 |     await tagInput.press('Enter');\n> 419 |     await expect(tagInput).toBeDisabled();\n      |                            ^\n  420 |     await expect(page.getByText('แฮชแท็ก (3/3)', { exact: true })).toBeVisible();\n  421 |     await expect(page.getByRole('button', { name: '#สรุปย่อ', exact: true })).toBeDisabled();\n  422 |     await expect(page.getByText('#โจทย์', { exact: true })).toHaveCount(0);\n    at D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js:419:28"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:13.977Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-create-post-ทดสอบการส-38170-01-031-เพิ่มแท็กรายการที่-4-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-create-post-ทดสอบการส-38170-01-031-เพิ่มแท็กรายการที่-4-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-create-post-ทดสอบการส-38170-01-031-เพิ่มแท็กรายการที่-4-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-create-post-ทดสอบการส-38170-01-031-เพิ่มแท็กรายการที่-4-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js",
+                        "column": 28,
+                        "line": 419
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-b4252b84b53626696cdd",
+              "file": "post/create-post.spec.js",
+              "line": 409,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-032: แท็กมีเครื่องหมายขีดกลาง",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2990,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:24.230Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-8cf7ec7bca6f76f2ef1c",
+              "file": "post/create-post.spec.js",
+              "line": 425,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-033: แท็กมีเครื่องหมายขีดล่าง",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2680,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:27.462Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-6c47506452d71774aa59",
+              "file": "post/create-post.spec.js",
+              "line": 434,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-034: แท็กมีเครื่องหมาย @",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2819,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:30.166Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-5602893581422c83bfcf",
+              "file": "post/create-post.spec.js",
+              "line": 443,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-035: แท็กมีความยาว 10 ตัวอักษร (รวม #)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3743,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:33.019Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-161588932e1b9f3abe43",
+              "file": "post/create-post.spec.js",
+              "line": 452,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-036: แท็กมีความยาว 11 ตัวอักษร (รวม #)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7976,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByText('#1234567890', { exact: true })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m2\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByText('#1234567890', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('#1234567890', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to 2 elements\u001b[22m\n\u001b[2m       - unexpected value \"2\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByText('#1234567890', { exact: true })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m2\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByText('#1234567890', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('#1234567890', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to 2 elements\u001b[22m\n\u001b[2m       - unexpected value \"2\"\u001b[22m\n\n    at D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js:467:66",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js",
+                          "column": 66,
+                          "line": 467
+                        },
+                        "snippet": "  465 |     await page.getByTestId('hashtag-input').fill('#1234567890');\n  466 |     await page.getByTestId('hashtag-input').press('Enter');\n> 467 |     await expect(page.getByText('#1234567890', { exact: true })).toHaveCount(0);\n      |                                                                  ^\n  468 |     await expect(page.getByText('แท็กต้องมีความยาวไม่เกิน 10 ตัวอักษร', { exact: true })).toBeVisible();\n  469 |   });\n  470 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js",
+                            "column": 66,
+                            "line": 467
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByText('#1234567890', { exact: true })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m2\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByText('#1234567890', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('#1234567890', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to 2 elements\u001b[22m\n\u001b[2m       - unexpected value \"2\"\u001b[22m\n\n\n  465 |     await page.getByTestId('hashtag-input').fill('#1234567890');\n  466 |     await page.getByTestId('hashtag-input').press('Enter');\n> 467 |     await expect(page.getByText('#1234567890', { exact: true })).toHaveCount(0);\n      |                                                                  ^\n  468 |     await expect(page.getByText('แท็กต้องมีความยาวไม่เกิน 10 ตัวอักษร', { exact: true })).toBeVisible();\n  469 |   });\n  470 |\n    at D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js:467:66"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:36.805Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-create-post-ทดสอบการส-eb16d-กมีความยาว-11-ตัวอักษร-รวม--chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-create-post-ทดสอบการส-eb16d-กมีความยาว-11-ตัวอักษร-รวม--chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-create-post-ทดสอบการส-eb16d-กมีความยาว-11-ตัวอักษร-รวม--chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-create-post-ทดสอบการส-eb16d-กมีความยาว-11-ตัวอักษร-รวม--chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js",
+                        "column": 66,
+                        "line": 467
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-f481d8459fef674f62f3",
+              "file": "post/create-post.spec.js",
+              "line": 461,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-037: แนบไฟล์ PDF จำนวน 1 ไฟล์",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2593,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:45.870Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-1655136d069ae697b70f",
+              "file": "post/create-post.spec.js",
+              "line": 471,
+              "column": 3
+            },
+            {
+              "title": "TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25940,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:25:48.642Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDEtMDM4IOC4l+C4muC4l+C4p+C4meC5geC4hOC4peC4hOC4ueC4peC4seC4qiBsb2NhbC03YWQ0OThlNiIsImFsaWFzZXMiOlsiVEMtUE9TVDAxLTAzOCDguJfguJrguJfguKfguJnguYHguITguKXguITguLnguKXguLHguKogbG9jYWwtN2FkNDk4ZTYiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC8xNjc3MWU0Ni0zMzA4LTRkMzUtYmVkYS00YTAyY2YxYmE5ZTAifV0="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "df4afac6e8aebfe11a89-1d0cddd84f887c985d48",
+              "file": "post/create-post.spec.js",
+              "line": 477,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "post\\delete-post.spec.js",
+      "file": "post/delete-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST04 ลบโพสต์",
+          "file": "post/delete-post.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19155,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:26:46.590Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDQtMDAzIOC4ouC4geC5gOC4peC4tOC4geC4geC4suC4o+C4peC4miBsb2NhbC0wZDUwOTkyMCIsImFsaWFzZXMiOlsiVEMtUE9TVDA0LTAwMyDguKLguIHguYDguKXguLTguIHguIHguLLguKPguKXguJogbG9jYWwtMGQ1MDk5MjAiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC9hMmI2NGQ4ZS03NjZhLTQxNzctYWI2OC03ZTRjYzAxN2I0YjEifV0="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1a6370c425fdfb3048fe-f58546871b9798b5256a",
+              "file": "post/delete-post.spec.js",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 38017,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n    at D:\\playwright-shere-ed-final\\tests\\post\\delete-post.spec.js:31:75",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\delete-post.spec.js",
+                          "column": 75,
+                          "line": 31
+                        },
+                        "snippet": "  29 |     await page.goto('/explore');\n  30 |     await page.waitForLoadState('networkidle');\n> 31 |     await expect(page.getByRole('heading', { name: title, exact: true })).toHaveCount(0);\n     |                                                                           ^\n  32 |     await page.goto(postUrl);\n  33 |     await expect(page.getByText(/โพสต์ของคุณถูกลบไปแล้ว|โพสต์นี้ถูกลบไปแล้ว|ไม่พบโพสต์/).first()).toBeVisible({ timeout: 10_000 });\n  34 |     await expect(page.getByRole('button', { name: 'ลบโพสต์' })).toHaveCount(0);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\delete-post.spec.js",
+                            "column": 75,
+                            "line": 31
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n\n  29 |     await page.goto('/explore');\n  30 |     await page.waitForLoadState('networkidle');\n> 31 |     await expect(page.getByRole('heading', { name: title, exact: true })).toHaveCount(0);\n     |                                                                           ^\n  32 |     await page.goto(postUrl);\n  33 |     await expect(page.getByText(/โพสต์ของคุณถูกลบไปแล้ว|โพสต์นี้ถูกลบไปแล้ว|ไม่พบโพสต์/).first()).toBeVisible({ timeout: 10_000 });\n  34 |     await expect(page.getByRole('button', { name: 'ลบโพสต์' })).toHaveCount(0);\n    at D:\\playwright-shere-ed-final\\tests\\post\\delete-post.spec.js:31:75"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:27:36.601Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-delete-post-TC-POST04-7036c-การและ-URL-เดิมไม่แสดงโพสต์-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDQtMDA1IOC4peC4muC4iOC4o+C4tOC4hyBsb2NhbC03MGIxODE0NCIsImFsaWFzZXMiOlsiVEMtUE9TVDA0LTAwNSDguKXguJrguIjguKPguLTguIcgbG9jYWwtNzBiMTgxNDQiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC85NzBhNmI4NS04YmQ2LTQ2ZjktOWIwYS0zN2ZmNTA3NjRmOGYifV0="
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-delete-post-TC-POST04-7036c-การและ-URL-เดิมไม่แสดงโพสต์-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-delete-post-TC-POST04-7036c-การและ-URL-เดิมไม่แสดงโพสต์-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-delete-post-TC-POST04-7036c-การและ-URL-เดิมไม่แสดงโพสต์-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\delete-post.spec.js",
+                        "column": 75,
+                        "line": 31
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1a6370c425fdfb3048fe-e31584fc177f75ea3783",
+              "file": "post/delete-post.spec.js",
+              "line": 22,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "post\\detail-post.spec.js",
+      "file": "post/detail-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST05 รายละเอียดโพสต์",
+          "file": "post/detail-post.spec.js",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 30000,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:28:35.846Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDUtMDAxIOC4o+C4suC4ouC4peC4sOC5gOC4reC4teC4ouC4lCBQREYgbG9jYWwtNjk2YWE3ODAiLCJhbGlhc2VzIjpbIlRDLVBPU1QwNS0wMDEg4Lij4Liy4Lii4Lil4Liw4LmA4Lit4Li14Lii4LiUIFBERiBsb2NhbC02OTZhYTc4MCJdLCJ1cmwiOiJodHRwczovL3NoYXJlLWVkLm9ubGluZS9wb3N0LzRjYzZkNGY4LWM4YzMtNDE0Zi1hODYzLWM3MTQ5NDVkMzMzYyJ9XQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c7f5ab3a11b036383016-6d64ab1b43faf75bc571",
+              "file": "post/detail-post.spec.js",
+              "line": 7,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "post\\draft-post.spec.js",
+      "file": "post/draft-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST02 แบบร่าง",
+          "file": "post/draft-post.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25168,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:29:37.233Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDItMDAyIOC5geC4muC4muC4o+C5iOC4suC4hyBsb2NhbC0zZDE5MGNhNCIsImFsaWFzZXMiOlsiVEMtUE9TVDAyLTAwMiDguYHguJrguJrguKPguYjguLLguIcgbG9jYWwtM2QxOTBjYTQiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC9lZGl0LzYxNDIxMGY3LTFkODgtNDhiOS05YWNhLTQ4MTk0NzcyYWIwYSJ9XQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-d4e50fc95946cfa6c742",
+              "file": "post/draft-post.spec.js",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "TC-POST02-009: แก้ไขแบบร่างและบันทึกซ้ำใน URL เดิม",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 24213,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:30:32.456Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDItMDA5IOC5geC4muC4muC4o+C5iOC4suC4h+C5geC4geC5ieC5hOC4giBsb2NhbC1jZmYwOThjZiIsImFsaWFzZXMiOlsiVEMtUE9TVDAyLTAwOSDguYHguJrguJrguKPguYjguLLguIfguYDguJTguLTguKEgbG9jYWwtNmVkZDBlNWYiLCJUQy1QT1NUMDItMDA5IOC5geC4muC4muC4o+C5iOC4suC4h+C5geC4geC5ieC5hOC4giBsb2NhbC1jZmYwOThjZiJdLCJ1cmwiOiJodHRwczovL3NoYXJlLWVkLm9ubGluZS9wb3N0L2VkaXQvYWIxMWQyODItNjAyNS00MjVkLWIzMDAtOTRiNzU4YjgyZDZmIn1d"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-7adad51d273c80929179",
+              "file": "post/draft-post.spec.js",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 28962,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:31:24.781Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDItMDExIOC5gOC4nOC4ouC5geC4nuC4o+C5iOC5geC4muC4muC4o+C5iOC4suC4hyBsb2NhbC04YzY5ZjFmOSIsImFsaWFzZXMiOlsiVEMtUE9TVDAyLTAxMSDguYDguJzguKLguYHguJ7guKPguYjguYHguJrguJrguKPguYjguLLguIcgbG9jYWwtOGM2OWYxZjkiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC80YzY2OTVjYi04ZWUyLTQ5ZTgtODE4MC01NzBmYzgzM2U2OGYifV0="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-7798852b01da9a725905",
+              "file": "post/draft-post.spec.js",
+              "line": 48,
+              "column": 3
+            },
+            {
+              "title": "TC-POST02-015: ลบแบบร่างของตนเอง",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 24050,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:32:24.168Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDItMDE1IOC4peC4muC5geC4muC4muC4o+C5iOC4suC4hyBsb2NhbC1hMDUzMWJiZCIsImFsaWFzZXMiOlsiVEMtUE9TVDAyLTAxNSDguKXguJrguYHguJrguJrguKPguYjguLLguIcgbG9jYWwtYTA1MzFiYmQiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC9lZGl0LzYyOWU4OGMxLWJlNDUtNDc2OC04OTBkLTA0Y2JiYTJjMzQ5MyJ9XQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-006935e0446f7f8c300d",
+              "file": "post/draft-post.spec.js",
+              "line": 72,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "post\\edit-post.spec.js",
+      "file": "post/edit-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST03 แก้ไขโพสต์",
+          "file": "post/edit-post.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 38107,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:33:05.528Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDMtMDAzIOC5guC4nuC4quC4leC5jOC5geC4geC5ieC5hOC4giBsb2NhbC1jZDlhMTliYSIsImFsaWFzZXMiOlsiVEMtUE9TVDAzLTAwMyDguYLguJ7guKrguJXguYzguYDguJTguLTguKEgbG9jYWwtNTJhZjRhZDYiLCJUQy1QT1NUMDMtMDAzIOC5guC4nuC4quC4leC5jOC5geC4geC5ieC5hOC4giBsb2NhbC1jZDlhMTliYSJdLCJ1cmwiOiJodHRwczovL3NoYXJlLWVkLm9ubGluZS9wb3N0L2RkNmVmMTU0LThiOTktNGI3OS1hOTY0LTNjMjMxZmY1YzY4MiJ9XQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "07d9fdca4c1e00289355-fa13143ce1d75b9305fa",
+              "file": "post/edit-post.spec.js",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 24356,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected: \u001b[32m\"รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น\"\u001b[39m\nError: strict mode violation: getByRole('status') resolved to 2 elements:\n    1) <div role=\"status\" aria-live=\"polite\" class=\"go3958317564\">รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng…</div> aka getByText('รูปภาพหน้าปกต้องเป็นไฟล์ .jpg')\n    2) <div role=\"status\" aria-live=\"polite\" class=\"go3958317564\">รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB</div> aka getByText('รูปหน้าปกต้องมีขนาดไม่เกิน 2')\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected: \u001b[32m\"รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น\"\u001b[39m\nError: strict mode violation: getByRole('status') resolved to 2 elements:\n    1) <div role=\"status\" aria-live=\"polite\" class=\"go3958317564\">รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng…</div> aka getByText('รูปภาพหน้าปกต้องเป็นไฟล์ .jpg')\n    2) <div role=\"status\" aria-live=\"polite\" class=\"go3958317564\">รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB</div> aka getByText('รูปหน้าปกต้องมีขนาดไม่เกิน 2')\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\n    at D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js:59:44",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js",
+                          "column": 44,
+                          "line": 59
+                        },
+                        "snippet": "  57 |     await expect(page.getByRole('status')).toHaveText('รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB');\n  58 |     await page.getByTestId('edit-cover-file-input').setInputFiles(require('node:path').resolve('test-data/images/cover.webp'));\n> 59 |     await expect(page.getByRole('status')).toHaveText('รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น');\n     |                                            ^\n  60 |     await page.getByTestId('edit-cover-file-input').setInputFiles(images.coverJpg);\n  61 |     await page.getByTestId('edit-supporting-images-file-input').setInputFiles(images06);\n  62 |     await expect(page.getByRole('status')).toContainText('อัปโหลดรูปภาพประกอบได้สูงสุด 5 รูป');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js",
+                            "column": 44,
+                            "line": 59
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected: \u001b[32m\"รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น\"\u001b[39m\nError: strict mode violation: getByRole('status') resolved to 2 elements:\n    1) <div role=\"status\" aria-live=\"polite\" class=\"go3958317564\">รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng…</div> aka getByText('รูปภาพหน้าปกต้องเป็นไฟล์ .jpg')\n    2) <div role=\"status\" aria-live=\"polite\" class=\"go3958317564\">รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB</div> aka getByText('รูปหน้าปกต้องมีขนาดไม่เกิน 2')\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\n\n  57 |     await expect(page.getByRole('status')).toHaveText('รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB');\n  58 |     await page.getByTestId('edit-cover-file-input').setInputFiles(require('node:path').resolve('test-data/images/cover.webp'));\n> 59 |     await expect(page.getByRole('status')).toHaveText('รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น');\n     |                                            ^\n  60 |     await page.getByTestId('edit-cover-file-input').setInputFiles(images.coverJpg);\n  61 |     await page.getByTestId('edit-supporting-images-file-input').setInputFiles(images06);\n  62 |     await expect(page.getByRole('status')).toContainText('อัปโหลดรูปภาพประกอบได้สูงสุด 5 รูป');\n    at D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js:59:44"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:34:13.718Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-edit-post-TC-POST03-แ-05ad8--Validation-บนหน้าแก้ไขจริง-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDMg4LiV4Lij4Lin4LiIIFZhbGlkYXRpb24gbG9jYWwtYWRhZjBiM2EiLCJhbGlhc2VzIjpbIlRDLVBPU1QwMyDguJXguKPguKfguIggVmFsaWRhdGlvbiBsb2NhbC1hZGFmMGIzYSJdLCJ1cmwiOiJodHRwczovL3NoYXJlLWVkLm9ubGluZS9wb3N0LzIwNTY0MzQxLTk0NTktNDM5Ny05YzY2LWU2MGQ1NmUxNzMxNiJ9XQ=="
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-edit-post-TC-POST03-แ-05ad8--Validation-บนหน้าแก้ไขจริง-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-edit-post-TC-POST03-แ-05ad8--Validation-บนหน้าแก้ไขจริง-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\full-final\\post-edit-post-TC-POST03-แ-05ad8--Validation-บนหน้าแก้ไขจริง-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js",
+                        "column": 44,
+                        "line": 59
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07d9fdca4c1e00289355-5657e442f45d2b07f55e",
+              "file": "post/edit-post.spec.js",
+              "line": 48,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "post\\lifecycle-flow.spec.js",
+      "file": "post/lifecycle-flow.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-LIFE-001: สร้างโพสต์ ตรวจรายละเอียด แก้ไข Refresh และลบ",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 47864,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T08:35:14.479Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "created-posts-cleaned",
+                      "contentType": "application/json",
+                      "body": "W3sidGl0bGUiOiJUQy1MSUZFLTAwMSDguYLguJ7guKrguJXguYzguYHguIHguYnguYTguIIgbG9jYWwtZTM3YWFiYzQiLCJhbGlhc2VzIjpbIlRDLUxJRkUtMDAxIOC5guC4nuC4quC4leC5jOC5gOC4o+C4tOC5iOC4oeC4leC5ieC4mSBsb2NhbC03MTRlN2ZhZSIsIlRDLUxJRkUtMDAxIOC5guC4nuC4quC4leC5jOC5geC4geC5ieC5hOC4giBsb2NhbC1lMzdhYWJjNCJdLCJ1cmwiOiJodHRwczovL3NoYXJlLWVkLm9ubGluZS9wb3N0L2I3MzU2YTUxLTk2YmMtNGMyMy05MmM4LWIwNTc3MDVhZGMyNCJ9XQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "15889f082b6c168c990b-b20dbfd786adfdadae71",
+          "file": "post/lifecycle-flow.spec.js",
+          "line": 7,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-30T08:23:48.662Z",
+    "duration": 751817.325,
+    "expected": 44,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,1362 @@
+{
+  "tests": 48,
+  "passed": 44,
+  "failed": 4,
+  "cases": [
+    {
+      "id": "TC-POST01-001",
+      "status": "passed",
+      "flow": "TC-POST01-001: สมาชิกเข้าสู่หน้าสร้างโพสต์",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-002",
+      "status": "passed",
+      "flow": "TC-POST01-002: ตรวจสอบฟิลด์ในหน้าสร้างโพสต์",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-003",
+      "status": "passed",
+      "flow": "TC-POST01-003: กรอกข้อมูลโพสต์ครบถ้วนและแนบไฟล์",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-004",
+      "status": "passed",
+      "flow": "TC-POST01-004: เลือกหมวดหมู่วิชา 1 หมวด",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-005",
+      "status": "passed",
+      "flow": "TC-POST01-005: แนบรูปหน้าปก PNG",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-006",
+      "status": "passed",
+      "flow": "TC-POST01-006: แนบรูปหน้าปก JPG",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-007",
+      "status": "passed",
+      "flow": "TC-POST01-007: แนบรูปหน้าปกขนาดเท่ากับ 2 MB",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-008",
+      "status": "passed",
+      "flow": "TC-POST01-008: แนบรูปภาพประกอบ 1 รูป",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-009",
+      "status": "passed",
+      "flow": "TC-POST01-009: แนบรูปภาพประกอบครบ 5 รูป",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-010",
+      "status": "passed",
+      "flow": "TC-POST01-010: แนบไฟล์ PDF 1 ไฟล์",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-011",
+      "status": "passed",
+      "flow": "TC-POST01-011: แนบไฟล์ PDF ขนาดเท่ากับ 20 MB",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-012",
+      "status": "passed",
+      "flow": "TC-POST01-012: ไม่กรอกชื่อหัวข้อสรุป",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-013",
+      "status": "passed",
+      "flow": "TC-POST01-013: ไม่เลือกระดับชั้น",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-014",
+      "status": "passed",
+      "flow": "TC-POST01-014: ไม่กรอกบทสรุปย่อ",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-015",
+      "status": "passed",
+      "flow": "TC-POST01-015: ไม่เลือกหมวดหมู่วิชา",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-016",
+      "status": "passed",
+      "flow": "TC-POST01-016: ไม่กรอกรายละเอียดเพิ่มเติม",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-017",
+      "status": "passed",
+      "flow": "TC-POST01-017: ไม่แนบรูปหน้าปก",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-018",
+      "status": "passed",
+      "flow": "TC-POST01-018: รูปหน้าปกมีขนาดเกิน 2 MB",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-019",
+      "status": "passed",
+      "flow": "TC-POST01-019: รูปภาพประกอบมีขนาดเกิน 2 MB",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-020",
+      "status": "passed",
+      "flow": "TC-POST01-020: ไฟล์ PDF มีขนาดเกิน 20 MB",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-021",
+      "status": "passed",
+      "flow": "TC-POST01-021: รูปหน้าปกเป็นไฟล์ผิดประเภท",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-022",
+      "status": "passed",
+      "flow": "TC-POST01-022: รูปภาพประกอบเป็นไฟล์ผิดประเภท",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-023",
+      "status": "passed",
+      "flow": "TC-POST01-023: เลือกไฟล์ที่ไม่ใช่ PDF",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-024",
+      "status": "passed",
+      "flow": "TC-POST01-024: แนบรูปภาพประกอบรูปที่ 6",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-025",
+      "status": "passed",
+      "flow": "TC-POST01-025: เพิ่มแท็กภาษาไทย",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-026",
+      "status": "passed",
+      "flow": "TC-POST01-026: เพิ่มแท็กภาษาอังกฤษ",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-027",
+      "status": "passed",
+      "flow": "TC-POST01-027: เพิ่มแท็กที่มีตัวเลข",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-028",
+      "status": "passed",
+      "flow": "TC-POST01-028: ระบบเติมเครื่องหมาย # ให้แท็กอัตโนมัติ",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-029",
+      "status": "passed",
+      "flow": "TC-POST01-029: แท็กมีเครื่องหมาย # อยู่แล้ว",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-030",
+      "status": "passed",
+      "flow": "TC-POST01-030: เพิ่มแท็กครบ 3 แท็ก",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-031",
+      "status": "failed",
+      "flow": "TC-POST01-031: เพิ่มแท็กรายการที่ 4",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-032",
+      "status": "passed",
+      "flow": "TC-POST01-032: แท็กมีเครื่องหมายขีดกลาง",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-033",
+      "status": "passed",
+      "flow": "TC-POST01-033: แท็กมีเครื่องหมายขีดล่าง",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-034",
+      "status": "passed",
+      "flow": "TC-POST01-034: แท็กมีเครื่องหมาย @",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-035",
+      "status": "passed",
+      "flow": "TC-POST01-035: แท็กมีความยาว 10 ตัวอักษร (รวม #)",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-036",
+      "status": "failed",
+      "flow": "TC-POST01-036: แท็กมีความยาว 11 ตัวอักษร (รวม #)",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-037",
+      "status": "passed",
+      "flow": "TC-POST01-037: แนบไฟล์ PDF จำนวน 1 ไฟล์",
+      "items": []
+    },
+    {
+      "id": "TC-POST01-038",
+      "status": "passed",
+      "flow": "TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน",
+      "items": [
+        {
+          "title": "TC-POST01-038 ทบทวนแคลคูลัส local-7ad498e6",
+          "aliases": [
+            "TC-POST01-038 ทบทวนแคลคูลัส local-7ad498e6"
+          ],
+          "url": "https://share-ed.online/post/16771e46-3308-4d35-beda-4a02cf1ba9e0"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-001",
+      "status": "passed",
+      "flow": "TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",
+      "items": [
+        {
+          "title": "TC-POST04-003 ยกเลิกการลบ local-0d509920",
+          "aliases": [
+            "TC-POST04-003 ยกเลิกการลบ local-0d509920"
+          ],
+          "url": "https://share-ed.online/post/a2b64d8e-766a-4177-ab68-7e4cc017b4b1"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-003",
+      "status": "passed",
+      "flow": "TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",
+      "items": [
+        {
+          "title": "TC-POST04-003 ยกเลิกการลบ local-0d509920",
+          "aliases": [
+            "TC-POST04-003 ยกเลิกการลบ local-0d509920"
+          ],
+          "url": "https://share-ed.online/post/a2b64d8e-766a-4177-ab68-7e4cc017b4b1"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-004",
+      "status": "passed",
+      "flow": "TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",
+      "items": [
+        {
+          "title": "TC-POST04-003 ยกเลิกการลบ local-0d509920",
+          "aliases": [
+            "TC-POST04-003 ยกเลิกการลบ local-0d509920"
+          ],
+          "url": "https://share-ed.online/post/a2b64d8e-766a-4177-ab68-7e4cc017b4b1"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-008",
+      "status": "passed",
+      "flow": "TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",
+      "items": [
+        {
+          "title": "TC-POST04-003 ยกเลิกการลบ local-0d509920",
+          "aliases": [
+            "TC-POST04-003 ยกเลิกการลบ local-0d509920"
+          ],
+          "url": "https://share-ed.online/post/a2b64d8e-766a-4177-ab68-7e4cc017b4b1"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-005",
+      "status": "failed",
+      "flow": "TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",
+      "items": [
+        {
+          "title": "TC-POST04-005 ลบจริง local-70b18144",
+          "aliases": [
+            "TC-POST04-005 ลบจริง local-70b18144"
+          ],
+          "url": "https://share-ed.online/post/970a6b85-8bd6-46f9-9b0a-37ff50764f8f"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-006",
+      "status": "failed",
+      "flow": "TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",
+      "items": [
+        {
+          "title": "TC-POST04-005 ลบจริง local-70b18144",
+          "aliases": [
+            "TC-POST04-005 ลบจริง local-70b18144"
+          ],
+          "url": "https://share-ed.online/post/970a6b85-8bd6-46f9-9b0a-37ff50764f8f"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-007",
+      "status": "failed",
+      "flow": "TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",
+      "items": [
+        {
+          "title": "TC-POST04-005 ลบจริง local-70b18144",
+          "aliases": [
+            "TC-POST04-005 ลบจริง local-70b18144"
+          ],
+          "url": "https://share-ed.online/post/970a6b85-8bd6-46f9-9b0a-37ff50764f8f"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-014",
+      "status": "failed",
+      "flow": "TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",
+      "items": [
+        {
+          "title": "TC-POST04-005 ลบจริง local-70b18144",
+          "aliases": [
+            "TC-POST04-005 ลบจริง local-70b18144"
+          ],
+          "url": "https://share-ed.online/post/970a6b85-8bd6-46f9-9b0a-37ff50764f8f"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST04-015",
+      "status": "failed",
+      "flow": "TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",
+      "items": [
+        {
+          "title": "TC-POST04-005 ลบจริง local-70b18144",
+          "aliases": [
+            "TC-POST04-005 ลบจริง local-70b18144"
+          ],
+          "url": "https://share-ed.online/post/970a6b85-8bd6-46f9-9b0a-37ff50764f8f"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST05-001",
+      "status": "passed",
+      "flow": "TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้",
+      "items": [
+        {
+          "title": "TC-POST05-001 รายละเอียด PDF local-696aa780",
+          "aliases": [
+            "TC-POST05-001 รายละเอียด PDF local-696aa780"
+          ],
+          "url": "https://share-ed.online/post/4cc6d4f8-c8c3-414f-a863-c714945d333c"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST05-012",
+      "status": "passed",
+      "flow": "TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้",
+      "items": [
+        {
+          "title": "TC-POST05-001 รายละเอียด PDF local-696aa780",
+          "aliases": [
+            "TC-POST05-001 รายละเอียด PDF local-696aa780"
+          ],
+          "url": "https://share-ed.online/post/4cc6d4f8-c8c3-414f-a863-c714945d333c"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-002",
+      "status": "passed",
+      "flow": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST02-002 แบบร่าง local-3d190ca4",
+          "aliases": [
+            "TC-POST02-002 แบบร่าง local-3d190ca4"
+          ],
+          "url": "https://share-ed.online/post/edit/614210f7-1d88-48b9-9aca-48194772ab0a"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-005",
+      "status": "passed",
+      "flow": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST02-002 แบบร่าง local-3d190ca4",
+          "aliases": [
+            "TC-POST02-002 แบบร่าง local-3d190ca4"
+          ],
+          "url": "https://share-ed.online/post/edit/614210f7-1d88-48b9-9aca-48194772ab0a"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-007",
+      "status": "passed",
+      "flow": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST02-002 แบบร่าง local-3d190ca4",
+          "aliases": [
+            "TC-POST02-002 แบบร่าง local-3d190ca4"
+          ],
+          "url": "https://share-ed.online/post/edit/614210f7-1d88-48b9-9aca-48194772ab0a"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-013",
+      "status": "passed",
+      "flow": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST02-002 แบบร่าง local-3d190ca4",
+          "aliases": [
+            "TC-POST02-002 แบบร่าง local-3d190ca4"
+          ],
+          "url": "https://share-ed.online/post/edit/614210f7-1d88-48b9-9aca-48194772ab0a"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-014",
+      "status": "passed",
+      "flow": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST02-002 แบบร่าง local-3d190ca4",
+          "aliases": [
+            "TC-POST02-002 แบบร่าง local-3d190ca4"
+          ],
+          "url": "https://share-ed.online/post/edit/614210f7-1d88-48b9-9aca-48194772ab0a"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-019",
+      "status": "passed",
+      "flow": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST02-002 แบบร่าง local-3d190ca4",
+          "aliases": [
+            "TC-POST02-002 แบบร่าง local-3d190ca4"
+          ],
+          "url": "https://share-ed.online/post/edit/614210f7-1d88-48b9-9aca-48194772ab0a"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-020",
+      "status": "passed",
+      "flow": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST02-002 แบบร่าง local-3d190ca4",
+          "aliases": [
+            "TC-POST02-002 แบบร่าง local-3d190ca4"
+          ],
+          "url": "https://share-ed.online/post/edit/614210f7-1d88-48b9-9aca-48194772ab0a"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-009",
+      "status": "passed",
+      "flow": "TC-POST02-009: แก้ไขแบบร่างและบันทึกซ้ำใน URL เดิม",
+      "items": [
+        {
+          "title": "TC-POST02-009 แบบร่างแก้ไข local-cff098cf",
+          "aliases": [
+            "TC-POST02-009 แบบร่างเดิม local-6edd0e5f",
+            "TC-POST02-009 แบบร่างแก้ไข local-cff098cf"
+          ],
+          "url": "https://share-ed.online/post/edit/ab11d282-6025-425d-b300-94b758b82d6f"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-011",
+      "status": "passed",
+      "flow": "TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม",
+      "items": [
+        {
+          "title": "TC-POST02-011 เผยแพร่แบบร่าง local-8c69f1f9",
+          "aliases": [
+            "TC-POST02-011 เผยแพร่แบบร่าง local-8c69f1f9"
+          ],
+          "url": "https://share-ed.online/post/4c6695cb-8ee2-49e8-8180-570fc833e68f"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-012",
+      "status": "passed",
+      "flow": "TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม",
+      "items": [
+        {
+          "title": "TC-POST02-011 เผยแพร่แบบร่าง local-8c69f1f9",
+          "aliases": [
+            "TC-POST02-011 เผยแพร่แบบร่าง local-8c69f1f9"
+          ],
+          "url": "https://share-ed.online/post/4c6695cb-8ee2-49e8-8180-570fc833e68f"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST02-015",
+      "status": "passed",
+      "flow": "TC-POST02-015: ลบแบบร่างของตนเอง",
+      "items": [
+        {
+          "title": "TC-POST02-015 ลบแบบร่าง local-a0531bbd",
+          "aliases": [
+            "TC-POST02-015 ลบแบบร่าง local-a0531bbd"
+          ],
+          "url": "https://share-ed.online/post/edit/629e88c1-be45-4768-890d-04cbba2c3493"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-001",
+      "status": "passed",
+      "flow": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-003",
+      "status": "passed",
+      "flow": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-005",
+      "status": "passed",
+      "flow": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-008",
+      "status": "passed",
+      "flow": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-017",
+      "status": "passed",
+      "flow": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-021",
+      "status": "passed",
+      "flow": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-022",
+      "status": "passed",
+      "flow": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-025",
+      "status": "passed",
+      "flow": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-009",
+      "status": "failed",
+      "flow": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+      "items": [
+        {
+          "title": "TC-POST03 ตรวจ Validation local-adaf0b3a",
+          "aliases": [
+            "TC-POST03 ตรวจ Validation local-adaf0b3a"
+          ],
+          "url": "https://share-ed.online/post/20564341-9459-4397-9c66-e60d56e17316"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-010",
+      "status": "failed",
+      "flow": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+      "items": [
+        {
+          "title": "TC-POST03 ตรวจ Validation local-adaf0b3a",
+          "aliases": [
+            "TC-POST03 ตรวจ Validation local-adaf0b3a"
+          ],
+          "url": "https://share-ed.online/post/20564341-9459-4397-9c66-e60d56e17316"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-013",
+      "status": "failed",
+      "flow": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+      "items": [
+        {
+          "title": "TC-POST03 ตรวจ Validation local-adaf0b3a",
+          "aliases": [
+            "TC-POST03 ตรวจ Validation local-adaf0b3a"
+          ],
+          "url": "https://share-ed.online/post/20564341-9459-4397-9c66-e60d56e17316"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-016",
+      "status": "failed",
+      "flow": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+      "items": [
+        {
+          "title": "TC-POST03 ตรวจ Validation local-adaf0b3a",
+          "aliases": [
+            "TC-POST03 ตรวจ Validation local-adaf0b3a"
+          ],
+          "url": "https://share-ed.online/post/20564341-9459-4397-9c66-e60d56e17316"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-018",
+      "status": "failed",
+      "flow": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+      "items": [
+        {
+          "title": "TC-POST03 ตรวจ Validation local-adaf0b3a",
+          "aliases": [
+            "TC-POST03 ตรวจ Validation local-adaf0b3a"
+          ],
+          "url": "https://share-ed.online/post/20564341-9459-4397-9c66-e60d56e17316"
+        }
+      ]
+    },
+    {
+      "id": "TC-POST03-020",
+      "status": "failed",
+      "flow": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+      "items": [
+        {
+          "title": "TC-POST03 ตรวจ Validation local-adaf0b3a",
+          "aliases": [
+            "TC-POST03 ตรวจ Validation local-adaf0b3a"
+          ],
+          "url": "https://share-ed.online/post/20564341-9459-4397-9c66-e60d56e17316"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "title": "TC-POST01-001: สมาชิกเข้าสู่หน้าสร้างโพสต์",
+      "ids": [
+        "TC-POST01-001"
+      ],
+      "status": "passed",
+      "duration": 2904,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-002: ตรวจสอบฟิลด์ในหน้าสร้างโพสต์",
+      "ids": [
+        "TC-POST01-002"
+      ],
+      "status": "passed",
+      "duration": 2755,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-003: กรอกข้อมูลโพสต์ครบถ้วนและแนบไฟล์",
+      "ids": [
+        "TC-POST01-003"
+      ],
+      "status": "passed",
+      "duration": 3096,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-004: เลือกหมวดหมู่วิชา 1 หมวด",
+      "ids": [
+        "TC-POST01-004"
+      ],
+      "status": "passed",
+      "duration": 2760,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-005: แนบรูปหน้าปก PNG",
+      "ids": [
+        "TC-POST01-005"
+      ],
+      "status": "passed",
+      "duration": 2469,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-006: แนบรูปหน้าปก JPG",
+      "ids": [
+        "TC-POST01-006"
+      ],
+      "status": "passed",
+      "duration": 2406,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-007: แนบรูปหน้าปกขนาดเท่ากับ 2 MB",
+      "ids": [
+        "TC-POST01-007"
+      ],
+      "status": "passed",
+      "duration": 2464,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-008: แนบรูปภาพประกอบ 1 รูป",
+      "ids": [
+        "TC-POST01-008"
+      ],
+      "status": "passed",
+      "duration": 2349,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-009: แนบรูปภาพประกอบครบ 5 รูป",
+      "ids": [
+        "TC-POST01-009"
+      ],
+      "status": "passed",
+      "duration": 2529,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-010: แนบไฟล์ PDF 1 ไฟล์",
+      "ids": [
+        "TC-POST01-010"
+      ],
+      "status": "passed",
+      "duration": 2290,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-011: แนบไฟล์ PDF ขนาดเท่ากับ 20 MB",
+      "ids": [
+        "TC-POST01-011"
+      ],
+      "status": "passed",
+      "duration": 2261,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-012: ไม่กรอกชื่อหัวข้อสรุป",
+      "ids": [
+        "TC-POST01-012"
+      ],
+      "status": "passed",
+      "duration": 2944,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-013: ไม่เลือกระดับชั้น",
+      "ids": [
+        "TC-POST01-013"
+      ],
+      "status": "passed",
+      "duration": 3342,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-014: ไม่กรอกบทสรุปย่อ",
+      "ids": [
+        "TC-POST01-014"
+      ],
+      "status": "passed",
+      "duration": 3320,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-015: ไม่เลือกหมวดหมู่วิชา",
+      "ids": [
+        "TC-POST01-015"
+      ],
+      "status": "passed",
+      "duration": 2765,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-016: ไม่กรอกรายละเอียดเพิ่มเติม",
+      "ids": [
+        "TC-POST01-016"
+      ],
+      "status": "passed",
+      "duration": 3009,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-017: ไม่แนบรูปหน้าปก",
+      "ids": [
+        "TC-POST01-017"
+      ],
+      "status": "passed",
+      "duration": 2868,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-018: รูปหน้าปกมีขนาดเกิน 2 MB",
+      "ids": [
+        "TC-POST01-018"
+      ],
+      "status": "passed",
+      "duration": 2444,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-019: รูปภาพประกอบมีขนาดเกิน 2 MB",
+      "ids": [
+        "TC-POST01-019"
+      ],
+      "status": "passed",
+      "duration": 2594,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-020: ไฟล์ PDF มีขนาดเกิน 20 MB",
+      "ids": [
+        "TC-POST01-020"
+      ],
+      "status": "passed",
+      "duration": 2160,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-021: รูปหน้าปกเป็นไฟล์ผิดประเภท",
+      "ids": [
+        "TC-POST01-021"
+      ],
+      "status": "passed",
+      "duration": 2201,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-022: รูปภาพประกอบเป็นไฟล์ผิดประเภท",
+      "ids": [
+        "TC-POST01-022"
+      ],
+      "status": "passed",
+      "duration": 2478,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-023: เลือกไฟล์ที่ไม่ใช่ PDF",
+      "ids": [
+        "TC-POST01-023"
+      ],
+      "status": "passed",
+      "duration": 2327,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-024: แนบรูปภาพประกอบรูปที่ 6",
+      "ids": [
+        "TC-POST01-024"
+      ],
+      "status": "passed",
+      "duration": 2486,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-025: เพิ่มแท็กภาษาไทย",
+      "ids": [
+        "TC-POST01-025"
+      ],
+      "status": "passed",
+      "duration": 2646,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-026: เพิ่มแท็กภาษาอังกฤษ",
+      "ids": [
+        "TC-POST01-026"
+      ],
+      "status": "passed",
+      "duration": 2568,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-027: เพิ่มแท็กที่มีตัวเลข",
+      "ids": [
+        "TC-POST01-027"
+      ],
+      "status": "passed",
+      "duration": 2746,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-028: ระบบเติมเครื่องหมาย # ให้แท็กอัตโนมัติ",
+      "ids": [
+        "TC-POST01-028"
+      ],
+      "status": "passed",
+      "duration": 2713,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-029: แท็กมีเครื่องหมาย # อยู่แล้ว",
+      "ids": [
+        "TC-POST01-029"
+      ],
+      "status": "passed",
+      "duration": 2842,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-030: เพิ่มแท็กครบ 3 แท็ก",
+      "ids": [
+        "TC-POST01-030"
+      ],
+      "status": "passed",
+      "duration": 3861,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-031: เพิ่มแท็กรายการที่ 4",
+      "ids": [
+        "TC-POST01-031"
+      ],
+      "status": "failed",
+      "duration": 8322,
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('hashtag-input')\nExpected: disabled\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" getByTestId('hashtag-input') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('hashtag-input')\u001b[22m\n\n\n  417 |     await tagInput.fill('#เรียนรู้');\n  418 |     await tagInput.press('Enter');\n> 419 |     await expect(tagInput).toBeDisabled();\n      |                            ^\n  420 |     await expect(page.getByText('แฮชแท็ก (3/3)', { exact: true })).toBeVisible();\n  421 |     await expect(page.getByRole('button', { name: '#สรุปย่อ', exact: true })).toBeDisabled();\n  422 |     await expect(page.getByText('#โจทย์', { exact: true })).toHaveCount(0);\n    at D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js:419:28"
+      ],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-032: แท็กมีเครื่องหมายขีดกลาง",
+      "ids": [
+        "TC-POST01-032"
+      ],
+      "status": "passed",
+      "duration": 2990,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-033: แท็กมีเครื่องหมายขีดล่าง",
+      "ids": [
+        "TC-POST01-033"
+      ],
+      "status": "passed",
+      "duration": 2680,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-034: แท็กมีเครื่องหมาย @",
+      "ids": [
+        "TC-POST01-034"
+      ],
+      "status": "passed",
+      "duration": 2819,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-035: แท็กมีความยาว 10 ตัวอักษร (รวม #)",
+      "ids": [
+        "TC-POST01-035"
+      ],
+      "status": "passed",
+      "duration": 3743,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-036: แท็กมีความยาว 11 ตัวอักษร (รวม #)",
+      "ids": [
+        "TC-POST01-036"
+      ],
+      "status": "failed",
+      "duration": 7976,
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByText('#1234567890', { exact: true })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m2\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByText('#1234567890', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('#1234567890', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to 2 elements\u001b[22m\n\u001b[2m       - unexpected value \"2\"\u001b[22m\n\n\n  465 |     await page.getByTestId('hashtag-input').fill('#1234567890');\n  466 |     await page.getByTestId('hashtag-input').press('Enter');\n> 467 |     await expect(page.getByText('#1234567890', { exact: true })).toHaveCount(0);\n      |                                                                  ^\n  468 |     await expect(page.getByText('แท็กต้องมีความยาวไม่เกิน 10 ตัวอักษร', { exact: true })).toBeVisible();\n  469 |   });\n  470 |\n    at D:\\playwright-shere-ed-final\\tests\\post\\create-post.spec.js:467:66"
+      ],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-037: แนบไฟล์ PDF จำนวน 1 ไฟล์",
+      "ids": [
+        "TC-POST01-037"
+      ],
+      "status": "passed",
+      "duration": 2593,
+      "errors": [],
+      "items": []
+    },
+    {
+      "title": "TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน",
+      "ids": [
+        "TC-POST01-038"
+      ],
+      "status": "passed",
+      "duration": 25940,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-POST01-038 ทบทวนแคลคูลัส local-7ad498e6",
+          "aliases": [
+            "TC-POST01-038 ทบทวนแคลคูลัส local-7ad498e6"
+          ],
+          "url": "https://share-ed.online/post/16771e46-3308-4d35-beda-4a02cf1ba9e0"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",
+      "ids": [
+        "TC-POST04-001",
+        "TC-POST04-003",
+        "TC-POST04-004",
+        "TC-POST04-008"
+      ],
+      "status": "passed",
+      "duration": 19155,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-POST04-003 ยกเลิกการลบ local-0d509920",
+          "aliases": [
+            "TC-POST04-003 ยกเลิกการลบ local-0d509920"
+          ],
+          "url": "https://share-ed.online/post/a2b64d8e-766a-4177-ab68-7e4cc017b4b1"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",
+      "ids": [
+        "TC-POST04-005",
+        "TC-POST04-006",
+        "TC-POST04-007",
+        "TC-POST04-014",
+        "TC-POST04-015"
+      ],
+      "status": "failed",
+      "duration": 38017,
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'TC-POST04-005 ลบจริง local-70b18144', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n\n  29 |     await page.goto('/explore');\n  30 |     await page.waitForLoadState('networkidle');\n> 31 |     await expect(page.getByRole('heading', { name: title, exact: true })).toHaveCount(0);\n     |                                                                           ^\n  32 |     await page.goto(postUrl);\n  33 |     await expect(page.getByText(/โพสต์ของคุณถูกลบไปแล้ว|โพสต์นี้ถูกลบไปแล้ว|ไม่พบโพสต์/).first()).toBeVisible({ timeout: 10_000 });\n  34 |     await expect(page.getByRole('button', { name: 'ลบโพสต์' })).toHaveCount(0);\n    at D:\\playwright-shere-ed-final\\tests\\post\\delete-post.spec.js:31:75"
+      ],
+      "items": [
+        {
+          "title": "TC-POST04-005 ลบจริง local-70b18144",
+          "aliases": [
+            "TC-POST04-005 ลบจริง local-70b18144"
+          ],
+          "url": "https://share-ed.online/post/970a6b85-8bd6-46f9-9b0a-37ff50764f8f"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้",
+      "ids": [
+        "TC-POST05-001",
+        "TC-POST05-012"
+      ],
+      "status": "passed",
+      "duration": 30000,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-POST05-001 รายละเอียด PDF local-696aa780",
+          "aliases": [
+            "TC-POST05-001 รายละเอียด PDF local-696aa780"
+          ],
+          "url": "https://share-ed.online/post/4cc6d4f8-c8c3-414f-a863-c714945d333c"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+      "ids": [
+        "TC-POST02-002",
+        "TC-POST02-005",
+        "TC-POST02-007",
+        "TC-POST02-013",
+        "TC-POST02-014",
+        "TC-POST02-019",
+        "TC-POST02-020"
+      ],
+      "status": "passed",
+      "duration": 25168,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-POST02-002 แบบร่าง local-3d190ca4",
+          "aliases": [
+            "TC-POST02-002 แบบร่าง local-3d190ca4"
+          ],
+          "url": "https://share-ed.online/post/edit/614210f7-1d88-48b9-9aca-48194772ab0a"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST02-009: แก้ไขแบบร่างและบันทึกซ้ำใน URL เดิม",
+      "ids": [
+        "TC-POST02-009"
+      ],
+      "status": "passed",
+      "duration": 24213,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-POST02-009 แบบร่างแก้ไข local-cff098cf",
+          "aliases": [
+            "TC-POST02-009 แบบร่างเดิม local-6edd0e5f",
+            "TC-POST02-009 แบบร่างแก้ไข local-cff098cf"
+          ],
+          "url": "https://share-ed.online/post/edit/ab11d282-6025-425d-b300-94b758b82d6f"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม",
+      "ids": [
+        "TC-POST02-011",
+        "TC-POST02-012"
+      ],
+      "status": "passed",
+      "duration": 28962,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-POST02-011 เผยแพร่แบบร่าง local-8c69f1f9",
+          "aliases": [
+            "TC-POST02-011 เผยแพร่แบบร่าง local-8c69f1f9"
+          ],
+          "url": "https://share-ed.online/post/4c6695cb-8ee2-49e8-8180-570fc833e68f"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST02-015: ลบแบบร่างของตนเอง",
+      "ids": [
+        "TC-POST02-015"
+      ],
+      "status": "passed",
+      "duration": 24050,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-POST02-015 ลบแบบร่าง local-a0531bbd",
+          "aliases": [
+            "TC-POST02-015 ลบแบบร่าง local-a0531bbd"
+          ],
+          "url": "https://share-ed.online/post/edit/629e88c1-be45-4768-890d-04cbba2c3493"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+      "ids": [
+        "TC-POST03-001",
+        "TC-POST03-003",
+        "TC-POST03-005",
+        "TC-POST03-008",
+        "TC-POST03-017",
+        "TC-POST03-021",
+        "TC-POST03-022",
+        "TC-POST03-025"
+      ],
+      "status": "passed",
+      "duration": 38107,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba",
+          "aliases": [
+            "TC-POST03-003 โพสต์เดิม local-52af4ad6",
+            "TC-POST03-003 โพสต์แก้ไข local-cd9a19ba"
+          ],
+          "url": "https://share-ed.online/post/dd6ef154-8b99-4b79-a964-3c231ff5c682"
+        }
+      ]
+    },
+    {
+      "title": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+      "ids": [
+        "TC-POST03-009",
+        "TC-POST03-010",
+        "TC-POST03-013",
+        "TC-POST03-016",
+        "TC-POST03-018",
+        "TC-POST03-020"
+      ],
+      "status": "failed",
+      "duration": 24356,
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected: \u001b[32m\"รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น\"\u001b[39m\nError: strict mode violation: getByRole('status') resolved to 2 elements:\n    1) <div role=\"status\" aria-live=\"polite\" class=\"go3958317564\">รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng…</div> aka getByText('รูปภาพหน้าปกต้องเป็นไฟล์ .jpg')\n    2) <div role=\"status\" aria-live=\"polite\" class=\"go3958317564\">รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB</div> aka getByText('รูปหน้าปกต้องมีขนาดไม่เกิน 2')\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\n\n  57 |     await expect(page.getByRole('status')).toHaveText('รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB');\n  58 |     await page.getByTestId('edit-cover-file-input').setInputFiles(require('node:path').resolve('test-data/images/cover.webp'));\n> 59 |     await expect(page.getByRole('status')).toHaveText('รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น');\n     |                                            ^\n  60 |     await page.getByTestId('edit-cover-file-input').setInputFiles(images.coverJpg);\n  61 |     await page.getByTestId('edit-supporting-images-file-input').setInputFiles(images06);\n  62 |     await expect(page.getByRole('status')).toContainText('อัปโหลดรูปภาพประกอบได้สูงสุด 5 รูป');\n    at D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js:59:44"
+      ],
+      "items": [
+        {
+          "title": "TC-POST03 ตรวจ Validation local-adaf0b3a",
+          "aliases": [
+            "TC-POST03 ตรวจ Validation local-adaf0b3a"
+          ],
+          "url": "https://share-ed.online/post/20564341-9459-4397-9c66-e60d56e17316"
+        }
+      ]
+    },
+    {
+      "title": "TC-LIFE-001: สร้างโพสต์ ตรวจรายละเอียด แก้ไข Refresh และลบ",
+      "ids": [],
+      "status": "passed",
+      "duration": 47864,
+      "errors": [],
+      "items": [
+        {
+          "title": "TC-LIFE-001 โพสต์แก้ไข local-e37aabc4",
+          "aliases": [
+            "TC-LIFE-001 โพสต์เริ่มต้น local-714e7fae",
+            "TC-LIFE-001 โพสต์แก้ไข local-e37aabc4"
+          ],
+          "url": "https://share-ed.online/post/b7356a51-96bc-4c23-92c8-b057705adc24"
+        }
+      ]
+    }
+  ]
+}

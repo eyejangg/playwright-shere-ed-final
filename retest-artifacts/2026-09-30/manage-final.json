@@ -1,0 +1,792 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\playwright-shere-ed-final\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/post/draft-post.spec.js",
+      "tests/post/edit-post.spec.js",
+      "tests/post/delete-post.spec.js",
+      "tests/post/detail-post.spec.js",
+      "--project=chromium",
+      "--reporter=list,json",
+      "--output=retest-artifacts/2026-09-30/manage-final"
+    ],
+    "configFile": "D:\\playwright-shere-ed-final\\playwright.config.js",
+    "rootDir": "D:/playwright-shere-ed-final/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "D:\\playwright-shere-ed-final\\global-setup.js",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/playwright-shere-ed-final/retest-artifacts/2026-09-30/manage-final",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/playwright-shere-ed-final/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "post\\delete-post.spec.js",
+      "file": "post/delete-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST04 ลบโพสต์",
+          "file": "post/delete-post.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31355,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                            "column": 61,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n\u001b[2m    - waiting for \"https://share-ed.online/home\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://share-ed.online/home\"\u001b[22m\n\u001b[2m  - Test timeout of 30000ms exceeded.\u001b[22m\n\n\n   at post\\post-helpers.js:8\n\n   6 |\n   7 | async function dismissSuccess(page, heading) {\n>  8 |   await expect(page.getByRole('dialog', { name: heading })).toBeVisible({ timeout: 60_000 });\n     |                                                             ^\n   9 |   await page.getByRole('button', { name: 'OK', exact: true }).click();\n  10 | }\n  11 |\n    at dismissSuccess (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:8:61)\n    at publishPost (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:82:9)\n    at D:\\playwright-shere-ed-final\\tests\\post\\delete-post.spec.js:11:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:09:22.961Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-delete-post-TC-POST04-9881b-้าของเห็นปุ่มลบและยกเลิกได้-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDQtMDAzIOC4ouC4geC5gOC4peC4tOC4geC4geC4suC4o+C4peC4miBsb2NhbC0yMWRkMmRhMSIsImFsaWFzZXMiOlsiVEMtUE9TVDA0LTAwMyDguKLguIHguYDguKXguLTguIHguIHguLLguKPguKXguJogbG9jYWwtMjFkZDJkYTEiXSwidXJsIjoiIn1d"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-delete-post-TC-POST04-9881b-้าของเห็นปุ่มลบและยกเลิกได้-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-delete-post-TC-POST04-9881b-้าของเห็นปุ่มลบและยกเลิกได้-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-delete-post-TC-POST04-9881b-้าของเห็นปุ่มลบและยกเลิกได้-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1a6370c425fdfb3048fe-f58546871b9798b5256a",
+              "file": "post/delete-post.spec.js",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31466,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                            "column": 61,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n\u001b[2m  - Test timeout of 30000ms exceeded.\u001b[22m\n\n\n   at post\\post-helpers.js:8\n\n   6 |\n   7 | async function dismissSuccess(page, heading) {\n>  8 |   await expect(page.getByRole('dialog', { name: heading })).toBeVisible({ timeout: 60_000 });\n     |                                                             ^\n   9 |   await page.getByRole('button', { name: 'OK', exact: true }).click();\n  10 | }\n  11 |\n    at dismissSuccess (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:8:61)\n    at publishPost (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:82:9)\n    at D:\\playwright-shere-ed-final\\tests\\post\\delete-post.spec.js:24:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:10:14.547Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-delete-post-TC-POST04-7036c-การและ-URL-เดิมไม่แสดงโพสต์-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDQtMDA1IOC4peC4muC4iOC4o+C4tOC4hyBsb2NhbC00MmQyMTBkOSIsImFsaWFzZXMiOlsiVEMtUE9TVDA0LTAwNSDguKXguJrguIjguKPguLTguIcgbG9jYWwtNDJkMjEwZDkiXSwidXJsIjoiIn1d"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-delete-post-TC-POST04-7036c-การและ-URL-เดิมไม่แสดงโพสต์-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-delete-post-TC-POST04-7036c-การและ-URL-เดิมไม่แสดงโพสต์-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-delete-post-TC-POST04-7036c-การและ-URL-เดิมไม่แสดงโพสต์-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1a6370c425fdfb3048fe-e31584fc177f75ea3783",
+              "file": "post/delete-post.spec.js",
+              "line": 22,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "post\\detail-post.spec.js",
+      "file": "post/detail-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST05 รายละเอียดโพสต์",
+          "file": "post/detail-post.spec.js",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 65278,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n\n    at dismissSuccess (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:8:61)\n    at publishPost (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:82:9)\n    at D:\\playwright-shere-ed-final\\tests\\post\\detail-post.spec.js:11:5",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                          "column": 61,
+                          "line": 8
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpost\\post-helpers.js:8\n\n   6 |\n   7 | async function dismissSuccess(page, heading) {\n>  8 |   await expect(page.getByRole('dialog', { name: heading })).toBeVisible({ timeout: 60_000 });\n     |                                                             ^\n   9 |   await page.getByRole('button', { name: 'OK', exact: true }).click();\n  10 | }\n  11 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                            "column": 61,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n\n\n   at post\\post-helpers.js:8\n\n   6 |\n   7 | async function dismissSuccess(page, heading) {\n>  8 |   await expect(page.getByRole('dialog', { name: heading })).toBeVisible({ timeout: 60_000 });\n     |                                                             ^\n   9 |   await page.getByRole('button', { name: 'OK', exact: true }).click();\n  10 | }\n  11 |\n    at dismissSuccess (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:8:61)\n    at publishPost (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:82:9)\n    at D:\\playwright-shere-ed-final\\tests\\post\\detail-post.spec.js:11:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:11:08.444Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-detail-post-TC-POST05-41427-งข้อมูลและดาวน์โหลด-PDF-ได้-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDUtMDAxIOC4o+C4suC4ouC4peC4sOC5gOC4reC4teC4ouC4lCBQREYgbG9jYWwtNmM2MWU5MWQiLCJhbGlhc2VzIjpbIlRDLVBPU1QwNS0wMDEg4Lij4Liy4Lii4Lil4Liw4LmA4Lit4Li14Lii4LiUIFBERiBsb2NhbC02YzYxZTkxZCJdLCJ1cmwiOiIifV0="
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-detail-post-TC-POST05-41427-งข้อมูลและดาวน์โหลด-PDF-ได้-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-detail-post-TC-POST05-41427-งข้อมูลและดาวน์โหลด-PDF-ได้-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-detail-post-TC-POST05-41427-งข้อมูลและดาวน์โหลด-PDF-ได้-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                        "column": 61,
+                        "line": 8
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c7f5ab3a11b036383016-6d64ab1b43faf75bc571",
+              "file": "post/detail-post.spec.js",
+              "line": 7,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "post\\draft-post.spec.js",
+      "file": "post/draft-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST02 แบบร่าง",
+          "file": "post/draft-post.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 26521,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:12:33.305Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDItMDAyIOC5geC4muC4muC4o+C5iOC4suC4hyBsb2NhbC1lOTU0MWQxZCIsImFsaWFzZXMiOlsiVEMtUE9TVDAyLTAwMiDguYHguJrguJrguKPguYjguLLguIcgbG9jYWwtZTk1NDFkMWQiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC9lZGl0LzE3MmMxN2Q3LTJkYTktNGZjNy04YjI4LWE3NzBmMDIwNDQxMSJ9XQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-d4e50fc95946cfa6c742",
+              "file": "post/draft-post.spec.js",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "TC-POST02-009: แก้ไขแบบร่างและบันทึกซ้ำใน URL เดิม",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31832,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js",
+                            "column": 71,
+                            "line": 37
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'บันทึกสำเร็จ!' })\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'บันทึกสำเร็จ!' }) with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'บันทึกสำเร็จ!' })\u001b[22m\n\n\n  35 |     await page.getByTestId('edit-post-summary-input').fill('บันทึกครั้งที่สอง');\n  36 |     await page.getByRole('button', { name: 'บันทึกแบบร่าง' }).click();\n> 37 |     await expect(page.getByRole('dialog', { name: 'บันทึกสำเร็จ!' })).toBeVisible({ timeout: 30_000 });\n     |                                                                       ^\n  38 |     await page.getByRole('button', { name: 'OK', exact: true }).click();\n  39 |\n  40 |     await page.goto(editUrl);\n    at D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js:37:71"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:13:32.009Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-draft-post-TC-POST02--38752-ร่างและบันทึกซ้ำใน-URL-เดิม-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDItMDA5IOC5geC4muC4muC4o+C5iOC4suC4h+C5geC4geC5ieC5hOC4giBsb2NhbC0xM2ZjN2Y3NyIsImFsaWFzZXMiOlsiVEMtUE9TVDAyLTAwOSDguYHguJrguJrguKPguYjguLLguIfguYDguJTguLTguKEgbG9jYWwtNGExMjk1OWIiLCJUQy1QT1NUMDItMDA5IOC5geC4muC4muC4o+C5iOC4suC4h+C5geC4geC5ieC5hOC4giBsb2NhbC0xM2ZjN2Y3NyJdLCJ1cmwiOiJodHRwczovL3NoYXJlLWVkLm9ubGluZS9wb3N0L2VkaXQvMjM4NzVmMDItMWEyNy00ZWZjLTg2ZGYtOGFkNjFjMGMwNWEwIn1d"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-draft-post-TC-POST02--38752-ร่างและบันทึกซ้ำใน-URL-เดิม-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-draft-post-TC-POST02--38752-ร่างและบันทึกซ้ำใน-URL-เดิม-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-draft-post-TC-POST02--38752-ร่างและบันทึกซ้ำใน-URL-เดิม-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-7adad51d273c80929179",
+              "file": "post/draft-post.spec.js",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 78194,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: /สำเร็จ/ })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: /สำเร็จ/ }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: /สำเร็จ/ })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: /สำเร็จ/ })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: /สำเร็จ/ }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: /สำเร็จ/ })\u001b[22m\n\n    at D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js:63:64",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js",
+                          "column": 64,
+                          "line": 63
+                        },
+                        "snippet": "  61 |     await page.getByTestId('edit-post-title-input').fill(title);\n  62 |     await page.getByRole('button', { name: 'บันทึกและโพสต์' }).click();\n> 63 |     await expect(page.getByRole('dialog', { name: /สำเร็จ/ })).toBeVisible({ timeout: 60_000 });\n     |                                                                ^\n  64 |     await page.getByRole('button', { name: 'OK', exact: true }).click();\n  65 |     await openOwnProfileTab(page, 'posts');\n  66 |     await page.getByRole('heading', { name: title, exact: true }).click();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js",
+                            "column": 64,
+                            "line": 63
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: /สำเร็จ/ })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: /สำเร็จ/ }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: /สำเร็จ/ })\u001b[22m\n\n\n  61 |     await page.getByTestId('edit-post-title-input').fill(title);\n  62 |     await page.getByRole('button', { name: 'บันทึกและโพสต์' }).click();\n> 63 |     await expect(page.getByRole('dialog', { name: /สำเร็จ/ })).toBeVisible({ timeout: 60_000 });\n     |                                                                ^\n  64 |     await page.getByRole('button', { name: 'OK', exact: true }).click();\n  65 |     await openOwnProfileTab(page, 'posts');\n  66 |     await page.getByRole('heading', { name: title, exact: true }).click();\n    at D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js:63:64"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:14:34.788Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-draft-post-TC-POST02--aaca0-ได้-แล้วเผยแพร่ด้วย-ID-เดิม-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDItMDExIOC5gOC4nOC4ouC5geC4nuC4o+C5iOC5geC4muC4muC4o+C5iOC4suC4hyBsb2NhbC01ODNmZmFjYSIsImFsaWFzZXMiOlsiVEMtUE9TVDAyLTAxMSDguYDguJzguKLguYHguJ7guKPguYjguYHguJrguJrguKPguYjguLLguIcgbG9jYWwtNTgzZmZhY2EiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC9lZGl0LzllYTE3NzZlLTE0NDAtNDk1Zi05NzViLWZmZDZhNTcyOGVmOSJ9XQ=="
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-draft-post-TC-POST02--aaca0-ได้-แล้วเผยแพร่ด้วย-ID-เดิม-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-draft-post-TC-POST02--aaca0-ได้-แล้วเผยแพร่ด้วย-ID-เดิม-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-draft-post-TC-POST02--aaca0-ได้-แล้วเผยแพร่ด้วย-ID-เดิม-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js",
+                        "column": 64,
+                        "line": 63
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-7798852b01da9a725905",
+              "file": "post/draft-post.spec.js",
+              "line": 48,
+              "column": 3
+            },
+            {
+              "title": "TC-POST02-015: ลบแบบร่างของตนเอง",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25178,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:16:25.657Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDItMDE1IOC4peC4muC5geC4muC4muC4o+C5iOC4suC4hyBsb2NhbC0xYzgyYmMyZSIsImFsaWFzZXMiOlsiVEMtUE9TVDAyLTAxNSDguKXguJrguYHguJrguJrguKPguYjguLLguIcgbG9jYWwtMWM4MmJjMmUiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC9lZGl0LzM2NmMyY2YxLWRmODYtNDYzMy05ZGQ0LWIyNzg2ZTQzZjcyMCJ9XQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-006935e0446f7f8c300d",
+              "file": "post/draft-post.spec.js",
+              "line": 72,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "post\\edit-post.spec.js",
+      "file": "post/edit-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST03 แก้ไขโพสต์",
+          "file": "post/edit-post.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 64168,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n\n    at dismissSuccess (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:8:61)\n    at publishPost (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:86:9)\n    at D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js:16:21",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                          "column": 61,
+                          "line": 8
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpost\\post-helpers.js:8\n\n   6 |\n   7 | async function dismissSuccess(page, heading) {\n>  8 |   await expect(page.getByRole('dialog', { name: heading })).toBeVisible({ timeout: 60_000 });\n     |                                                             ^\n   9 |   await page.getByRole('button', { name: 'OK', exact: true }).click();\n  10 | }\n  11 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                            "column": 61,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n\n\n   at post\\post-helpers.js:8\n\n   6 |\n   7 | async function dismissSuccess(page, heading) {\n>  8 |   await expect(page.getByRole('dialog', { name: heading })).toBeVisible({ timeout: 60_000 });\n     |                                                             ^\n   9 |   await page.getByRole('button', { name: 'OK', exact: true }).click();\n  10 | }\n  11 |\n    at dismissSuccess (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:8:61)\n    at publishPost (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:86:9)\n    at D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js:16:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:17:07.239Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-edit-post-TC-POST03-แ-69eec-พสต์เดิมและตรวจหลัง-Refresh-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDMtMDAzIOC5guC4nuC4quC4leC5jOC5gOC4lOC4tOC4oSBsb2NhbC0yMTgxYWYyNSIsImFsaWFzZXMiOlsiVEMtUE9TVDAzLTAwMyDguYLguJ7guKrguJXguYzguYDguJTguLTguKEgbG9jYWwtMjE4MWFmMjUiXSwidXJsIjoiaHR0cHM6Ly9zaGFyZS1lZC5vbmxpbmUvcG9zdC8xMmEwZTI3MC0yYmFlLTRkNDItYWM1My04NGQ0YjE1ODg3YmMifV0="
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-edit-post-TC-POST03-แ-69eec-พสต์เดิมและตรวจหลัง-Refresh-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-edit-post-TC-POST03-แ-69eec-พสต์เดิมและตรวจหลัง-Refresh-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-edit-post-TC-POST03-แ-69eec-พสต์เดิมและตรวจหลัง-Refresh-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                        "column": 61,
+                        "line": 8
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07d9fdca4c1e00289355-fa13143ce1d75b9305fa",
+              "file": "post/edit-post.spec.js",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 150000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 64578,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n\n    at dismissSuccess (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:8:61)\n    at publishPost (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:86:9)\n    at D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js:49:5",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                          "column": 61,
+                          "line": 8
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpost\\post-helpers.js:8\n\n   6 |\n   7 | async function dismissSuccess(page, heading) {\n>  8 |   await expect(page.getByRole('dialog', { name: heading })).toBeVisible({ timeout: 60_000 });\n     |                                                             ^\n   9 |   await page.getByRole('button', { name: 'OK', exact: true }).click();\n  10 | }\n  11 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                            "column": 61,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'โพสต์สำเร็จ!' }) with timeout 60000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'โพสต์สำเร็จ!' })\u001b[22m\n\n\n   at post\\post-helpers.js:8\n\n   6 |\n   7 | async function dismissSuccess(page, heading) {\n>  8 |   await expect(page.getByRole('dialog', { name: heading })).toBeVisible({ timeout: 60_000 });\n     |                                                             ^\n   9 |   await page.getByRole('button', { name: 'OK', exact: true }).click();\n  10 | }\n  11 |\n    at dismissSuccess (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:8:61)\n    at publishPost (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:86:9)\n    at D:\\playwright-shere-ed-final\\tests\\post\\edit-post.spec.js:49:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:18:45.874Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-edit-post-TC-POST03-แ-05ad8--Validation-บนหน้าแก้ไขจริง-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "created-posts-cleaned",
+                          "contentType": "application/json",
+                          "body": "W3sidGl0bGUiOiJUQy1QT1NUMDMg4LiV4Lij4Lin4LiIIFZhbGlkYXRpb24gbG9jYWwtMWZkMzI1ZTMiLCJhbGlhc2VzIjpbIlRDLVBPU1QwMyDguJXguKPguKfguIggVmFsaWRhdGlvbiBsb2NhbC0xZmQzMjVlMyJdLCJ1cmwiOiJodHRwczovL3NoYXJlLWVkLm9ubGluZS9wb3N0L2ViMzU1OGFmLTJhZWMtNGE4ZC05MWVmLTUzZTkzNTY0NTBjZiJ9XQ=="
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-edit-post-TC-POST03-แ-05ad8--Validation-บนหน้าแก้ไขจริง-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-edit-post-TC-POST03-แ-05ad8--Validation-บนหน้าแก้ไขจริง-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\manage-final\\post-edit-post-TC-POST03-แ-05ad8--Validation-บนหน้าแก้ไขจริง-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                        "column": 61,
+                        "line": 8
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07d9fdca4c1e00289355-5657e442f45d2b07f55e",
+              "file": "post/edit-post.spec.js",
+              "line": 46,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-30T08:09:18.517Z",
+    "duration": 664533.892,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 7,
+    "flaky": 0
+  }
+}

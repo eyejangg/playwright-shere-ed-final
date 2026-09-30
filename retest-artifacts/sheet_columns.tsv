@@ -1,0 +1,118 @@
+Automated / Manual	Automation Spec File	Automation Test Name	Automation Retest Status	Automation Notes
+Automated	tests/post/create-post.spec.js	TC-POST01-001: สมาชิกเข้าสู่หน้าสร้างโพสต์	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-002: ตรวจสอบฟิลด์ในหน้าสร้างโพสต์	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-003: กรอกข้อมูลโพสต์ครบถ้วนและแนบไฟล์	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-004: เลือกหมวดหมู่วิชา 1 หมวด	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-005: แนบรูปหน้าปก PNG	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-006: แนบรูปหน้าปก JPG	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-007: แนบรูปหน้าปกขนาดเท่ากับ 2 MB	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-008: แนบรูปภาพประกอบ 1 รูป	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-009: แนบรูปภาพประกอบครบ 5 รูป	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-010: แนบไฟล์ PDF 1 ไฟล์	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-011: แนบไฟล์ PDF ขนาดเท่ากับ 20 MB	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-012: ไม่กรอกชื่อหัวข้อสรุป	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-013: ไม่เลือกระดับชั้น	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-014: ไม่กรอกบทสรุปย่อ	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-015: ไม่เลือกหมวดหมู่วิชา	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-016: ไม่กรอกรายละเอียดเพิ่มเติม	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-017: ไม่แนบรูปหน้าปก	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-018: รูปหน้าปกมีขนาดเกิน 2 MB	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-019: รูปภาพประกอบมีขนาดเกิน 2 MB	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-020: ไฟล์ PDF มีขนาดเกิน 20 MB	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-021: รูปหน้าปกเป็นไฟล์ผิดประเภท	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-022: รูปภาพประกอบเป็นไฟล์ผิดประเภท	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-023: เลือกไฟล์ที่ไม่ใช่ PDF	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-024: แนบรูปภาพประกอบรูปที่ 6	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-025: เพิ่มแท็กภาษาไทย	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-026: เพิ่มแท็กภาษาอังกฤษ	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-027: เพิ่มแท็กที่มีตัวเลข	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-028: ระบบเติมเครื่องหมาย # ให้แท็กอัตโนมัติ	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-029: แท็กมีเครื่องหมาย # อยู่แล้ว	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-030: เพิ่มแท็กครบ 3 แท็ก	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-031: เพิ่มแท็กรายการที่ 4	Pass	ครบ 3 แท็กแล้วซ่อนช่อง input และแท็กแนะนำไม่เพิ่มแท็กที่ 4
+Automated	tests/post/create-post.spec.js	TC-POST01-032: แท็กมีเครื่องหมายขีดกลาง	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-033: แท็กมีเครื่องหมายขีดล่าง	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-034: แท็กมีเครื่องหมาย @	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-035: แท็กมีความยาว 10 ตัวอักษร (รวม #)	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-036: แท็กมีความยาว 11 ตัวอักษร (รวม #)	Fail (Defect)	Defect: เว็บยอมรับแท็ก 11 ตัวอักษร (#1234567890) ไม่ปฏิเสธตามข้อกำหนด 10 ตัวอักษร
+Automated	tests/post/create-post.spec.js	TC-POST01-037: แนบไฟล์ PDF จำนวน 1 ไฟล์	Pass	Playwright assertion ใน create-post.spec.js ผ่าน
+Automated	tests/post/create-post.spec.js	TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน	Pass	สร้างโพสต์ครบทุกฟิลด์ แนบ PDF/รูปภาพ ตรวจรายละเอียด และลบ cleanup
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/draft-post.spec.js	TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/draft-post.spec.js	TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/draft-post.spec.js	TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/draft-post.spec.js	TC-POST02-009: แก้ไขแบบร่างและบันทึกซ้ำใน URL เดิม	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/draft-post.spec.js	TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Automated	tests/post/draft-post.spec.js	TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Automated	tests/post/draft-post.spec.js	TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Automated	tests/post/draft-post.spec.js	TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Automated	tests/post/draft-post.spec.js	TC-POST02-015: ลบแบบร่างของตนเอง	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/draft-post.spec.js	TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Automated	tests/post/draft-post.spec.js	TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh	Pass	Playwright draft flow ใน draft-post.spec.js ผ่าน
+Automated	tests/post/edit-post.spec.js	TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/edit-post.spec.js	TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/edit-post.spec.js	TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/edit-post.spec.js	TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Automated	tests/post/edit-post.spec.js	TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Automated	tests/post/edit-post.spec.js	TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/edit-post.spec.js	TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/edit-post.spec.js	TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Automated	tests/post/edit-post.spec.js	TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Automated	tests/post/edit-post.spec.js	TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/edit-post.spec.js	TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Automated	tests/post/edit-post.spec.js	TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Automated	tests/post/edit-post.spec.js	TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/edit-post.spec.js	TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh	Pass	Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+Automated	tests/post/delete-post.spec.js	TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้	Pass	Dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/delete-post.spec.js	TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้	Pass	Dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+Automated	tests/post/delete-post.spec.js	TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้	Pass	Dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+Automated	tests/post/delete-post.spec.js	TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์	Fail (Defect)	Defect: หน้า Explore และประวัติยังพบค้างจาก Server Cache แม้ลบสำเร็จ
+Automated	tests/post/delete-post.spec.js	TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์	Fail (Defect)	Defect: หน้า Explore และประวัติยังพบค้างจาก Server Cache แม้ลบสำเร็จ
+Automated	tests/post/delete-post.spec.js	TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์	Pass	Dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+Automated	tests/post/delete-post.spec.js	TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้	Pass	Dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/delete-post.spec.js	TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์	Fail (Defect)	Defect: หน้า Explore และประวัติยังพบค้างจาก Server Cache แม้ลบสำเร็จ
+Automated	tests/post/delete-post.spec.js	TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์	Pass	Dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+Automated	tests/post/detail-post.spec.js	TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้	Pass	เปิดหน้ารายละเอียดและดาวน์โหลด PDF ตรวจสอบ magic bytes ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Automated	tests/post/detail-post.spec.js	TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้	Pass	เปิดหน้ารายละเอียดและดาวน์โหลด PDF ตรวจสอบ magic bytes ผ่าน
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น
+Manual	-	-	-	ทดสอบแบบ Manual เท่านั้น

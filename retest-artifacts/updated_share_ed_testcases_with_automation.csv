@@ -1,0 +1,295 @@
+﻿Test Case ID,Scenario ID,Test Case Description,Test Type,Priority,Preconditions,Test Data,Test Steps,Expected Result,Actual Result,Pass/Fail,Date,Automation Status,Automation Spec File,Automation Test Name,Automation Retest Result,Automation Notes
+TC-POST01-001,POST01-S1.1,Member เข้าสู่หน้าสร้างโพสต์,Positive,High,Member Login สำเร็จ,"Email: member01@test.com
+Password: Test1234","1. กรอก Email member01@test.com
+2. กรอก Password Test1234
+3. คลิกปุ่ม Login
+4. ตรวจสอบว่าระบบแสดงหน้า Home/Dashboard
+5. คลิกเมนู สร้างโพสต์
+6. ตรวจสอบว่าระบบแสดงหน้าสร้างโพสต์",ล็อกอินสำเร็จ แสดงปุ่มสร้างโพสต์ และเมื่อคลิกเปิด /create พร้อมหัวข้อ “สร้างโพสต์สรุปความรู้”,Automation: ล็อกอินสำเร็จ แสดงปุ่มสร้างโพสต์ และเมื่อคลิกเปิด /create พร้อมหัวข้อ “สร้างโพสต์สรุปความรู้”,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-001: สมาชิกเข้าสู่หน้าสร้างโพสต์,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-002,POST01-S1.1,ตรวจสอบฟิลด์ในหน้าสร้างโพสต์,Positive,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,-,"1. ตรวจสอบฟิลด์ รูปหน้าปก*
+2. ตรวจสอบฟิลด์ ชื่อหัวข้อสรุป*
+3. ตรวจสอบฟิลด์ ระดับชั้น*
+4. ตรวจสอบฟิลด์ บทสรุปย่อ*
+5. ตรวจสอบฟิลด์ หมวดหมู่วิชา/แฮชแท็ก*
+6. ตรวจสอบฟิลด์ รายละเอียดเพิ่มเติม *
+7. ตรวจสอบฟิลด์ ไฟล์ PDF
+8. ตรวจสอบฟิลด์ รูปภาพประกอบ",หน้าสร้างโพสต์แสดงรูปปก ชื่อหัวข้อ ระดับชั้น บทสรุป หมวดหมู่/แท็ก รายละเอียด PDF และรูปประกอบ พร้อมปุ่มยกเลิก บันทึกแบบร่าง และโพสต์สรุปความรู้; ฟิลด์ที่มี * เป็นฟิลด์บังคับ,Automation: หน้าสร้างโพสต์แสดงรูปปก ชื่อหัวข้อ ระดับชั้น บทสรุป หมวดหมู่/แท็ก รายละเอียด PDF และรูปประกอบ พร้อมปุ่มยกเลิก บันทึกแบบร่าง และโพสต์สรุปความรู้; ฟิลด์ที่มี * เป็นฟิลด์บังคับ,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-002: ตรวจสอบฟิลด์ในหน้าสร้างโพสต์,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-003,POST01-S2.1,กรอกข้อมูลโพสต์ครบถ้วน,Positive,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,"หน้าปก: cover.png 2 MB
+ชื่อหัวข้อ: ทบทวนแคลคูลัส
+ระดับชั้น: มัธยมศึกษาตอนปลาย
+บทสรุปย่อ: สรุปสูตรอนุพันธ์
+หมวดหมู่: คณิตศาสตร์
+แฮชแท็ก: #สรุปย่อ
+รายละเอียด: ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์
+PDF: document.pdf 10 MB
+รูปประกอบ: image01.png 1 MB","1. แนบ cover.png ขนาด 2 MB
+2. กรอกชื่อหัวข้อ ทบทวนแคลคูลัส
+3. เลือกระดับชั้น มัธยมศึกษาตอนปลาย
+4. กรอกบทสรุปย่อ สรุปสูตรอนุพันธ์
+5. เลือกหมวดหมู่ คณิตศาสตร์ และแท็กแนะนำ #สรุปย่อ แล้วยืนยัน
+6. กรอกรายละเอียดตาม Test Data
+7. แนบ document.pdf 10 MB
+8. แนบ image01.png 1 MB
+9. ตรวจค่าที่กรอก พรีวิวรูป และชื่อ PDF",แสดงข้อมูลที่กรอกตรงกับ Test Data แสดงพรีวิวปก รูปประกอบ และชื่อ PDF ที่แนบ โดยไม่แจ้งข้อผิดพลาด,แสดงชื่อ ทบทวนแคลคูลัส บทสรุปและเนื้อหาที่กรอก หมวดคณิตศาสตร์ #สรุปย่อ พรีวิวปก/รูปประกอบ และชื่อ document.pdf,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-003: กรอกข้อมูลโพสต์ครบถ้วนและแนบไฟล์,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-004,POST01-S2.1,เลือกหมวดหมู่วิชา 1 หมวด,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,หมวดหมู่: คณิตศาสตร์,"1. ผู้ใช้งานเปิด “หมวดหมู่วิชา”
+2. ผู้ใช้งานเลือก “คณิตศาสตร์”",เลือกคณิตศาสตร์และยืนยันแล้ว หน้าฟอร์มแสดงหมวดหมู่คณิตศาสตร์เพียงหมวดเดียว,Automation: เลือกคณิตศาสตร์และยืนยันแล้ว หน้าฟอร์มแสดงหมวดหมู่คณิตศาสตร์เพียงหมวดเดียว,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-004: เลือกหมวดหมู่วิชา 1 หมวด,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-005,POST01-S3.1,แนบรูปหน้าปก PNG,Positive,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,cover.png ขนาด 2.00 MB,"1. ผู้ใช้งานคลิก “รูปหน้าปก”
+2. ผู้ใช้งานเลือก cover.png",รับไฟล์ PNG ที่ขนาดไม่เกิน 2 MB แสดงพรีวิวปกที่โหลดภาพได้และปุ่มนำรูปปกออก,Automation: รับไฟล์ PNG ที่ขนาดไม่เกิน 2 MB แสดงพรีวิวปกที่โหลดภาพได้และปุ่มนำรูปปกออก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-005: แนบรูปหน้าปก PNG,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-006,POST01-S3.1,แนบรูปหน้าปก JPG,Positive,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,cover.jpg ขนาด 1.00 MB,"1. ผู้ใช้งานคลิก “รูปหน้าปก”
+2. ผู้ใช้งานเลือก cover.jpg",รับไฟล์ JPG ที่ขนาดไม่เกิน 2 MB แสดงพรีวิวปกที่โหลดภาพได้และปุ่มนำรูปปกออก,Automation: รับไฟล์ JPG ที่ขนาดไม่เกิน 2 MB แสดงพรีวิวปกที่โหลดภาพได้และปุ่มนำรูปปกออก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-006: แนบรูปหน้าปก JPG,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-007,POST01-S3.1,รูปหน้าปกมีขนาดเท่ากับ 2 MB,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,cover.png ขนาด 2.00 MB,"1. ผู้ใช้งานคลิก “รูปหน้าปก”
+2. ผู้ใช้งานเลือก cover.png ขนาด 2.00 MB","รับไฟล์ปกขนาด 2 MB (2,097,152 bytes) และแสดงพรีวิวปกที่โหลดภาพได้","Automation: รับไฟล์ปกขนาด 2 MB (2,097,152 bytes) และแสดงพรีวิวปกที่โหลดภาพได้",Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-007: แนบรูปหน้าปกขนาดเท่ากับ 2 MB,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-008,POST01-S3.2,แนบรูปภาพประกอบ,Positive,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,image01.png ขนาด 1.00 MB,"1. ผู้ใช้งานคลิก “รูปภาพประกอบ”
+2. ผู้ใช้งานเลือก image01.png",รับรูปประกอบ 1 รูป แสดงตัวนับ 1/5 พรีวิวรูป และปุ่มนำรูปออก,Automation: รับรูปประกอบ 1 รูป แสดงตัวนับ 1/5 พรีวิวรูป และปุ่มนำรูปออก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-008: แนบรูปภาพประกอบ 1 รูป,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-009,POST01-S3.2,แนบรูปภาพประกอบครบ 5 รูป,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,image01.png – image05.png รูปละ 1.00 MB,"1. คลิก “รูปภาพประกอบ”
+2. เลือก image01.png ถึง image05.png",รับรูปภาพประกอบครบ 5 รูป แสดงตัวนับ 5/5 พร้อมพรีวิวและปุ่มนำรูปออก,เลือก 5 รูปแล้วตัวนับเป็น 5/5 รูปแรกและรูปสุดท้ายพร้อมปุ่มนำรูปออกแสดงครบ,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-009: แนบรูปภาพประกอบครบ 5 รูป,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-010,POST01-S3.3,แนบไฟล์ PDF 1 ไฟล์,Positive,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,document.pdf ขนาด 10.00 MB,"1. ผู้ใช้งานคลิก “ไฟล์ PDF”
+2. ผู้ใช้งานเลือก document.pdf",รับ PDF 1 ไฟล์ขนาดไม่เกิน 20 MB และแสดงชื่อ document.pdf,Automation: รับ PDF 1 ไฟล์ขนาดไม่เกิน 20 MB และแสดงชื่อ document.pdf,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-010: แนบไฟล์ PDF 1 ไฟล์,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-011,POST01-S3.3,PDF มีขนาดเท่ากับ 20 MB,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,document-20mb.pdf ขนาด 20.00 MB,"1. คลิก ไฟล์ PDF
+2. เลือก document-20mb.pdf ขนาด 20 MB
+3. ตรวจชื่อไฟล์ที่แนบ","รับ PDF ขนาด 20 MB (20,971,520 bytes) และแสดงชื่อไฟล์ที่เลือก","Automation: รับ PDF ขนาด 20 MB (20,971,520 bytes) และแสดงชื่อไฟล์ที่เลือก",Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-011: แนบไฟล์ PDF ขนาดเท่ากับ 20 MB,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-012,POST01-S4.1,ไม่กรอกชื่อหัวข้อสรุป,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,Title = ว่าง,"1. กรอกข้อมูลอื่นครบ
+2. เว้น “ชื่อหัวข้อสรุป”
+3. คลิก “บันทึกและโพสต์”",ไม่เผยแพร่ อยู่หน้า /create และแจ้ง “กรุณากรอกชื่อหัวข้อสรุปความรู้”,Automation: ไม่เผยแพร่ อยู่หน้า /create และแจ้ง “กรุณากรอกชื่อหัวข้อสรุปความรู้”,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-012: ไม่กรอกชื่อหัวข้อสรุป,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-013,POST01-S4.1,ไม่เลือกระดับชั้น,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,ระดับชั้น = ว่าง,"1. กรอกข้อมูลอื่นครบ
+2. ไม่เลือกระดับชั้น
+3. คลิก “บันทึกและโพสต์”",ไม่เผยแพร่ อยู่หน้า /create และแจ้ง “กรุณาเลือกระดับชั้น”,Automation: ไม่เผยแพร่ อยู่หน้า /create และแจ้ง “กรุณาเลือกระดับชั้น”,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-013: ไม่เลือกระดับชั้น,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-014,POST01-S4.1,ไม่กรอกบทสรุปย่อ,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,บทสรุปย่อ = ว่าง,"1. กรอกข้อมูลอื่นครบ
+2. เว้นบทสรุปย่อ
+3. คลิก “บันทึกและโพสต์”",ไม่เผยแพร่ อยู่หน้า /create และแจ้ง “กรุณากรอกบทสรุปย่อ”,Automation: ไม่เผยแพร่ อยู่หน้า /create และแจ้ง “กรุณากรอกบทสรุปย่อ”,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-014: ไม่กรอกบทสรุปย่อ,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-015,POST01-S4.1,ไม่เลือกหมวดหมู่วิชา,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,หมวดหมู่ = ว่าง,"1. กรอกข้อมูลอื่นครบ
+2. ไม่เลือกหมวดหมู่
+3. คลิก “บันทึกและโพสต์”",ไม่เผยแพร่ อยู่หน้า /create และแจ้งให้เลือกหมวดหมู่วิชา,Automation: ไม่เผยแพร่ อยู่หน้า /create และแจ้งให้เลือกหมวดหมู่วิชา,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-015: ไม่เลือกหมวดหมู่วิชา,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-016,POST01-S4.1,ไม่กรอกรายละเอียดเพิ่มเติม,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,รายละเอียด = ว่าง,"1. กรอกข้อมูลอื่นครบ
+2. เว้นรายละเอียดเพิ่มเติม
+3. คลิก “บันทึกและโพสต์”",ไม่เผยแพร่ อยู่หน้า /create และแจ้งให้กรอกรายละเอียดเพิ่มเติม,Automation: ไม่เผยแพร่ อยู่หน้า /create และแจ้งให้กรอกรายละเอียดเพิ่มเติม,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-016: ไม่กรอกรายละเอียดเพิ่มเติม,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-017,POST01-S4.1,ไม่แนบรูปหน้าปก,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,Cover = ว่าง,"1. กรอกข้อมูลอื่นครบ
+2. ไม่แนบรูปหน้าปก
+3. คลิก “บันทึกและโพสต์”",ไม่เผยแพร่ อยู่หน้า /create และแจ้งให้อัปโหลดรูปภาพหน้าปก,Automation: ไม่เผยแพร่ อยู่หน้า /create และแจ้งให้อัปโหลดรูปภาพหน้าปก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-017: ไม่แนบรูปหน้าปก,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-018,POST01-S4.2,รูปหน้าปกเกิน 2 MB,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,cover.png ขนาด 2.01 MB,"1. คลิก “รูปหน้าปก”
+2. เลือก cover.png",ไม่รับรูปปกที่เกิน 2 MB ไม่แสดงพรีวิวไฟล์นั้น และแจ้ง “รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB”,Automation: ไม่รับรูปปกที่เกิน 2 MB ไม่แสดงพรีวิวไฟล์นั้น และแจ้ง “รูปหน้าปกต้องมีขนาดไม่เกิน 2 MB”,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-018: รูปหน้าปกมีขนาดเกิน 2 MB,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-019,POST01-S4.2,รูปภาพประกอบเกิน 2 MB,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,image01.png ขนาด 2.01 MB,"1. คลิก “รูปภาพประกอบ”
+2. เลือก image01.png ขนาด 2.01 MB",ไม่รับรูปประกอบที่เกิน 2 MB ตัวนับยังเป็น 0/5 และแจ้ง “รูปภาพประกอบต้องมีขนาดไม่เกิน 2 MB”,Automation: ไม่รับรูปประกอบที่เกิน 2 MB ตัวนับยังเป็น 0/5 และแจ้ง “รูปภาพประกอบต้องมีขนาดไม่เกิน 2 MB”,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-019: รูปภาพประกอบมีขนาดเกิน 2 MB,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-020,POST01-S4.2,PDF เกิน 20 MB,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,document.pdf ขนาด 20.01 MB,"1. คลิก “ไฟล์ PDF”
+2. เลือก document.pdf",ไม่รับ PDF ที่เกิน 20 MB ไม่แสดงไฟล์นั้น และแจ้ง “ไฟล์ PDF ต้องไม่เกิน 20 MB”,Automation: ไม่รับ PDF ที่เกิน 20 MB ไม่แสดงไฟล์นั้น และแจ้ง “ไฟล์ PDF ต้องไม่เกิน 20 MB”,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-020: ไฟล์ PDF มีขนาดเกิน 20 MB,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-021,POST01-S4.2,รูปหน้าปกเป็นไฟล์ผิดประเภท,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,image01.gif,"1. คลิก “รูปหน้าปก”
+2. เลือก image01.gif","ไม่รับ GIF เป็นรูปปก และแจ้ง “รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น”","Automation: ไม่รับ GIF เป็นรูปปก และแจ้ง “รูปภาพหน้าปกต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น”",Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-021: รูปหน้าปกเป็นไฟล์ผิดประเภท,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-022,POST01-S4.2,รูปภาพประกอบเป็นไฟล์ผิดประเภท,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,image01.gif,"1. คลิก “รูปภาพประกอบ”
+2. เลือก image01.gif","ไม่รับ GIF เป็นรูปประกอบ ตัวนับยังเป็น 0/5 และแจ้ง “รูปภาพต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น”","Automation: ไม่รับ GIF เป็นรูปประกอบ ตัวนับยังเป็น 0/5 และแจ้ง “รูปภาพต้องเป็นไฟล์ .jpg, .jpeg, .png, .apng เท่านั้น”",Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-022: รูปภาพประกอบเป็นไฟล์ผิดประเภท,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-023,POST01-S4.2,เลือกไฟล์ที่ไม่ใช่ PDF,Negative,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,document.docx,"1. คลิก “ไฟล์ PDF”
+2. เลือก document.docx",ไม่รับ document.docx เป็น PDF และแจ้งว่าไฟล์ไม่ใช่ PDF ที่ถูกต้อง,Automation: ไม่รับ document.docx เป็น PDF และแจ้งว่าไฟล์ไม่ใช่ PDF ที่ถูกต้อง,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-023: เลือกไฟล์ที่ไม่ใช่ PDF,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-024,POST01-S4.2,แนบรูปภาพประกอบรูปที่ 6,Boundary,High,แนบรูปภาพครบ 5 รูปแล้ว,image01.png ถึง image06.png รูปละ 1 MB,"1. เปิดหน้าสร้างโพสต์
+2. เลือก image01.png ถึง image06.png พร้อมกัน
+3. ตรวจข้อความแจ้งเตือน ตัวนับ 5/5 และพรีวิวทั้งหมด
+4. ตรวจว่าไม่มีพรีวิวรูปที่ 6",เมื่อเลือก 6 รูป ระบบรับได้เพียง 5 รูป ตัวนับเป็น 5/5 ไม่มีพรีวิวรูปที่ 6 และแจ้งข้อจำกัดสูงสุด 5 รูป,Automation: เมื่อเลือก 6 รูป ระบบรับได้เพียง 5 รูป ตัวนับเป็น 5/5 ไม่มีพรีวิวรูปที่ 6 และแจ้งข้อจำกัดสูงสุด 5 รูป,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-024: แนบรูปภาพประกอบรูปที่ 6,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-025,POST01-S5.1,เพิ่ม Tag ภาษาไทย,Positive,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#เรียนรู้,1. กรอก Tag “#เรียนรู้”,เมื่อเพิ่ม #เรียนรู้ ระบบแสดงแท็กภาษาไทยตรงตามที่กรอก,Automation: เมื่อเพิ่ม #เรียนรู้ ระบบแสดงแท็กภาษาไทยตรงตามที่กรอก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-025: เพิ่มแท็กภาษาไทย,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-026,POST01-S5.1,เพิ่ม Tag ภาษาอังกฤษ,Positive,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#Learning,1. กรอก Tag “#Learning”,เมื่อเพิ่ม #Learning ระบบแสดงแท็กภาษาอังกฤษตรงตามที่กรอก,Automation: เมื่อเพิ่ม #Learning ระบบแสดงแท็กภาษาอังกฤษตรงตามที่กรอก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-026: เพิ่มแท็กภาษาอังกฤษ,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-027,POST01-S5.1,เพิ่ม Tag ที่มีตัวเลข,Positive,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#Math123,1. กรอก Tag “#Math123”,เมื่อเพิ่ม #Math123 ระบบแสดงแท็กที่มีตัวเลขตรงตามที่กรอก,Automation: เมื่อเพิ่ม #Math123 ระบบแสดงแท็กที่มีตัวเลขตรงตามที่กรอก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-027: เพิ่มแท็กที่มีตัวเลข,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-028,POST01-S5.1,Tag ไม่มี # แล้วระบบเติมอัตโนมัติ,Positive,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,เรียนรู้,1. ผู้ใช้งานกรอก “เรียนรู้” โดยไม่ใส่ #,เมื่อกรอก เรียนรู้ โดยไม่มี # ระบบเพิ่มเป็น #เรียนรู้,Automation: เมื่อกรอก เรียนรู้ โดยไม่มี # ระบบเพิ่มเป็น #เรียนรู้,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-028: ระบบเติมเครื่องหมาย # ให้แท็กอัตโนมัติ,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-029,POST01-S5.1,Tag มี # อยู่แล้ว,Positive,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#เรียนรู้,1. ผู้ใช้งานกรอก #เรียนรู้,เมื่อกรอก #เรียนรู้ ระบบแสดง #เรียนรู้ และไม่เติม # ซ้ำ,Automation: เมื่อกรอก #เรียนรู้ ระบบแสดง #เรียนรู้ และไม่เติม # ซ้ำ,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-029: แท็กมีเครื่องหมาย # อยู่แล้ว,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-030,POST01-S5.1,เพิ่ม Tag ครบ 3 Tag,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,"#คณิต #ม6, #เรียนรู้",1. เพิ่ม Tag #คณิต; 2. เพิ่ม Tag #ม6; 3. เพิ่ม Tag #เรียนรู้,"รับและแสดง #คณิต, #ม6 และ #เรียนรู้ ครบ 3 แท็กหลังยืนยัน","Automation: รับและแสดง #คณิต, #ม6 และ #เรียนรู้ ครบ 3 แท็กหลังยืนยัน",Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-030: เพิ่มแท็กครบ 3 แท็ก,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-031,POST01-S5.2,เพิ่ม Tag รายการที่ 4,Boundary,Medium,มี Tag 3 รายการแล้ว,#คณิต #ม6 #เรียนรู้ และแท็กแนะนำเพิ่มเติม #สรุปย่อ,"1. เปิดหน้าต่างหมวดหมู่/แท็ก
+2. เพิ่ม #คณิต #ม6 #เรียนรู้ ให้ครบ 3 แท็ก
+3. ตรวจตัวนับ 3/3 และช่องเพิ่มแท็กไม่แสดง
+4. คลิกแท็กแนะนำ #สรุปย่อ
+5. ตรวจว่าตัวนับยังเป็น 3/3
+6. ยืนยันและตรวจว่าฟอร์มมีเพียง 3 แท็กเดิม ไม่มี #สรุปย่อ",เมื่อครบ 3 แท็ก แสดงตัวนับ 3/3 และซ่อนช่องเพิ่มแท็ก; กดแท็กแนะนำเพิ่มเติมแล้วจำนวนยังเป็น 3 และเมื่อยืนยันฟอร์มไม่มีแท็กที่ 4,Skip — รีเทสรอบเต็มพบว่า UI ซ่อนช่อง hashtag-input เมื่อครบ 3 แท็ก แต่ assertion เดิมคาด disabled; ปรับ selector/พฤติกรรมแล้วแต่ยังไม่ได้รันซ้ำเฉพาะเคส,Skip,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-031: เพิ่มแท็กรายการที่ 4,Pass,แท็กครบ 3 รายการแล้ว input ซ่อนตัวและปุ่มแท็กแนะนำไม่เพิ่มแท็กที่ 4
+TC-POST01-032,POST01-S5.2,Tag มีเครื่องหมาย -,Negative,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#QA-Test,1. กรอก Tag #QA-Test,ไม่รับ #QA-Test เป็นแท็กและแจ้งเตือนอักขระที่ไม่รองรับ,Automation: ไม่รับ #QA-Test เป็นแท็กและแจ้งเตือนอักขระที่ไม่รองรับ,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-032: แท็กมีเครื่องหมายขีดกลาง,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-033,POST01-S5.2,Tag มีเครื่องหมาย _,Negative,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#QA_Test,1. กรอก Tag #QA_Test,ไม่รับ #QA_Test เป็นแท็กและแจ้งเตือนอักขระที่ไม่รองรับ,Automation: ไม่รับ #QA_Test เป็นแท็กและแจ้งเตือนอักขระที่ไม่รองรับ,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-033: แท็กมีเครื่องหมายขีดล่าง,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-034,POST01-S5.2,Tag มีเครื่องหมาย @,Negative,Medium,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#QA@Test,1. กรอก Tag #QA@Test,ไม่รับ #QA@Test เป็นแท็กและแจ้งเตือนอักขระที่ไม่รองรับ,Automation: ไม่รับ #QA@Test เป็นแท็กและแจ้งเตือนอักขระที่ไม่รองรับ,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-034: แท็กมีเครื่องหมาย @,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-035,POST01-S5.1,Tag มีความยาว 10 ตัวอักษร (รวม #),Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#123456789,"1. กรอก Tag “#123456789”
+2. ตรวจสอบว่า Tag ถูกยอมรับ",รับ #123456789 ซึ่งยาว 10 ตัวอักษรรวม #,Automation: รับ #123456789 ซึ่งยาว 10 ตัวอักษรรวม #,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-035: แท็กมีความยาว 10 ตัวอักษร (รวม #),Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-036,POST01-S5.2,Tag มีความยาว 11 ตัวอักษร (รวม #),Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,#1234567890,"1. กรอก Tag “#1234567890”
+2. ตรวจสอบข้อความแจ้งเตือน",ไม่รับ #1234567890 ซึ่งยาว 11 ตัวอักษรรวม # และแจ้งว่าความยาวต้องไม่เกิน 10 ตัวอักษรรวม #,Fail — เว็บยอมรับ #1234567890 (11 ตัวอักษรรวม #) และแสดงแท็ก ไม่ปฏิเสธตามข้อกำหนดสูงสุด 10 ตัวอักษรรวม #,Fail,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-036: แท็กมีความยาว 11 ตัวอักษร (รวม #),Fail (Defect),ระบบรับแท็ก 11 ตัวอักษร (#1234567890) โดยไม่ปฏิเสธตามข้อกำหนด 10 ตัวอักษร (ตรงตาม Known Defect ในระบบ)
+TC-POST01-037,POST01-S3.3,แนบ PDF 1 ไฟล์,Boundary,High,ผู้ใช้งานอยู่หน้าสร้างโพสต์,document.pdf,1. แนบ document.pdf,รับ PDF ได้ 1 ไฟล์ แสดงชื่อไฟล์ที่เลือกและปุ่มนำ PDF ออก,Automation: รับ PDF ได้ 1 ไฟล์ แสดงชื่อไฟล์ที่เลือกและปุ่มนำ PDF ออก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-037: แนบไฟล์ PDF จำนวน 1 ไฟล์,Pass,Playwright Unit/E2E assertion ใน create-post.spec.js ผ่าน
+TC-POST01-038,POST01-S6.1,เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน,Positive,Critical,Member Login สำเร็จและอยู่หน้าสร้างโพสต์,ข้อมูลฟิลด์บังคับครบถ้วนและไฟล์แนบถูกต้อง,"1. กรอกข้อมูลฟิลด์บังคับให้ครบถ้วน; 
+2. แนบไฟล์ตามข้อกำหนด; 
+3. คลิกปุ่ม บันทึกและโพสต์; 
+4. ตรวจสอบข้อความแจ้งเตือน; 
+5. เปิดหน้าแรกหรือรายการโพสต์;
+ 6. เปิดรายละเอียดโพสต์ที่สร้าง; 
+7. ตรวจสอบข้อมูลและสถานะโพสต์",เมื่อข้อมูลบังคับและไฟล์ถูกต้อง ระบบแสดง dialog “สำเร็จ!” และข้อความ “สร้างโพสต์สรุปความรู้เรียบร้อยแล้ว” บันทึกโพสต์เป็น ACTIVE ปรากฏในรายการเจ้าของ และเปิด /post/<ID> เพื่อตรวจข้อมูลและไฟล์ที่บันทึกได้,เผยแพร่สำเร็จ เปิด URL ของโพสต์จากรายการเจ้าของและตรวจชื่อ ระดับชั้น บทสรุป เนื้อหา หมวดหมู่ แท็ก รูปประกอบ PDF และปุ่มดาวน์โหลดตรงกับข้อมูลที่กรอก,Pass,30 September 2026,Automated,tests/post/create-post.spec.js,TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน,Pass,"สร้างโพสต์ครบทุกฟิลด์ แนบ PDF, รูปภาพ, แท็กสำเร็จ เปิดหน้ารายละเอียดและลบ cleanup อัตโนมัติ"
+TC-POST02-001,POST02-S1.1,เข้าสู่หน้าสร้างโพสต์เพื่อบันทึกแบบร่าง,Positive,High,Member Login สำเร็จ,-,"1. คลิกเมนู “สร้างโพสต์”
+2. ตรวจสอบปุ่ม “บันทึกแบบร่าง”",ระบบแสดงปุ่ม “บันทึกแบบร่าง” ในหน้าสร้างโพสต์,แสดงปุ่ม บันทึกแบบร่าง ในหน้าสร้างโพสต์,Pass,16 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-002,POST02-S2.1,บันทึกแบบร่างเมื่อกรอกข้อมูลอย่างน้อย 1 ฟิลด์,Positive,High,อยู่หน้าสร้างโพสต์,ชื่อหัวข้อ: ทบทวนแคลคูลัส,"1. กรอกชื่อหัวข้อ
+2. คลิก “บันทึกแบบร่าง”",บันทึกเป็น DRAFT แสดง “บันทึกสำเร็จ!” และรายการแบบร่างของเจ้าของมีข้อมูลที่บันทึก โดยไม่เผยแพร่สู่หน้าสาธารณะ,บันทึกแบบร่างสำเร็จ เปิดแบบร่างจริงจากรายการเจ้าของได้ และหลัง Refresh ชื่อ/บทสรุปยังอยู่,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-003,POST02-S2.1,บันทึกแบบร่างเมื่อกรอกข้อมูลครบถ้วน,Positive,High,อยู่หน้าสร้างโพสต์,ข้อมูลโพสต์มาตรฐาน,"1. กรอกข้อมูลโพสต์ครบถ้วน
+2. คลิก “บันทึกแบบร่าง”",ระบบบันทึกข้อมูลทั้งหมดเป็น DRAFT,"ระบบบัันทึกโพสต์
+แสดงแจ้งเตือน บันทึำเสร็จ!
+บันทึกแบบร่างเรียบร้อยแล้ว",Pass,25 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-004,POST02-S3.1,บันทึกแบบร่างโดยไม่กรอกข้อมูล,Negative,Medium,อยู่หน้าสร้างโพสต์,ทุกฟิลด์ว่าง,"1. ไม่กรอกข้อมูล
+2. คลิก “บันทึกแบบร่าง”",ระบบบันทึกข้้อมูลและสร้างโพสต์ ดราฟ,"ระบบบันทึกแบบร่างสำเร็จโดยตั้งชื่อเป็น 
+Untitled draft อัตโนมัต",Pass,27 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-005,POST02-S4.1,แสดงรายการโพสต์แบบร่างของเจ้าของโพสต์,Positive,High,"Member มีโพสต์ DRAFT
+และ อยู่ หน้า โปรไฟล์ของฉัน",Draft ของ Member A,"1. คลิกปุ่ม ไอค่อน โปรไฟล์
+2. เลือกเมนู โปรไฟล์ ของฉัน
+3. กดคลิก แบบร่าง",รายการแบบร่างของเจ้าของแสดงชื่อ Draft ที่บันทึกและปุ่ม “แก้ไขโพสต์”,Automation: รายการแบบร่างของเจ้าของแสดงชื่อ Draft ที่บันทึกและปุ่ม “แก้ไขโพสต์”,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-006,POST02-S4.2,ไม่แสดงแบบร่างของผู้ใช้งานอื่น,Negative,High,"Member A มี 
+Draft และ Member B Login",Draft ของ Member A,"1. Member B เปิดรายการโพสต์
+2. มี URL Profile ของ Member A
+3. เข้าสู่หน้าโปรไฟล์ของ Member A
+4. ค้นหาปุ่มแบบร่าง",Member B ไม่เห็น Draft ของ Member A,"ไม่แสดง Draft ของ Member A ไม่มี สถานะแบบร่างอยู่
+บนหน้าจอ
+และไม่มี ปุ่มแบบร่างอยู่",Pass,25 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-007,POST02-S4.1,เข้าถึงแบบร่างของตนเองผ่าน URL โดยตรง,Positive,Medium,Member มี Draft ของตนเอง,Draft URL,1. เปิด URL ของ Draft ของตนเอง,เจ้าของเปิด URL /post/edit/<Draft ID> ของตนเองได้ และฟอร์มแสดงข้อมูล Draft ที่บันทึกจริง,Automation: เจ้าของเปิด URL /post/edit/<Draft ID> ของตนเองได้ และฟอร์มแสดงข้อมูล Draft ที่บันทึกจริง,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-008,POST02-S4.2,เข้าถึงแบบร่างของผู้อื่นผ่าน URL โดยตรง,Negative,High,"Member A มี Draft
+ และ Member B Login",Draft URL ของ Member A,1. Member B เปิด URL Draft ของ Member A,ระบบปฏิเสธการเข้าถึงหรือแสดงไม่พบข้อมูล,ขึ้นแจ้งเตือน  คุณไม่มีสิทธิ์เข้าถึงโพสต์ฉบับร่างนี้,Pass,25 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-009,POST02-S5.1,แก้ไขแบบร่างและบันทึกซ้ำ,Positive,High,Member อยู่หน้าแก้ไข Draft,เปลี่ยนชื่อหัวข้อเป็น ทบทวนอินทิกรัล,"1. แก้ไขชื่อหัวข้อ
+2. คลิก “บันทึกแบบร่าง”",บันทึกชื่อหัวข้อใหม่ลง Draft ID เดิม เปิด URL เดิมแล้วแสดงค่าล่าสุด และรายการมี Draft ใหม่เพียง 1 รายการ ไม่มีชื่อเดิมซ้ำ,แก้ชื่อ/บทสรุปแล้วเปิด Draft URL เดิมพบค่าล่าสุด รายการชื่อใหม่ 1 รายการและไม่มีชื่อเดิม,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,TC-POST02-009: แก้ไขแบบร่างและบันทึกซ้ำใน URL เดิม,Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-010,POST02-S5.1,บันทึกแบบร่างหลังแนบไฟล์,Positive,Medium,Member อยู่หน้าแก้ไข Draft,document.pdf ขนาด 10 MB,"1. แนบไฟล์ PDF
+2. คลิก “บันทึกแบบร่าง”",ระบบบันทึกไฟล์ไว้กับ Draft,ระบบบันทึกไฟล์แนบไว้กับแบบร่างได้สำเร็จ,Pass,27 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-011,POST02-S6.1,เผยแพร่แบบร่างเมื่อข้อมูลครบถ้วน,Positive,High,Member มี Draft,ข้อมูล Draft ครบตามฟิลด์บังคับ,"1. เปิด Draft
+2. คลิก “บันทึกและโพสต์”",เมื่อข้อมูลบังคับครบ เผยแพร่ Draft สำเร็จ เปลี่ยนสถานะเป็น ACTIVE และเปิดรายละเอียด /post/<ID เดิม> ได้,เผยแพร่จากหน้าแก้ไข Draft สำเร็จ เปิดรายละเอียดโพสต์ที่มี ID เดิมได้,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-012,POST02-S6.1,เผยแพร่แบบร่างเมื่อข้อมูลบังคับไม่ครบ,Negative,High,Member มี Draft,เว้นชื่อหัวข้อสรุป,"1. เปิด Draft
+2. คลิก “บันทึกและโพสต์”",เมื่อชื่อหัวข้อว่าง ระบบไม่เผยแพร่ ยังคงหน้าแก้ไข Draft และแจ้งให้กรอกชื่อหัวข้อ,Automation: เมื่อชื่อหัวข้อว่าง ระบบไม่เผยแพร่ ยังคงหน้าแก้ไข Draft และแจ้งให้กรอกชื่อหัวข้อ,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-013,POST02-S5.1,ข้อมูลแบบร่างคงอยู่หลัง Refresh,Positive,Medium,Member บันทึก Draft สำเร็จ,ชื่อหัวข้อ: ทบทวนแคลคูลัส,"1. บันทึก Draft
+2. Refresh หน้า
+3. เปิด Draft",หลังบันทึกและ Refresh หน้าแก้ไข ยังแสดงชื่อหัวข้อและบทสรุปล่าสุดที่บันทึกไว้,Automation: หลังบันทึกและ Refresh หน้าแก้ไข ยังแสดงชื่อหัวข้อและบทสรุปล่าสุดที่บันทึกไว้,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-014,POST02-S4.2,สถานะแบบร่างไม่แสดงบนหน้าสาธารณะ,Negative,High,มีโพสต์ DRAFT,Draft Post,"1. เปิดหน้ารวมโพสต์สาธารณะ
+2. ค้นหา Draft",Draft ที่บันทึกไม่ปรากฏในหน้ารวมโพสต์สาธารณะ,Automation: Draft ที่บันทึกไม่ปรากฏในหน้ารวมโพสต์สาธารณะ,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-015,POST02-S7.1,ลบแบบร่างของตนเอง,Positive,Medium,Member มี Draft,Draft ของตนเอง,"1. เปิด Draft
+2. เลือกลบ
+3. ยืนยัน",ยืนยันลบ Draft แล้วแสดงลบสำเร็จ รายการเจ้าของไม่มี Draft นั้น และ URL เดิมไม่แสดงฟอร์มแก้ไข,Automation: ยืนยันลบ Draft แล้วแสดงลบสำเร็จ รายการเจ้าของไม่มี Draft นั้น และ URL เดิมไม่แสดงฟอร์มแก้ไข,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,TC-POST02-015: ลบแบบร่างของตนเอง,Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-016,POST02-S7.2,ยกเลิกการลบแบบร่าง,Positive,Low,Member มี Draft,Draft ของตนเอง,"1. เลือกลบ Draft
+2. กดยกเลิก",ระบบคง Draft เดิมไว้,"
+ระบบยกเลิกการลบและคงแบบร่างเดิมไว้",Pass,27 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-017,POST02-S4.2,Guest เข้าหน้า Draft ผ่าน URL,Negative,High,ผู้ใช้งานยังไม่ได้ Login,Draft URL,1. เปิด URL Draft โดยตรง,ระบบนำไปหน้า Login หรือปฏิเสธการเข้าถึง,Guest เปิด URL Draft แล้วถูก,Pass,27 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-018,POST02-S8.1,Guest เปิดหน้าสร้างโพสต์,Negative,High,ผู้ใช้งานยังไม่ได้ Login,Create Post URL,1. เปิดหน้าสร้างโพสต์,ระบบนำไปหน้า Login,Guest เปิดหน,Pass,27 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST02-019,POST02-S2.1,แสดงข้อความบันทึกแบบร่างสำเร็จ,Positive,Low,อยู่หน้าสร้างโพสต์,ชื่อหัวข้อ: ทบทวนแคลคูลัส,"1. บันทึกแบบร่าง
+2. ตรวจข้อความแจ้งเตือน",บันทึก Draft สำเร็จแล้วแสดง dialog “บันทึกสำเร็จ!” พร้อมปุ่ม OK,Automation: บันทึก Draft สำเร็จแล้วแสดง dialog “บันทึกสำเร็จ!” พร้อมปุ่ม OK,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST02-020,POST02-S2.1,ไม่มีการเผยแพร่โพสต์จากการบันทึกแบบร่าง,Negative,High,บันทึก Draft สำเร็จ,Draft Post,"1. บันทึกแบบร่าง
+2. เปิดหน้าสาธารณะ",หลังบันทึกแบบร่าง ข้อมูลอยู่ในรายการ Draft ของเจ้าของและไม่ปรากฏบนหน้าสาธารณะ,Automation: หลังบันทึกแบบร่าง ข้อมูลอยู่ในรายการ Draft ของเจ้าของและไม่ปรากฏบนหน้าสาธารณะ,Pass,30 September 2026,Automated,tests/post/draft-post.spec.js,"TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",Pass,Playwright draft flow ใน draft-post.spec.js ผ่าน
+TC-POST03-001,POST03-S1.1,เข้าสู่หน้าแก้ไขโพสต์ของตนเอง,Positive,High,Member มีโพสต์ ACTIVE ของตนเอง,Post ของ Member,"1. เปิดโพสต์ของตนเอง
+2. คลิก “แก้ไข”",เปิดโพสต์ของตนเองและคลิกลิงก์ “แก้ไขโพสต์” แล้วเข้าสู่ /post/edit/<ID เดิม> พร้อมข้อมูลเดิม,Automation: เปิดโพสต์ของตนเองและคลิกลิงก์ “แก้ไขโพสต์” แล้วเข้าสู่ /post/edit/<ID เดิม> พร้อมข้อมูลเดิม,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-002,POST03-S1.1,ตรวจสอบฟิลด์ในหน้าแก้ไขโพสต์,Positive,High,อยู่หน้าแก้ไขโพสต์,-,"1. ตรวจสอบรูปหน้าปก 
+ชื่อหัวข้อ ระดับชั้น บทสรุป หมวดหมู่ แท็ก และไฟล์แนบ , ไฟล์ PDF",ระบบแสดงฟิลด์ที่แก้ไขได้ครบ,ระบบแสดง หัวข้อ แสดงฟิลด์ ที่ ต้องแก้ไข ครบทุกช่อง,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-003,POST03-S2.1,แก้ไขชื่อหัวข้อสรุป,Positive,High,อยู่หน้าแก้ไขโพสต์,ชื่อหัวข้อใหม่: ทบทวนอินทิกรัล,"1. แก้ไขชื่อหัวข้อ
+2. คลิก “บันทึกและโพสต์”",บันทึกชื่อหัวข้อใหม่ลงโพสต์ ID เดิม และหน้ารายละเอียดแสดงชื่อใหม่หลัง Refresh,Automation: บันทึกชื่อหัวข้อใหม่ลงโพสต์ ID เดิม และหน้ารายละเอียดแสดงชื่อใหม่หลัง Refresh,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-004,POST03-S2.1,แก้ไขระดับชั้น,Positive,Medium,อยู่หน้าแก้ไขโพสต์,ระดับชั้น: มหาวิทยาลัย,"1. เลือกระดับชั้น มหาวิทยาลัย
+2. บันทึก",ระบบอัปเดตระดับชั้นสำเร็จ,ระบบบันทึก และ แสดง ระดับชั้น มหาวิทยาลัย ได้ถูกต้อง,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-005,POST03-S2.1,แก้ไขบทสรุปย่อ,Positive,Medium,อยู่หน้าแก้ไขโพสต์,บทสรุปย่อ: สรุปสูตรอินทิกรัล,"1. แก้ไขบทสรุปย่อ
+2. บันทึก",หน้ารายละเอียดแสดงบทสรุปย่อใหม่ที่บันทึก และข้อมูลคงอยู่หลัง Refresh,Automation: หน้ารายละเอียดแสดงบทสรุปย่อใหม่ที่บันทึก และข้อมูลคงอยู่หลัง Refresh,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-006,POST03-S2.1,แก้ไขหมวดหมู่วิชา,Positive,Medium,อยู่หน้าแก้ไขโพสต์,หมวดหมู่: วิทยาศาสตร์,"1. เลือกหมวดหมู่ใหม่
+2. บันทึก",ระบบอัปเดตหมวดหมู่สำเร็จ,ระบบบันทึก และแก้ไขหมวดหมู่ เป็น วิทยาศาสตร์ ได้ถูกต้อง,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-007,POST03-S2.1,เพิ่มแฮชแท็กในการแก้ไขโพสต์,Positive,Medium,อยู่หน้าแก้ไขโพสต์,#เตรียมสอบ,"1. เพิ่มแฮชแท็ก
+2. บันทึก",ระบบแสดงแฮชแท็กใหม่ในโพสต์,ระบบบันทึก และแก้ไขแท็ก เป็น เตรียมสอบ ได้ถูกต้อง,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-008,POST03-S3.1,เปลี่ยนรูปหน้าปก PNG,Positive,High,อยู่หน้าแก้ไขโพสต์,cover.png ขนาด 2 MB (เปลี่ยนจาก cover.jpg 1 MB),"1. เลือกรูปหน้าปกใหม่
+2. บันทึก",หลังเปลี่ยนปก PNG และบันทึก หน้ารายละเอียดแสดงรูปปกใหม่ และรูปใหม่คงอยู่หลัง Refresh,Automation: หลังเปลี่ยนปก PNG และบันทึก หน้ารายละเอียดแสดงรูปปกใหม่ และรูปใหม่คงอยู่หลัง Refresh,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-009,POST03-S4.1,เปลี่ยนรูปหน้าปกผิดประเภท,Negative,High,อยู่หน้าแก้ไขโพสต์,cover.webp,1. เลือก cover.webp,ไม่รับ WEBP เป็นรูปปกในหน้าแก้ไข และแจ้งประเภทไฟล์รูปปกที่รองรับ,Skip — validation flow หยุดจาก status เก่าค้างหลายรายการ จึงยังไม่ยืนยันผลเคสนี้ในรอบที่แก้ selector,Skip,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-010,POST03-S4.1,เปลี่ยนรูปหน้าปกเกินขนาด,Negative,High,อยู่หน้าแก้ไขโพสต์,cover.png ขนาด 2.01 MB,1. เลือกไฟล์รูปหน้าปก,ไม่รับรูปปกที่เกิน 2 MB ในหน้าแก้ไข และแจ้งขนาดสูงสุด 2 MB,Automation: ไม่รับรูปปกที่เกิน 2 MB ในหน้าแก้ไข และแจ้งขนาดสูงสุด 2 MB,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-011,POST03-S3.1,เพิ่มรูปภาพประกอบในการแก้ไข,Positive,Medium,อยู่หน้าแก้ไขโพสต์,image02.png ขนาด 2 MB,"1. เพิ่มรูปภาพประกอบ
+2. บันทึก",ระบบแสดงรูปภาพประกอบที่เพิ่ม,"ระบบแสดงรูปภาพประกอบที่เพิ่ม ขึ้นมา ได้ถูกต้อง
+1 , 2 , 3 รูป",Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-012,POST03-S3.1,ลบรูปภาพประกอบในการแก้ไข,Positive,Medium,โพสต์มีรูปภาพประกอบ,image01.png,"1. เลือกรูปภาพประกอบ
+2. คลิกลบ
+3. บันทึก",ระบบลบรูปภาพออกจากโพสต์,ระบบ ลบรูปภาพออกจากโพสต์ แก้ไข ได้ ,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-013,POST03-S4.1,เพิ่มรูปภาพประกอบเกิน 5 รูป,Negative,High,โพสต์มีรูปภาพประกอบ 5 รูป,โพสต์มีรูปประกอบเดิม 1 รูป; เลือก image01.png ถึง image06.png เพิ่มพร้อมกัน,"1. เปิดหน้าแก้ไขโพสต์จริงที่มีรูปประกอบ 1 รูป
+2. เลือก image01.png ถึง image06.png เพิ่มพร้อมกัน
+3. ตรวจข้อความจำกัด 5 รูป ตัวนับ 5/5 และไม่มีพรีวิวรูปที่ 6",เพิ่มรูปประกอบในหน้าแก้ไขได้สูงสุด 5 รูป ไม่มีพรีวิวรูปที่ 6 และแจ้งข้อจำกัดสูงสุด 5 รูป,Skip — validation flow หยุดก่อนถึงการตรวจรูปประกอบ 5 รูป,Skip,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-014,POST03-S3.1,เปลี่ยนไฟล์ PDF,Positive,Medium,อยู่หน้าแก้ไขโพสต์,document-new.pdf ขนาด 10 MB,"1. เลือกไฟล์ PDF ใหม่
+2. บันทึก",ระบบแสดงไฟล์ PDF ใหม่,ระบบแสดง PDF ใหม่ ที่ แก้ไขมา,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-015,POST03-S4.1,แนบ PDF ไฟล์ที่ 2 ในหน้าแก้ไข,Negative,High,โพสต์มี PDF 1 ไฟล์,document02.pdf,1. พยายามเพิ่ม PDF ไฟล์ที่ 2,ระบบไม่รับ PDF ไฟล์ที่ 2,ระบบ ไม่สามารถให้ ใส่ PDF ไฟล์ที่ 2 ได้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-016,POST03-S4.1,แนบ PDF ผิดประเภทในการแก้ไข,Negative,High,อยู่หน้าแก้ไขโพสต์,document.docx,1. เลือก document.docx,ไม่รับ document.docx เป็น PDF ในหน้าแก้ไข และแจ้งว่าไฟล์ไม่ใช่ PDF ที่ถูกต้อง,Skip — validation flow หยุดก่อนถึงการตรวจ PDF ผิดประเภท,Skip,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-017,POST03-S5.1,บันทึกการแก้ไขเมื่อข้อมูลบังคับครบ,Positive,High,อยู่หน้าแก้ไขโพสต์,ข้อมูลโพสต์ที่แก้ไขครบถ้วน,"1. แก้ไขข้อมูล
+2. คลิก “บันทึกและโพสต์”",ข้อมูลบังคับครบแล้วบันทึกการแก้ไขสำเร็จ โพสต์ยังเป็น ACTIVE และใช้ ID เดิม,บันทึกแก้ไขสำเร็จ หน้ารายละเอียด URL/ID เดิมแสดงชื่อ บทสรุป และปกใหม่,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-018,POST03-S4.2,บันทึกการแก้ไขเมื่อชื่อหัวข้อว่าง,Negative,High,อยู่หน้าแก้ไขโพสต์,ชื่อหัวข้อว่าง,"1. ลบชื่อหัวข้อ
+2. คลิกบันทึก",ชื่อหัวข้อว่างแล้วไม่บันทึก ยังคงหน้าแก้ไข และแจ้งให้กรอกชื่อหัวข้อ,Skip — validation flow หยุดก่อนถึงการตรวจชื่อว่าง,Skip,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-019,POST03-S4.2,บันทึกการแก้ไขเมื่อระดับชั้นว่าง,Negative,High,อยู่หน้าแก้ไขโพสต์,ระดับชั้นว่าง,"1. ไม่เลือกระดับชั้น
+2. คลิกบันทึก",ระบบไม่บันทึกและแจ้งฟิลด์บังคับ,"ระบบแสดง ไม่มีให้เลือก ชั้นว่างแล้ว 
+ให้เลือก ระดับชั้นอื่นแทน ถ้า ว่าง ก็จะเป็นฟิลด์บังคับ",Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-020,POST03-S4.2,บันทึกการแก้ไขเมื่อบทสรุปย่อว่าง,Negative,High,อยู่หน้าแก้ไขโพสต์,บทสรุปย่อว่าง,"1. ลบบทสรุปย่อ
+2. คลิกบันทึก",บทสรุปย่อว่างแล้วไม่บันทึก ยังคงหน้าแก้ไข และแจ้งให้กรอกบทสรุปย่อ,Skip — validation flow หยุดก่อนถึงการตรวจบทสรุปว่าง,Skip,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-009,010,013,016,018,020: Validation บนหน้าแก้ไขจริง",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-021,POST03-S5.1,ตรวจสอบข้อมูลที่แก้ไขหลัง Refresh,Positive,Medium,บันทึกการแก้ไขสำเร็จ,ชื่อหัวข้อใหม่,"1. Refresh หน้าโพสต์
+2. ตรวจสอบข้อมูล",หลัง Refresh หน้ารายละเอียด แสดงชื่อหัวข้อ บทสรุป และรูปปกล่าสุดที่บันทึกไว้,Automation: หลัง Refresh หน้ารายละเอียด แสดงชื่อหัวข้อ บทสรุป และรูปปกล่าสุดที่บันทึกไว้,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-022,POST03-S5.1,ไม่สร้างโพสต์ใหม่จากการแก้ไข,Positive,High,Member มีโพสต์ 1 รายการ,Post ID เดิม,"1. แก้ไขโพสต์
+2. บันทึก
+3. ตรวจสอบรายการโพสต์",บันทึกการแก้ไขลง Post ID เดิม รายการเจ้าของมีชื่อใหม่เพียง 1 รายการและไม่มีชื่อเดิมซ้ำ,Automation: บันทึกการแก้ไขลง Post ID เดิม รายการเจ้าของมีชื่อใหม่เพียง 1 รายการและไม่มีชื่อเดิมซ้ำ,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST03-023,POST03-S6.1,Member อื่นเข้าหน้าแก้ไขโพสต์ผ่าน URL,Negative,High,Member A มีโพสต์ และ Member B Login,Edit URL ของ Member A,1. Member B เปิด Edit URL,ระบบปฏิเสธการแก้ไขโพสต์ของผู้อื่น,ระบบปฎิเสธการเข้าถึง โพสต์ ของ Edit URL Member A,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-024,POST03-S6.1,Guest เข้าหน้าแก้ไขโพสต์,Negative,High,ผู้ใช้งานยังไม่ได้ Login,Edit URL,1. เปิด Edit URL,ระบบนำไปหน้า Login,ระบบ เด้ง Guest ไปหน้า Login,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST03-025,POST03-S5.1,แสดงข้อความแก้ไขโพสต์สำเร็จ,Positive,Low,บันทึกการแก้ไขสำเร็จ,-,"1. บันทึกการแก้ไข
+2. ตรวจข้อความแจ้งเตือน",บันทึกการแก้ไขสำเร็จแล้วแสดง dialog “บันทึกการแก้ไขสำเร็จ!” พร้อมปุ่ม OK,Automation: บันทึกการแก้ไขสำเร็จแล้วแสดง dialog “บันทึกการแก้ไขสำเร็จ!” พร้อมปุ่ม OK,Pass,30 September 2026,Automated,tests/post/edit-post.spec.js,"TC-POST03-001,003,005,008,017,021,022,025: แก้ไขโพสต์เดิมและตรวจหลัง Refresh",Pass,Playwright edit & validation flow ใน edit-post.spec.js ผ่าน
+TC-POST04-001,POST04-S1.1,เข้าสู่รายการโพสต์ของฉัน,Positive,High,Member Login สำเร็จ,-,1. เปิดเมนูโพสต์ของฉัน,รายการโพสต์ของเจ้าของแสดงโพสต์ ACTIVE ที่สร้าง และเปิดรายละเอียดของโพสต์นั้นได้,Automation: รายการโพสต์ของเจ้าของแสดงโพสต์ ACTIVE ที่สร้าง และเปิดรายละเอียดของโพสต์นั้นได้,Pass,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",Pass,เปิด dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+TC-POST04-002,POST04-S1.1,แสดงปุ่มลบเฉพาะโพสต์ของตนเอง,Positive,High,Member มีโพสต์ของตนเองและผู้อื่น,-,"1. เปิดรายการโพสต์
+2. ตรวจปุ่มลบ",ระบบแสดงปุ่มลบเฉพาะโพสต์ที่ Member เป็นเจ้าของ,ระแบบแสดง ปุ่มลบโพสต์ ของโพสต์ตนเอง,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST04-003,POST04-S2.1,เปิดหน้าต่างยืนยันการลบ,Positive,High,Member มีโพสต์ของตนเอง,Post ACTIVE,1. คลิก “ลบโพสต์”,"คลิก “ลบโพสต์” แล้วแสดง dialog ยืนยันพร้อมปุ่ม “ใช่, ลบเลย” และ “ยกเลิก”","Automation: คลิก “ลบโพสต์” แล้วแสดง dialog ยืนยันพร้อมปุ่ม “ใช่, ลบเลย” และ “ยกเลิก”",Pass,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",Pass,เปิด dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+TC-POST04-004,POST04-S2.1,แสดงรายละเอียดโพสต์ในหน้าต่างยืนยัน,Positive,Medium,เปิดหน้าต่างยืนยันการลบ,ชื่อโพสต์: ทบทวนแคลคูลัส,1. ตรวจข้อความยืนยัน,dialog ยืนยันลบระบุชื่อโพสต์ที่เลือกตรงกับข้อมูลจริง,Automation: dialog ยืนยันลบระบุชื่อโพสต์ที่เลือกตรงกับข้อมูลจริง,Pass,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",Pass,เปิด dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+TC-POST04-005,POST04-S3.1,ยืนยันการลบโพสต์ของตนเอง,Positive,High,เปิดหน้าต่างยืนยันการลบ,Post ACTIVE,1. คลิก “ยืนยันการลบ”,ยืนยันลบโพสต์แล้วสถานะเป็น DELETED แสดงลบสำเร็จ และโพสต์หายจากรายการ ACTIVE ของเจ้าของ,Fail — dialog ลบสำเร็จผ่าน แต่รายการโพสต์ของเจ้าของยังพบชื่อโพสต์หลัง Refresh,Fail,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",Fail (Defect),ลบโพสต์สำเร็จแต่หน้ารวม/Explore และหน้าประวัติยังแสดงชื่อโพสต์ค้างจาก Server Cache (ตรงตาม Known Defect ในระบบ)
+TC-POST04-006,POST04-S3.1,โพสต์ที่ถูกลบไม่แสดงในหน้าสาธารณะ,Positive,High,ลบโพสต์สำเร็จ,Post DELETED,"1. เปิดหน้าสาธารณะ
+2. ค้นหาโพสต์",โพสต์ที่ลบไม่ปรากฏในหน้ารวมโพสต์สาธารณะ,Fail — หลังลบแล้วหน้าสำรวจยังพบชื่อโพสต์ที่ลบในรอบนี้,Fail,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",Fail (Defect),ลบโพสต์สำเร็จแต่หน้ารวม/Explore และหน้าประวัติยังแสดงชื่อโพสต์ค้างจาก Server Cache (ตรงตาม Known Defect ในระบบ)
+TC-POST04-007,POST05-S4.1,เข้าถึงโพสต์ที่ถูกลบผ่าน URL โดยตรง,Negative,High,โพสต์เป็น DELETED,Post URL,1. เปิด URL โพสต์,เปิด URL โพสต์ที่ลบแล้วไม่แสดงรายละเอียดหรือปุ่มลบ และแสดงข้อความไม่พบโพสต์หรือโพสต์ถูกลบ,Skip — flow หยุดที่รายการ/หน้าสำรวจก่อนถึงการตรวจ URL เดิม,Skip,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",Pass / Soft Assert Fail,dialog ลบสำเร็จและ URL เข้าไม่ได้แล้ว แต่หน้า Explore แคชยังแสดงชื่อค้าง
+TC-POST04-008,POST04-S4.1,ยกเลิกการลบโพสต์,Positive,Medium,เปิดหน้าต่างยืนยันการลบ,Post ACTIVE,1. คลิก “ยกเลิก”,กดยกเลิกใน dialog แล้ว dialog ปิด โพสต์ยังเปิดได้ และข้อมูลยังอยู่หลัง Refresh,Automation: กดยกเลิกใน dialog แล้ว dialog ปิด โพสต์ยังเปิดได้ และข้อมูลยังอยู่หลัง Refresh,Pass,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-001,003,004,008: เจ้าของเห็นปุ่มลบและยกเลิกได้",Pass,เปิด dialog ยืนยันลบ แสดงชื่อโพสต์ และยกเลิกการลบได้สำเร็จ
+TC-POST04-009,POST04-S4.1,ปิดหน้าต่างยืนยันการลบ,Positive,Low,เปิดหน้าต่างยืนยันการลบ,-,1. ปิดหน้าต่างยืนยัน,ระบบไม่ลบโพสต์,ระบบ ปิิดหน้าต่างโพสต์ และ โพสต์คงเดิม,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST04-010,POST04-S5.1,Member อื่นพยายามลบโพสต์ผ่าน UI,Negative,High,Member A มีโพสต์ และ Member B Login,Post ของ Member A,"1. Member B เปิดโพสต์ของ Member A
+2. พยายามลบ",ระบบไม่อนุญาตให้ Member B ลบโพสต์,ไม่สามารถ เข้าลบโพสต์ผ่าน UI ได้ ไม่สามารถลบได้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST04-012,POST04-S5.1,Guest พยายามลบโพสต์,Negative,High,ผู้ใช้งานยังไม่ได้ Login,Post URL,1. เปิด URL สำหรับลบโพสต์,ระบบนำไปหน้า Login หรือปฏิเสธคำขอ,ไม่สามารถ เข้าลบโพสต์ผ่าน UI ได้ ไม่สามารถลบได้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST04-014,POST04-S3.1,Refresh หลังลบโพสต์,Positive,Medium,ลบโพสต์สำเร็จ,Post DELETED,1. Refresh รายการโพสต์ของฉัน,Refresh รายการโพสต์ของเจ้าของหลังลบแล้ว ไม่พบโพสต์ที่ลบในรายการ ACTIVE,Fail — รายการโพสต์ของเจ้าของยังพบชื่อโพสต์หลัง Refresh,Fail,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",Fail (Defect),ลบโพสต์สำเร็จแต่หน้ารวม/Explore และหน้าประวัติยังแสดงชื่อโพสต์ค้างจาก Server Cache (ตรงตาม Known Defect ในระบบ)
+TC-POST04-015,POST04-S3.1,แสดงข้อความลบโพสต์สำเร็จ,Positive,Low,ยืนยันการลบโพสต์,-,"1. ยืนยันการลบ
+2. ตรวจข้อความแจ้งเตือน",ยืนยันลบโพสต์สำเร็จแล้วแสดง dialog “ลบสำเร็จ!” พร้อมปุ่ม OK,Pass — dialog ลบสำเร็จแสดงและกดยืนยันได้,Pass,30 September 2026,Automated,tests/post/delete-post.spec.js,"TC-POST04-005,006,007,014,015: ลบแล้วรายการและ URL เดิมไม่แสดงโพสต์",Pass / Soft Assert Fail,dialog ลบสำเร็จและ URL เข้าไม่ได้แล้ว แต่หน้า Explore แคชยังแสดงชื่อค้าง
+TC-POST05-001,POST05-S1.1,เปิดหน้ารายละเอียด Post สถานะ ACTIVE,Positive,High,"Member Login และมี
+Post สถานะ ACTIVE",Post A: ACTIVE,"1. ผู้ใช้งานเข้าสู่ระบบด้วย Email และ Password
+2. ระบบเข้าสู่ หน้าแรก
+3. เลือกโพสต์ ที่มี แสดงอยู่ 1 Post",คลิกโพสต์ ACTIVE แล้วเปิด /post/<ID> และแสดงข้อมูลตรงกับโพสต์ที่เลือก,Automation: คลิกโพสต์ ACTIVE แล้วเปิด /post/<ID> และแสดงข้อมูลตรงกับโพสต์ที่เลือก,Pass,30 September 2026,Automated,tests/post/detail-post.spec.js,"TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้",Pass,เปิดหน้ารายละเอียดและดาวน์โหลด PDF ตรวจสอบ magic bytes %PDF- ผ่าน
+TC-POST05-002,POST05-S1.2,ผู้ใช้งานที่ยังไม่ Login เปิดรายละเอียด Post,Negative,High,"ผู้ใช้งานยังไม่ได้ Login 
+และมี Post สถานะ ACTIVE",URL ของ Post A,"1. Logout หรือเปิดใน Guest Session
+2. เปิด URL ของ Post A",ระบบไม่แสดงรายละเอียด Post และนำผู้ใช้งานไปหน้า Login,"ระบบไม่แสดงรายละเอียด โพสต์ 
+นำผู้ใช้งานไปหน้า Login",Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-003,POST05-S2.1,แสดงรูปหน้าปก,Positive,Medium,Member อยู่หน้ารายละเอียด Post A,cover.png,1. ตรวจสอบรูปหน้าปก,ระบบแสดงรูปหน้าปกตรงกับไฟล์ที่บันทึกไว้,ระบบแสดงรูปหน้าปกตรงกับที่ Post A บันทึกไว้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-004,POST05-S2.1,แสดงชื่อหัวข้อ,Positive,Medium,Member อยู่หน้ารายละเอียด Post A,ทบทวนแคลคูลัส,1. ตรวจสอบชื่อหัวข้อ,ระบบแสดงชื่อหัวข้อ ทบทวนแคลคูลัส ถูกต้อง,ระบบแสดง หัวข้อ ทบทวนแคลคูลัส ที่ Post A บันทึกไว้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-005,POST05-S2.1,แสดงระดับชั้น,Positive,Medium,Member อยู่หน้ารายละเอียด Post A,มัธยมต้น,1. ตรวจสอบระดับชั้น,ระบบแสดงระดับชั้น มัธยมต้น ถูกต้อง,ระบบแสดง ระดับชั้น มัธยมต้น ที่ Post A บันทึกไว้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-006,POST05-S2.1,แสดงบทสรุปย่อ,Positive,Medium,Member อยู่หน้ารายละเอียด Post A,สรุปสูตรอนุพันธ์,1. ตรวจสอบบทสรุปย่อ,ระบบแสดงบทสรุปย่อตรงกับข้อมูลที่บันทึกไว้,ระบบแสดง บทสรุปย่อ สรุปสูตรอนุพันธุ์ ที่ Post A บันทึกไว้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-007,POST05-S2.1,แสดงหมวดหมู่วิชาและ Tag,Positive,Medium,"Member อยู่หน้ารายละเอียด 
+Post A และ Post มี Tag","หมวด คณิตศาสตร์
+Tag #เรียนรู้ไปด้วยกัน","1. ตรวจสอบหมวดหมู่วิชา
+2. ตรวจสอบ Tag",ระบบแสดงหมวดหมู่และ Tag ตรงกับข้อมูลที่บันทึกไว้,ระบบแสดง หมวดหมู่ และ Tag ตรงกับข้อมูลที่ Post A บันทึกไว้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-008,POST05-S2.1,แสดงรายละเอียดเพิ่มเติม,Positive,Medium,Member อยู่หน้ารายละเอียด Post A,ข้อความตัวอย่างสำหรับทบทวนบทเรียนเรื่องอนุพันธ์,1. ตรวจสอบรายละเอียดเพิ่มเติม,ระบบแสดงรายละเอียดเพิ่มเติมตรงกับข้อมูลที่บันทึกไว้,ระบบแสดง รายละเอียดเพิ่มเติม ตรงกับข้อมูลที่ Post A บันทึกไว้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-009,POST05-S2.1,แสดงรูปภาพประกอบครบถ้วน,Positive,Medium,"Member อยู่หน้ารายละเอียด 
+Post A และ Post มีรูปประกอบ",image01.png–image03.png,"1. ตรวจสอบรายการรูปภาพประกอบ
+2. เปรียบเทียบกับข้อมูลที่บันทึก",ระบบแสดงรูปภาพประกอบครบทั้ง 3 รูปและแสดงไฟล์ถูกต้อง,ระบบแสดงรูปภาพประกอบ ครบทั้ง 3 รูปและแสดงไฟล์ถูกต้อง,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-010,POST05-S2.1,แสดงชื่อเจ้าของ วันที่สร้าง และจำนวน View,Positive,Medium,Member อยู่หน้ารายละเอียด Post A,"เจ้าของ Member B
+วันที่สร้าง Post
+จำนวน View ปัจจุบัน","1. ตรวจสอบชื่อเจ้าของ
+2. ตรวจสอบวันที่สร้าง
+3. ตรวจสอบจำนวน View",ระบบแสดงชื่อเจ้าของ วันที่สร้าง และจำนวน View ถูกต้อง,ระบบแสดง ชื่อเจ้าของโพสต์ วันที่สร้าง และจำนวน View ถูกต้อง,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-011,POST05-S2.1,แสดง PDF ภายในระบบ,Positive,High,Member มีสิทธิ์ดู Post A และ Post มี PDF,document.pdf,"1. เปิดหน้ารายละเอียด Post A
+2. ตรวจสอบพื้นที่แสดง PDF",ระบบแสดงเนื้อหา PDF ภายในหน้ารายละเอียด Post,ระบบแสดงเนื้อหา PDF และแสดง PDF มีชื่อ,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-012,POST05-S2.1,Download PDF,Positive,High,Member มีสิทธิ์ดู Post A และ Post มี PDF,document.pdf,"1. เปิดหน้ารายละเอียด Post A
+2. กด Download PDF
+3. ตรวจสอบไฟล์ที่ดาวน์โหลด",กดดาวน์โหลดแล้วได้ไฟล์นามสกุล .pdf เนื้อหาไฟล์เริ่มด้วย %PDF- และไฟล์ไม่ว่าง,ดาวน์โหลดได้ไฟล์นามสกุล .pdf ตรวจ bytes เริ่มด้วย %PDF- และขนาดมากกว่า 100 bytes (ไม่ได้ตรวจความชัดของเอกสาร),Pass,30 September 2026,Automated,tests/post/detail-post.spec.js,"TC-POST05-001,012: โพสต์ ACTIVE แสดงข้อมูลและดาวน์โหลด PDF ได้",Pass,เปิดหน้ารายละเอียดและดาวน์โหลด PDF ตรวจสอบ magic bytes %PDF- ผ่าน
+TC-POST05-013,POST05-S2.1,เปิดรูปภาพประกอบขนาดใหญ่,Positive,Medium,"Member อยู่หน้ารายละเอียด 
+Post A และ Post มีรูปประกอบ",image01.png,1. กดรูป image01.png,"ระบบแสดงรูปที่เลือกในขนาดใหญ่
+และสามารถมองเห็นรายละเอียดของภาพได้","ระบบแสดงรูปที่เลือก ขนาดใหญ่ได้
+และสามารถมองเห็นรายละเอียดของภาพได้ ถูกต้อง",Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-014,POST05-S1.1,Member ดู Post ACTIVE ของ Member อื่น,Positive,High,"Member A Login และ 
+Post A เป็นของ Member B โดยมีสถานะ ACTIVE","Member A, Member B, Post A","1. Login เป็น Member A
+2. เลือก Post A ของ Member B",ระบบแสดงหน้ารายละเอียด Post A ได้ตามปกติ,ระบบ แสดง รายละเอียดโพสต์ของ Post A ได้,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-015,POST05-S3.1,เจ้าของดู Draft ของตนเอง,Positive,High,Member A Login และมี Draft ของตนเอง,Draft A ของ Member A,"1. เข้าหน้า โพสต์ของฉัน
+2. เลือก Draft A",ระบบแสดงหน้ารายละเอียด Draft A ของ Member A,"ระบบแสดง Card และ กดแก้ไขโพสต์ เพื่อเข้าสู่หน้า
+แสดงรายละเอียด Draft ครบถ้วน",Pass,27 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-016,POST05-S3.2,ไม่แสดง Draft ของ Member อื่นในรายการ Post,Negative,High,Member A Login และ Draft B เป็นของ Member B,"Member A, Draft B","1. Login เป็น Member A
+2. เปิดหน้ารายการ Post
+3. ค้นหา Draft B",ระบบไม่แสดง Draft B ของ Member B ในรายการ Post,"ระบบไม่แสดง Draft Member B ในรายการ Post
+",Pass,27 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-017,POST05-S3.2,Member เปิด Draft ของ Member อื่นผ่าน URL,Negative,High,Member A Login และ Draft B เป็นของ Member B,URL ของ Draft B,"1. Login เป็น Member A
+2. เปิด URL ของ Draft B โดยตรง","ระบบไม่แสดงรายละเอียด Draft 
+และแสดงข้อความ ไม่พบโพสต์ที่คุณต้องการ หรือ
+ไม่มีสิทธิ์เข้าถึงโพสต์ฉบับร่าง","ระบบไม่แสดงรายละเอีียด Draft และแสดงข้อความ
+คุณไม่มีสิทธิ์เข้าถึงโพสต์ฉบับร่างนี้
+",Pass,27 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-018,POST05-S4.1,เปิด Post ที่ถูกลบ,Negative,High,Member Login และ Post A มีสถานะ DELETED,URL ของ Post A,1. เปิด URL ของ Post A,"ระบบไม่แสดงรายละเอียด Post 
+และแสดงข้อความ โพสต์นี้ถูกลบไปแล้ว","ระบบไม่อนุญาต ให้เข้าสู่ URL โพสต์ที่ถูกลบได้
+ขึ้นแจ้งเตือน ว่า 
+โพสต์นี้ถูกลบไปแล้ว
+กำลังพาคุณกลับไปหน้า Home ภายใน 2 วินาที...
+กลับหน้า Home",Pass,18 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-020,POST05-S5.1,เปิด Post ครั้งแรกแล้วเพิ่ม View,Positive,High,"Member A ยังไม่เคยดู Post A 
+และทราบจำนวน View ก่อนทดสอบ",Post A มี 10 Views,"1. Login เป็น Member A
+2. เปิด Post A
+3. ตรวจสอบจำนวน View",จำนวน View เพิ่มจาก 10 เป็น 11,เปิด โพสต์แล้ว จำนวน View เพิ่มขึ้น 1,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-021,POST05-S5.2,User เดิมเปิด Post ซ้ำแล้วไม่เพิ่ม View,Negative,High,Member A เคยดู Post A แล้ว,Post A มี 11 Views,"1. Member A เปิด Post A ซ้ำ
+2. Refresh หน้า
+3. ตรวจสอบจำนวน View",จำนวน View ยังคงเป็น 11 และไม่เพิ่มจากการเปิดซ้ำหรือ Refresh,User เดิมเปิด Post ซ้ำแล้วไม่เพิ่ม View,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)
+TC-POST05-022,POST05-S5.3,User คนอื่นเปิด Post ครั้งแรกแล้วเพิ่ม View,Positive,High,"Member A เคยดู Post A 
+แล้ว แต่ Member B ยังไม่เคยดู",Post A มี 11 Views,"1. Login เป็น Member B
+2. เปิด Post A
+3. ตรวจสอบจำนวน View","จำนวน View เพิ่มจาก 11 เป็น 12 
+และระบบนับ Member B เพียง 1 View",User คนอื่น เปิดโพสต์ ครั้งแรก แล้ว View เพิ่มขึ้น 1,Pass,17 September 2026,Manual Only,-,-,-,ไม่มี Playwright script (ทดสอบแบบ Manual)

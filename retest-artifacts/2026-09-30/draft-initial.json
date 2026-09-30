@@ -1,0 +1,175 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\playwright-shere-ed-final\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/post/draft-post.spec.js",
+      "--project=chromium",
+      "--grep",
+      "TC-POST02-002",
+      "--reporter=list,json",
+      "--output=retest-artifacts/2026-09-30/draft-initial"
+    ],
+    "configFile": "D:\\playwright-shere-ed-final\\playwright.config.js",
+    "rootDir": "D:/playwright-shere-ed-final/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "D:\\playwright-shere-ed-final\\global-setup.js",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/playwright-shere-ed-final/retest-artifacts/2026-09-30/draft-initial",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/playwright-shere-ed-final/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "post\\draft-post.spec.js",
+      "file": "post/draft-post.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "TC-POST02 แบบร่าง",
+          "file": "post/draft-post.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-POST02-002,005,007,013,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 22519,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('post-title-input')\nExpected: \u001b[32m\"TC-POST02-002 แบบร่าง local-5022592b\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByTestId('post-title-input') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('post-title-input')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('post-title-input')\nExpected: \u001b[32m\"TC-POST02-002 แบบร่าง local-5022592b\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByTestId('post-title-input') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('post-title-input')\u001b[22m\n\n    at openDraft (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:32:54)\n    at saveDraft (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:91:15)\n    at D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js:12:21",
+                        "location": {
+                          "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                          "column": 54,
+                          "line": 32
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpost\\post-helpers.js:32\n\n  30 |   await card.getByRole('button', { name: 'แก้ไขโพสต์' }).click();\n  31 |   await expect(page).toHaveURL(editPath);\n> 32 |   await expect(page.getByTestId('post-title-input')).toHaveValue(title);\n     |                                                      ^\n  33 |   return page.url();\n  34 | }\n  35 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                            "column": 54,
+                            "line": 32
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('post-title-input')\nExpected: \u001b[32m\"TC-POST02-002 แบบร่าง local-5022592b\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByTestId('post-title-input') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('post-title-input')\u001b[22m\n\n\n   at post\\post-helpers.js:32\n\n  30 |   await card.getByRole('button', { name: 'แก้ไขโพสต์' }).click();\n  31 |   await expect(page).toHaveURL(editPath);\n> 32 |   await expect(page.getByTestId('post-title-input')).toHaveValue(title);\n     |                                                      ^\n  33 |   return page.url();\n  34 | }\n  35 |\n    at openDraft (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:32:54)\n    at saveDraft (D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js:91:15)\n    at D:\\playwright-shere-ed-final\\tests\\post\\draft-post.spec.js:12:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-30T08:03:56.691Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\draft-initial\\post-draft-post-TC-POST02--2014a-างและตรวจข้อมูลหลัง-Refresh-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\draft-initial\\post-draft-post-TC-POST02--2014a-างและตรวจข้อมูลหลัง-Refresh-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\draft-initial\\post-draft-post-TC-POST02--2014a-างและตรวจข้อมูลหลัง-Refresh-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\playwright-shere-ed-final\\retest-artifacts\\2026-09-30\\draft-initial\\post-draft-post-TC-POST02--2014a-างและตรวจข้อมูลหลัง-Refresh-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\playwright-shere-ed-final\\tests\\post\\post-helpers.js",
+                        "column": 54,
+                        "line": 32
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "b378bd60a6b2048d05c2-0c6970f101d5aa8b116e",
+              "file": "post/draft-post.spec.js",
+              "line": 9,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-30T08:03:52.397Z",
+    "duration": 57531.06,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

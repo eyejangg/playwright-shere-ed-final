@@ -1,0 +1,108 @@
+{
+  "name": "Clear Demo Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "clear-demo-sheets",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "webhook-trigger",
+      "name": "Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1n0j4du796V_Te5e5KpsOqvSI54fpKLC4STiN7zkaf7Y",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 304764949,
+          "mode": "list"
+        },
+        "clear": "wholeSheet",
+        "keepFirstRow": true
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        200,
+        0
+      ],
+      "id": "clear-failed-test-analysis",
+      "name": "Clear Failed Test Analysis",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "pYEKfF8EC989DEdn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1vCP1XHklEHgwcqYnG2rht8U0qsComSebHW-L3vqLAlw",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 101,
+          "mode": "list"
+        },
+        "clear": "wholeSheet",
+        "keepFirstRow": true
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        400,
+        0
+      ],
+      "id": "clear-health-report",
+      "name": "Clear Health Report",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "pYEKfF8EC989DEdn",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Clear Failed Test Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clear Failed Test Analysis": {
+      "main": [
+        [
+          {
+            "node": "Clear Health Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "id": "clear001demo0001",
+  "active": true
+}

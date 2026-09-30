@@ -25,6 +25,7 @@ module.exports = defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['list'],
+    ['./scripts/step-reporter.js'], // เก็บ test.step รวม hook และ cleanup
     ['html', { open: 'never' }],
     ['json', { outputFile: 'test-results/results.json' }]
   ],

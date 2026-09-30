@@ -1,0 +1,206 @@
+{
+  "url": "https://share-ed.online/post/edit/7bca5354-fb3a-41ca-a26b-a4b348c816ae",
+  "text": "SHARE-ED\nหน้าหลัก\nสำรวจเนื้อหา\nโพสต์ยอดนิยม\nสร้างโพสต์\nยกเลิกการแก้ไข\nแก้ไขโพสต์สรุปความรู้\n\nอัปเดตเนื้อหาหรือไฟล์ประกอบการเรียนรู้ของคุณ\n\nแบบร่าง (Draft)\nรูปปก *\nไม่เกิน 2 MB\n\nแนะนำอัตราส่วน 16:9 (เช่น 1280×720px) เพื่อให้แสดงผลสวยที่สุด\n\nชื่อหัวข้อสรุป *\n14/100 ตัวอักษร\nระดับชั้น\n*\nเลือกระดับชั้น\nมัธยมศึกษาตอนต้น\nมัธยมศึกษาตอนปลาย\nมหาวิทยาลัย\nบทสรุปย่อ (Summary)\n*\n0/200 ตัวอักษร\nหมวดหมู่วิชาและแฮชแท็ก\n*\nวิชาที่เลือก:\nทั่วไป\nยังไม่มีแฮชแท็ก (สามารถเพิ่มแท็กช่วยให้ค้นหาง่ายขึ้น)\nตั้งค่าวิชาและแท็ก\nรายละเอียดเพิ่มเติม\n*\n\n\n\n\nเพิ่มรูปจากปุ่มใน toolbar, ลากไฟล์ หรือวางจาก clipboard (สูงสุด 5 รูป, JPEG, PNG และ WEBP, รูปละไม่เกิน 2 MB)\n\nไฟล์เอกสารประกอบ PDF (ถ้ามี)\nPDF ไม่เกิน 20 MB\nอัปโหลดไฟล์ PDF ใหม่\nPDF ไม่เกิน 20 MB\nรูปภาพประกอบ (0/5) *\nไม่เกินรูปละ 2 MB\nยกเลิกการแก้ไข\nลบโพสต์\nบันทึกแบบร่าง\nบันทึกและโพสต์\nSHARE-ED\n\nพื้นที่สำหรับแบ่งปันความรู้ดีๆ\nเพื่อการศึกษาไทย\n\nติดต่อแอดมิน\nshare_ed@gmail.com\nเกี่ยวกับเรา",
+  "fields": [
+    {
+      "id": "create-post-button",
+      "text": "สร้างโพสต์"
+    },
+    {
+      "id": "cancel-edit-post-header-button",
+      "text": " ยกเลิกการแก้ไข",
+      "value": ""
+    },
+    {
+      "id": "remove-edit-cover-button",
+      "text": "",
+      "value": ""
+    },
+    {
+      "id": "edit-post-title-input",
+      "text": "",
+      "value": "Untitled draft"
+    },
+    {
+      "id": "edit-education-level-select",
+      "text": "เลือกระดับชั้นมัธยมศึกษาตอนต้นมัธยมศึกษาตอนปลายมหาวิทยาลัย",
+      "value": "มหาวิทยาลัย"
+    },
+    {
+      "id": "edit-post-summary-input",
+      "text": "",
+      "value": ""
+    },
+    {
+      "id": "edit-category-tags-settings-button",
+      "text": "ตั้งค่าวิชาและแท็ก",
+      "value": ""
+    },
+    {
+      "id": "post-content-input",
+      "text": " เพิ่มรูปจากปุ่มใน toolbar, ลากไฟล์ หรือวางจาก clipboard (สูงสุด 5 รูป, JPEG, PNG และ WEBP, รูปละไม่"
+    },
+    {
+      "id": "content-image-file-input",
+      "text": "",
+      "value": ""
+    },
+    {
+      "id": "edit-pdf-file-input",
+      "text": "",
+      "value": ""
+    },
+    {
+      "id": "edit-supporting-images-file-input",
+      "text": "",
+      "value": ""
+    },
+    {
+      "id": "cancel-edit-post-button",
+      "text": "ยกเลิกการแก้ไข",
+      "value": ""
+    },
+    {
+      "id": "delete-post-button",
+      "text": "ลบโพสต์",
+      "value": ""
+    },
+    {
+      "id": "save-edit-draft-button",
+      "text": "บันทึกแบบร่าง",
+      "value": ""
+    },
+    {
+      "id": "update-post-button",
+      "text": "บันทึกและโพสต์",
+      "value": ""
+    }
+  ],
+  "fileInputs": [
+    "<input test-data=\"content-image-file-input\" class=\"hidden\" accept=\"image/jpeg,image/png,image/webp\" type=\"file\">",
+    "<input test-data=\"edit-pdf-file-input\" class=\"hidden\" accept=\".pdf,application/pdf\" type=\"file\">",
+    "<input test-data=\"edit-supporting-images-file-input\" class=\"hidden\" accept=\".jpg,.jpeg,.png,image/jpeg,image/png\" multiple=\"\" type=\"file\">"
+  ],
+  "emptyCoverInputs": [
+    "<input test-data=\"edit-cover-file-input\" class=\"hidden\" accept=\".jpg,.jpeg,.png,.apng\" type=\"file\">",
+    "<input test-data=\"content-image-file-input\" class=\"hidden\" accept=\"image/jpeg,image/png,image/webp\" type=\"file\">",
+    "<input test-data=\"edit-pdf-file-input\" class=\"hidden\" accept=\".pdf,application/pdf\" type=\"file\">",
+    "<input test-data=\"edit-supporting-images-file-input\" class=\"hidden\" accept=\".jpg,.jpeg,.png,image/jpeg,image/png\" multiple=\"\" type=\"file\">"
+  ],
+  "modalFields": [
+    {
+      "id": "create-post-button",
+      "text": "สร้างโพสต์"
+    },
+    {
+      "id": "cancel-edit-post-header-button",
+      "text": " ยกเลิกการแก้ไข"
+    },
+    {
+      "id": "edit-cover-file-input",
+      "text": ""
+    },
+    {
+      "id": "edit-post-title-input",
+      "text": ""
+    },
+    {
+      "id": "edit-education-level-select",
+      "text": "เลือกระดับชั้นมัธยมศึกษาตอนต้นมัธยมศึกษาตอนปลายมหาวิทยาลัย"
+    },
+    {
+      "id": "edit-post-summary-input",
+      "text": ""
+    },
+    {
+      "id": "edit-category-tags-settings-button",
+      "text": "ตั้งค่าวิชาและแท็ก"
+    },
+    {
+      "id": "post-content-input",
+      "text": " เพิ่มรูปจากปุ่มใน toolbar, ลากไฟล์ หรือวางจาก clipboard (สูงสุด 5 รูป, JPEG, PNG และ WEBP, รูปละไม่"
+    },
+    {
+      "id": "content-image-file-input",
+      "text": ""
+    },
+    {
+      "id": "edit-pdf-file-input",
+      "text": ""
+    },
+    {
+      "id": "edit-supporting-images-file-input",
+      "text": ""
+    },
+    {
+      "id": "cancel-edit-post-button",
+      "text": "ยกเลิกการแก้ไข"
+    },
+    {
+      "id": "delete-post-button",
+      "text": "ลบโพสต์"
+    },
+    {
+      "id": "save-edit-draft-button",
+      "text": "บันทึกแบบร่าง"
+    },
+    {
+      "id": "update-post-button",
+      "text": "บันทึกและโพสต์"
+    },
+    {
+      "id": "close-category-tags-modal-button",
+      "text": ""
+    },
+    {
+      "id": "edit-category-select",
+      "text": "เลือกหมวดหมู่วิชาคณิตศาสตร์คอมพิวเตอร์และเทคโนโลยีเคมีชีววิทยาฟิสิกส์ภาษาไทยภาษาอังกฤษวิทยาศาสตร์สัง"
+    },
+    {
+      "id": "edit-hashtag-input",
+      "text": ""
+    }
+  ],
+  "detail": {
+    "url": "https://share-ed.online/post/5b06b0da-d8e5-46e6-8afc-a4a814529809",
+    "buttons": [
+      "สร้างโพสต์",
+      "",
+      "",
+      " ลบโพสต์",
+      " ดูตัวอย่างเอกสาร",
+      " ดาวน์โหลด",
+      "ส่งความคิดเห็น",
+      " 0",
+      "",
+      " แชร์โพสต์"
+    ],
+    "images": [
+      {
+        "alt": "SHARE-ED",
+        "src": "https://share-ed.online/sharelogo.png"
+      },
+      {
+        "alt": "TC-LIFE-001 (แก้ไขแล้ว) ฟิสิกส์ ม.ปลาย 1790748677196",
+        "src": "https://res.cloudinary.com/dnqrvsbbd/image/upload/v1790748684/share-ed/users/d391ef3d-06c5-4518-8fa1-375c066d6945/upload-sessions/b4a85d8b-8f11-4267-999b-f2f7dec56bca/covers/giexptfnkbiax4s3okiu.png"
+      },
+      {
+        "alt": "Testeye",
+        "src": "https://ui-avatars.com/api/?name=Testeye"
+      },
+      {
+        "alt": "gallery-0",
+        "src": "https://res.cloudinary.com/dnqrvsbbd/image/upload/v1790748684/share-ed/users/d391ef3d-06c5-4518-8fa1-375c066d6945/upload-sessions/b4a85d8b-8f11-4267-999b-f2f7dec56bca/media/k98zhcufoddrdsn4dadf.png"
+      },
+      {
+        "alt": "Testeye",
+        "src": "https://ui-avatars.com/api/?name=Testeye&background=1e293b&color=38bdf8"
+      },
+      {
+        "alt": "SHARE-ED",
+        "src": "https://share-ed.online/sharelogo.png"
+      }
+    ],
+    "text": "SHARE-ED\nหน้าหลัก\nสำรวจเนื้อหา\nโพสต์ยอดนิยม\nสร้างโพสต์\nกลับไปหน้าหลัก\nแก้ไขโพสต์\nลบโพสต์\nวิทยาศาสตร์\nมัธยมศึกษาตอนปลาย\nTC-LIFE-001 (แก้ไขแล้ว) ฟิสิกส์ ม.ปลาย 1790748677196\nTesteye\n\nContributor\n\n30 กันยายน 2569\n1 ครั้ง\nบทสรุปย่อ\nสรุปสูตรฟิสิกส์ (ฉบับปรับปรุงแก้ไข)\nรายละเอียดเพิ่มเติม\n\nเนื้อหาตัวอย่างสำหรับการทดสอบ Lifecycle Flow\n\nรูปภาพประกอบ (1)\nไฟล์เอกสาร PDF\ndocument.pdf\n\n10.00 MB\n\nดูตัวอย่างเอกสาร\nดาวน์โหลด\n#ฟิสิกส์\nความคิดเห็น (0)\nส่งความคิดเห็น\nยังไม่มีความคิดเห็น มาร่วมเป็นคนแรกที่แบ่งปันความคิดเห็นกัน!\n0\nแชร์โพสต์\nSHARE-ED\n\nพื้นที่สำหรับแบ่งปันความรู้ดีๆ\nเพื่อการศึกษาไทย\n\nติดต่อแอดมิน\nshare_ed@gmail.com\nเกี่ยวกับเรา"
+  }
+}
