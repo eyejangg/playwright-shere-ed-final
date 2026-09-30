@@ -1,0 +1,101 @@
+name: Educational Posts Pipeline (fea/test-data/post)
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'เลือกการทำงานที่ต้องการรัน'
+        required: true
+        default: 'post:recreate'
+        type: choice
+        options:
+          - 'post:recreate'
+          - 'post:verify'
+          - 'delete:posts'
+          - 'test:post'
+
+  push:
+    branches:
+      - fea/test-data/post
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+
+  pull_request:
+    branches:
+      - fea/test-data/post
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  manage-educational-posts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 1. Checkout source code
+        uses: actions/checkout@v4
+
+      - name: 2. Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 3. Install NPM dependencies
+        run: npm ci || npm install
+
+      - name: 4. Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: 5. Setup Authentication Session
+        env:
+          MEMBER_EMAIL: ${{ secrets.MEMBER_EMAIL }}
+          MEMBER_PASSWORD: ${{ secrets.MEMBER_PASSWORD }}
+          AUTH_STORAGE_STATE: ${{ secrets.AUTH_STORAGE_STATE }}
+          BASE_URL: https://share-ed.online/
+        run: |
+          mkdir -p playwright/.auth
+          if [ -n "$AUTH_STORAGE_STATE" ]; then
+            echo "Using AUTH_STORAGE_STATE secret..."
+            echo "$AUTH_STORAGE_STATE" > playwright/.auth/member.json
+          elif [ -n "$MEMBER_EMAIL" ] && [ -n "$MEMBER_PASSWORD" ]; then
+            echo "Logging in via MEMBER_EMAIL and MEMBER_PASSWORD..."
+            node -e "require('./global-setup')().catch(console.error)"
+          else
+            echo "Warning: No credentials or session token provided in Secrets."
+          fi
+
+      - name: 6. Execute Post Action
+        env:
+          MEMBER_EMAIL: ${{ secrets.MEMBER_EMAIL }}
+          MEMBER_PASSWORD: ${{ secrets.MEMBER_PASSWORD }}
+          BASE_URL: https://share-ed.online/
+        run: |
+          ACTION="${{ github.event.inputs.action }}"
+          if [ -z "$ACTION" ]; then
+            # Default action for push/PR
+            ACTION="post:verify"
+          fi
+          echo "=========================================="
+          echo "Executing action: npm run $ACTION"
+          echo "=========================================="
+          npm run "$ACTION"
+
+      - name: 7. Upload Execution Reports & Screenshots
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: educational-posts-reports
+          path: |
+            reports/
+            test-results/
+          retention-days: 30

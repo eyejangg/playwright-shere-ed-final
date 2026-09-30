@@ -100,7 +100,32 @@ npm run generate:media
 
 ---
 
+## ⚙️ การใช้งานผ่าน GitHub Actions (CI/CD Workflow)
+
+ไฟล์ Workflow: `.github/workflows/test-data-post.yml`  
+ชื่อ Workflow: **`Educational Posts Pipeline (fea/test-data/post)`**
+
+### 1. วิธีสั่งรันด้วยตนเอง (Manual Trigger - Workflow Dispatch):
+1. ไปที่แท็บ **Actions** บน GitHub Repository
+2. เลือก Workflow **"Educational Posts Pipeline (fea/test-data/post)"** ทางซ้ายมือ
+3. กดปุ่ม **Run workflow**
+4. เลือกกิ่ง (Branch): `fea/test-data/post`
+5. เลือกการทำงานที่ต้องการ:
+   - `post:recreate`: ลบโพสต์เก่าและเผยแพร่ใหม่ทั้งหมดด้วยภาพปก AI และจัดย่อหน้าสวยงาม (ค่าเริ่มต้น)
+   - `post:verify`: เข้าไปตรวจสอบโพสต์ทั้ง 6 และบันทึกภาพหน้าจอ
+   - `delete:posts`: ลบโพสต์ทั้งหมดออกจากระบบ
+   - `test:post`: รัน Playwright Test
+6. กดปุ่มสีเขียว **Run workflow**
+
+### 2. GitHub Secrets ที่จำเป็น:
+- `MEMBER_EMAIL`: อีเมลบัญชีสมาชิกสำหรับเข้าสู่ระบบ
+- `MEMBER_PASSWORD`: รหัสผ่านสำหรับเข้าสู่ระบบ
+- *(ทางเลือก)* `AUTH_STORAGE_STATE`: ข้อมูล JSON จากไฟล์ `playwright/.auth/member.json` (หากต้องการใช้ Token โดยตรง)
+
+---
+
 ## 📁 ตำแหน่งไฟล์และโฟลเดอร์สำคัญ
+- **Workflow CI/CD:** `.github/workflows/test-data-post.yml`
 - **รายงานผลสรุป:** `reports/publication-report.md`
 - **ไฟล์ผลการรัน JSON:** `reports/execution-summary.json`
 - **ภาพหน้าจอโพสต์ทั้งหมด:** `reports/screenshots/`
