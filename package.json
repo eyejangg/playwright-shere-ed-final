@@ -5,11 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
+    "login": "node scripts/login.js",
+    "post:delete": "node scripts/delete-all-posts.js",
+    "delete:posts": "node scripts/delete-all-posts.js",
+    "post:publish": "node scripts/publish-direct.js",
+    "post:recreate": "node scripts/recreate-all-posts.js",
+    "post:verify": "node scripts/verify-all-posts.js",
+    "test:delete": "playwright test tests/post/delete-post.spec.js --project=chromium",
     "test:post": "playwright test tests/post/create-post.spec.js --project=chromium",
-    "generate:media": "node scripts/generate-educational-media.js",
-    "create:posts": "playwright test tests/post/create-post.spec.js -g \"สร้างโพสต์:\" --project=chromium",
-    "delete:posts": "playwright test tests/post/create-post.spec.js -g \"ลบโพสต์\" --project=chromium",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "generate:media": "node scripts/generate-educational-media.js"
   },
   "keywords": [],
   "author": "",

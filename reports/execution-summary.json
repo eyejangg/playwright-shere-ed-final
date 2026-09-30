@@ -1,0 +1,116 @@
+[
+  {
+    "index": 1,
+    "id": "post-1-equation",
+    "title": "สมการเชิงเส้นตัวแปรเดียว: สรุปหลักการแก้สมการและโจทย์ปัญหา",
+    "grade": "มัธยมศึกษาตอนต้น",
+    "subject": "คณิตศาสตร์",
+    "status": "PUBLISHED",
+    "url": "https://share-ed.online/post/a6fc1bfe-5f35-45cb-8ab1-e84168809978",
+    "screenshot": "D:\\playwright-shere-ed-final\\reports\\screenshots\\post-1-success.png",
+    "files": {
+      "cover": "cover.png",
+      "gallery": [
+        "gallery-1.png",
+        "gallery-2.png",
+        "gallery-3.png"
+      ],
+      "pdf": "handbook.pdf"
+    }
+  },
+  {
+    "index": 2,
+    "id": "post-2-solar-system",
+    "title": "ระบบสุริยะ: สรุปข้อมูลดาวเคราะห์และวัตถุท้องฟ้าในระบบสุริยะ",
+    "grade": "มัธยมศึกษาตอนต้น",
+    "subject": "วิทยาศาสตร์",
+    "status": "PUBLISHED",
+    "url": "https://share-ed.online/post/7160d6c5-389f-44ce-bd7a-6ec3d341692a",
+    "screenshot": "D:\\playwright-shere-ed-final\\reports\\screenshots\\post-2-success.png",
+    "files": {
+      "cover": "cover.png",
+      "gallery": [
+        "gallery-1.png",
+        "gallery-2.png",
+        "gallery-3.png"
+      ],
+      "pdf": "handbook.pdf"
+    }
+  },
+  {
+    "index": 3,
+    "id": "post-3-english-tenses",
+    "title": "12 Tenses ภาษาอังกฤษ: สรุปหลักการใช้ โครงสร้าง และตัวบอกเวลา",
+    "grade": "มัธยมศึกษาตอนปลาย",
+    "subject": "ภาษาอังกฤษ",
+    "status": "PUBLISHED",
+    "url": "https://share-ed.online/post/be52a84c-b952-441a-baf0-0d27fe6bfd92",
+    "screenshot": "D:\\playwright-shere-ed-final\\reports\\screenshots\\post-3-success.png",
+    "files": {
+      "cover": "cover.png",
+      "gallery": [
+        "gallery-1.png",
+        "gallery-2.png",
+        "gallery-3.png"
+      ],
+      "pdf": "handbook.pdf"
+    }
+  },
+  {
+    "index": 4,
+    "id": "post-4-newton-laws",
+    "title": "กฎการเคลื่อนที่ของนิวตัน: สรุปแรง กลศาสตร์ และการเขียน FBD",
+    "grade": "มัธยมศึกษาตอนปลาย",
+    "subject": "ฟิสิกส์",
+    "status": "PUBLISHED",
+    "url": "https://share-ed.online/post/6afc2688-ebe8-412a-a5d0-5bb7fa56611e",
+    "screenshot": "D:\\playwright-shere-ed-final\\reports\\screenshots\\post-4-success.png",
+    "files": {
+      "cover": "cover.png",
+      "gallery": [
+        "gallery-1.png",
+        "gallery-2.png",
+        "gallery-3.png"
+      ],
+      "pdf": "handbook.pdf"
+    }
+  },
+  {
+    "index": 5,
+    "id": "post-5-cell-structure",
+    "title": "โครงสร้างเซลล์: สรุปหน้าที่ออร์แกเนลล์ เซลล์พืชและเซลล์สัตว์",
+    "grade": "มัธยมศึกษาตอนปลาย",
+    "subject": "ชีววิทยา",
+    "status": "PUBLISHED",
+    "url": "https://share-ed.online/post/99b111f1-ce40-4992-90bb-c20b95cbef62",
+    "screenshot": "D:\\playwright-shere-ed-final\\reports\\screenshots\\post-5-success.png",
+    "files": {
+      "cover": "cover.png",
+      "gallery": [
+        "gallery-1.png",
+        "gallery-2.png",
+        "gallery-3.png"
+      ],
+      "pdf": "handbook.pdf"
+    }
+  },
+  {
+    "index": 6,
+    "id": "post-6-web-architecture",
+    "title": "Frontend Backend Database และ API: พื้นฐานสถาปัตยกรรมเว็บ",
+    "grade": "มหาวิทยาลัย",
+    "subject": "คอมพิวเตอร์และเทคโนโลยี",
+    "status": "PUBLISHED",
+    "url": "https://share-ed.online/post/5d5d2c1c-1a14-4e59-be02-db2fdceafe46",
+    "screenshot": "D:\\playwright-shere-ed-final\\reports\\screenshots\\post-6-success.png",
+    "files": {
+      "cover": "cover.png",
+      "gallery": [
+        "gallery-1.png",
+        "gallery-2.png",
+        "gallery-3.png"
+      ],
+      "pdf": "handbook.pdf"
+    }
+  }
+]

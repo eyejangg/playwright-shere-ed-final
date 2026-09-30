@@ -1,39 +1,62 @@
 const { chromium } = require('@playwright/test');
+const fs = require('fs');
+const path = require('path');
 
 async function globalSetup() {
-    // 1. เปิด Browser จำลองขึ้นมาเงียบๆ
-    const browser = await chromium.launch();
-    const page = await browser.newPage();
-    // const email = process.env.MEMBER_EMAIL;
-    // const password = process.env.MEMBER_PASSWORD;
+    const authPath = path.resolve(__dirname, 'playwright/.auth/member.json');
+    const authDir = path.dirname(authPath);
+    if (!fs.existsSync(authDir)) {
+        fs.mkdirSync(authDir, { recursive: true });
+    }
 
-    // if (!email || !password) {
-    //     throw new Error('กรุณากำหนด MEMBER_EMAIL และ MEMBER_PASSWORD');
-    // }
+    const email = process.env.MEMBER_EMAIL;
+    const password = process.env.MEMBER_PASSWORD;
 
-    // 2. ไปที่หน้าเว็บและกรอกข้อมูล Login
-    await page.goto('https://share-ed.online/');
-    await page.getByRole('link', { name: 'เข้าสู่ระบบ' }).click();
-    await page.getByRole('textbox', { name: 'อีเมล' }).fill('member01@test.com');
-    await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill('Test1234');
-    // await page.getByRole('textbox', { name: 'อีเมล' }) // github action ENV
-    //     .fill(email);
-    // await page.getByRole('textbox', { name: 'รหัสผ่าน' }) // github action ENV
-    //     .fill(password);
-    await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
+    // หากมีการกำหนด Environment Variables ให้ล็อกอินอัตโนมัติ
+    if (email && password) {
+        console.log('พบ MEMBER_EMAIL ใน Environment Variables กำลังเข้าสู่ระบบ...');
+        const browser = await chromium.launch();
+        try {
+            const page = await browser.newPage();
+            await page.goto(process.env.BASE_URL || 'https://share-ed.online/', { waitUntil: 'domcontentloaded' });
+            await page.getByRole('link', { name: 'เข้าสู่ระบบ' }).click();
+            await page.getByRole('textbox', { name: 'อีเมล' }).fill(email);
+            await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill(password);
+            await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
 
+            await page.waitForSelector('[data-testid="create-post-btn"], a[href="/create"], button:has-text("สร้างโพสต์")', { timeout: 30000 });
+            await page.context().storageState({ path: authPath });
+            console.log('✓ เข้าสู่ระบบสำเร็จและบันทึกเซสชันลงไฟล์ member.json เรียบร้อยแล้ว');
+        } catch (err) {
+            console.warn('✕ ไม่สามารถเข้าสู่ระบบด้วย Credentials จาก Environment ได้:', err.message);
+        } finally {
+            await browser.close();
+        }
+        return;
+    }
 
-    // 3. รอให้ระบบล็อกอินสำเร็จจริง โดยรอให้ปุ่ม "สร้างโพสต์" โผล่ขึ้นมาก่อน
-    await page.waitForSelector('[data-testid="create-post-btn"]');
-    await page.waitForTimeout(1000);
+    // หากมีไฟล์ member.json อยู่แล้ว ให้ตรวจสอบสถานะการเข้าสู่ระบบ
+    if (fs.existsSync(authPath)) {
+        try {
+            const browser = await chromium.launch();
+            const context = await browser.newContext({ storageState: authPath });
+            const page = await context.newPage();
+            await page.goto('https://share-ed.online/create', { waitUntil: 'domcontentloaded' });
+            await page.waitForTimeout(1500);
 
-    // 4. บันทึก Cookie และ LocalStorage (Access Token จาก Supabase) ลงไฟล์ JSON
-    await page.context().storageState({
-        path: 'playwright/.auth/member.json'
-    });
+            if (!page.url().includes('/login')) {
+                console.log('✓ ตรวจสอบเซสชันใน member.json: เข้าสู่ระบบอยู่แล้ว');
+                await browser.close();
+                return;
+            }
+            console.log('⚠️ เซสชันใน member.json หมดอายุแล้ว');
+            await browser.close();
+        } catch (e) {
+            console.log('⚠️ ไม่สามารถตรวจสอบสถานะเซสชันเดิมได้:', e.message);
+        }
+    }
 
-    // 5. ปิด Browser จำลอง
-    await browser.close();
+    console.log('ℹ️ ยังไม่ได้เข้าสู่ระบบ กรุณาเข้าสู่ระบบผ่านเบราว์เซอร์ด้วยคำสั่ง npm run login หรือระบุ MEMBER_EMAIL / MEMBER_PASSWORD');
 }
 
 module.exports = globalSetup;
