@@ -1,42 +1,44 @@
-const { chromium } = require('@playwright/test');
-const fs = require('node:fs/promises');
-const path = require('node:path');
+const { chromium, expect } = require('@playwright/test');
 
 async function globalSetup() {
-  // เครื่องของคุณใช้บัญชีจากไฟล์ ส่วน GitHub Actions ใช้ secrets
-  const account = process.env.CI
-    ? { email: process.env.MEMBER_A_EMAIL, password: process.env.MEMBER_A_PASSWORD }
-    : require('./test-account.local.json');
-
-  if (!account.email || !account.password) {
-    throw new Error('ไม่พบบัญชีทดสอบสำหรับล็อกอิน');
-  }
-
-  const statePath = path.join(__dirname, 'playwright', '.auth', 'member.json');
-  await fs.mkdir(path.dirname(statePath), { recursive: true });
-  await fs.rm(statePath, { force: true });
-
-  // 1. เปิด browser
-  const browser = await chromium.launch();
-  try {
+    // 1. เปิด Browser จำลองขึ้นมาเงียบๆ
+    const browser = await chromium.launch();
     const page = await browser.newPage();
+    // const email = process.env.MEMBER_EMAIL;
+    // const password = process.env.MEMBER_PASSWORD;
 
-    // 2. เข้าเว็บและล็อกอิน
-    await page.goto(process.env.BASE_URL || 'https://share-ed.online/');
+    // if (!email || !password) {
+    //     throw new Error('กรุณากำหนด MEMBER_EMAIL และ MEMBER_PASSWORD');
+    // }
+
+    // 2. ไปที่หน้าเว็บและกรอกข้อมูล Login
+    await page.goto('https://share-ed.online/');
     await page.getByRole('link', { name: 'เข้าสู่ระบบ' }).click();
-    await page.getByRole('textbox', { name: 'อีเมล' }).fill(account.email);
-    await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill(account.password);
+    await page.getByRole('textbox', { name: 'อีเมล' }).fill('ibakam1550@gmail.com');
+    await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill('Eart1101');
+
+    // await page.getByRole('textbox', { name: 'อีเมล' }) // github action ENV
+    //     .fill(email);
+    // await page.getByRole('textbox', { name: 'รหัสผ่าน' }) // github action ENV
+    //     .fill(password);
+
     await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
 
-    // 3. รอให้ล็อกอินสำเร็จ
-    await page.waitForSelector('[test-data="create-post-button"]', { timeout: 20_000 });
 
-    // 4. บันทึก session ให้เทสใช้ต่อ
-    await page.context().storageState({ path: statePath });
-  } finally {
-    // 5. ปิด browser
+    // 3. รอให้ระบบล็อกอินสำเร็จจริง โดยรอให้ปุ่ม "สร้างโพสต์" โผล่ขึ้นมาก่อน
+    await page.waitForSelector('[test-data="create-post-button"]');
+    await page.waitForTimeout(2000);
+    await expect(page).toHaveURL('https://share-ed.online/home');
+    await page.waitForTimeout(2000);
+
+
+    // 4. บันทึก Cookie และ LocalStorage (Access Token จาก Supabase) ลงไฟล์ JSON
+    await page.context().storageState({
+        path: 'playwright/.auth/member.json'
+    });
+
+    // 5. ปิด Browser จำลอง
     await browser.close();
-  }
 }
 
 module.exports = globalSetup;
