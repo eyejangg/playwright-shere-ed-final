@@ -66,8 +66,8 @@ jobs:
             npx playwright test tests/post/ --project=chromium --workers=1
           fi
         env:
-          MEMBER_A_EMAIL: ${{ secrets.MEMBER_A_EMAIL || secrets.MEMBER_EMAIL }}
-          MEMBER_A_PASSWORD: ${{ secrets.MEMBER_A_PASSWORD || secrets.MEMBER_PASSWORD }}
+          MEMBER_EMAIL: ${{ secrets.MEMBER_EMAIL || secrets.MEMBER_EMAIL }}
+          MEMBER_PASSWORD: ${{ secrets.MEMBER_PASSWORD || secrets.MEMBER_PASSWORD }}
           BASE_URL: https://share-ed.online/
 
       - name: Upload HTML report
