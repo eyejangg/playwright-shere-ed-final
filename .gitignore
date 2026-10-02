@@ -10,3 +10,5 @@ node_modules/
 /test-account.local.json
 /retest-artifacts/
 /scratch/
+/test-results-passed/
+/saved-videos/
