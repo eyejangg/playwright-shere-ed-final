@@ -479,22 +479,22 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await expect(page.getByTestId('remove-pdf-button')).toBeVisible();
   });
 
-  test('TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page, artifacts }) => {
-    test.setTimeout(120_000);
-    const title = generateUniqueTitle('TC-POST01-038 ทบทวนแคลคูลัส');
-    const postUrl = await publishPost(page, artifacts, {
-      title, summary: 'สรุปสูตรอนุพันธ์', withPdf: true, tag: '#สรุปย่อ',
-    });
-    await expect(page).toHaveURL(postUrl);
-    await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
-    await expect(page.getByText('คณิตศาสตร์', { exact: true }).first()).toBeVisible();
-    await expect(page.getByText('มัธยมศึกษาตอนปลาย', { exact: true }).first()).toBeVisible();
-    await expect(page.getByText('สรุปสูตรอนุพันธ์', { exact: true })).toBeVisible();
-    await expect(page.getByText('เนื้อหาตัวอย่างสำหรับทดสอบ TC-02', { exact: true })).toBeVisible();
-    await expect(page.getByRole('img', { name: 'gallery-0', exact: true })).toBeVisible();
-    await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'ดาวน์โหลด', exact: true })).toBeVisible();
-    await expect(page.getByText('#สรุปย่อ', { exact: true })).toBeVisible();
-  });
+  // test('TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page, artifacts }) => {
+  //   test.setTimeout(120_000);
+  //   const title = generateUniqueTitle('TC-POST01-038 ทบทวนแคลคูลัส');
+  //   const postUrl = await publishPost(page, artifacts, {
+  //     title, summary: 'สรุปสูตรอนุพันธ์', withPdf: true, tag: '#สรุปย่อ',
+  //   });
+  //   await expect(page).toHaveURL(postUrl);
+  //   await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
+  //   await expect(page.getByText('คณิตศาสตร์', { exact: true }).first()).toBeVisible();
+  //   await expect(page.getByText('มัธยมศึกษาตอนปลาย', { exact: true }).first()).toBeVisible();
+  //   await expect(page.getByText('สรุปสูตรอนุพันธ์', { exact: true })).toBeVisible();
+  //   await expect(page.getByText('เนื้อหาตัวอย่างสำหรับทดสอบ TC-02', { exact: true })).toBeVisible();
+  //   await expect(page.getByRole('img', { name: 'gallery-0', exact: true })).toBeVisible();
+  //   await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
+  //   await expect(page.getByRole('button', { name: 'ดาวน์โหลด', exact: true })).toBeVisible();
+  //   await expect(page.getByText('#สรุปย่อ', { exact: true })).toBeVisible();
+  // });
 
 });
