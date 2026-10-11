@@ -14,6 +14,7 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   testDir: './tests',
+  testMatch: '**/create-post.spec.js',
   // Uploads on the live site need time to finish before UI assertions.
   timeout: 120_000,
   /* Run tests in files in parallel */
@@ -40,6 +41,10 @@ module.exports = defineConfig({
     // เว็บหลัก
     baseURL: process.env.BASE_URL || 'https://share-ed.online/',
     headless: true,
+    // หน่วงแต่ละ action (มิลลิวินาที) ตั้ง 500 หรือ 1000 เพื่อดูขั้นตอน และ 0 เพื่อปิด
+    launchOptions: {
+      slowMo: 0,
+    },
     screenshot: 'only-on-failure',
     // video: 'on',
     video: 'retain-on-failure',
