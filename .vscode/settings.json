@@ -1,0 +1,12 @@
+{
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "terminal.integrated.profiles.windows": {
+        "Command Prompt": {
+            "path": "${env:windir}\\System32\\cmd.exe"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.automationProfile.windows": {
+        "path": "${env:windir}\\System32\\cmd.exe"
+    }
+}

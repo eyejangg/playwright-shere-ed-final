@@ -10,3 +10,13 @@ node_modules/
 /test-account.local.json
 /retest-artifacts/
 /scratch/
+
+# Robot Framework
+/robot/config/account.local.json
+/robot-results*/
+/.venv*/
+__pycache__/
+*.pyc
+
+# Reports, screenshots, traces and session outputs
+/artifacts/

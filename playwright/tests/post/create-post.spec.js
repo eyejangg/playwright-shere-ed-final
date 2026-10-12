@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const { randomUUID } = require('node:crypto');
-const { images, pdf, images05, images06 } = require('../../test-data/test-data');
+const { images, pdf, images05, images06 } = require('../../../test-data/test-data');
 // ==============================
 // Login Test
 // ==============================

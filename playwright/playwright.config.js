@@ -1,5 +1,8 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
+const path = require('node:path');
+const projectRoot = path.resolve(__dirname, '..');
+const resultsRoot = path.resolve(projectRoot, process.env.TEST_OUTPUT_DIR || 'artifacts/playwright/test-results');
 
 /**
  * Read environment variables from file.
@@ -27,8 +30,11 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['list'], ['html', { open: 'never' }]],
-  outputDir: process.env.TEST_OUTPUT_DIR || 'test-results',
+  reporter: [['list'], ['html', {
+    open: 'never',
+    outputFolder: path.resolve(projectRoot, process.env.PLAYWRIGHT_HTML_OUTPUT_DIR || 'artifacts/playwright/report'),
+  }]],
+  outputDir: resultsRoot,
 
   // global setup: รันล็อกอินอัตโนมัติก่อนเริ่มเทสทุกครั้ง 
   globalSetup: require.resolve('./global-setup'),
@@ -50,7 +56,7 @@ module.exports = defineConfig({
     video: 'retain-on-failure',
 
     // ใช้สถานะ Login ที่บันทึกไว้ จาก global-setup
-    storageState: 'playwright/.auth/member.json',
+    storageState: path.join(__dirname, '.auth', 'member.json'),
 
     /* Collect trace for every test run (both passed and failed) */
     // trace: 'on',
@@ -62,18 +68,21 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'chromium',
+      outputDir: path.join(resultsRoot, 'chromium'),
       use: { ...devices['Desktop Chrome'] },
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
+    {
+      name: 'firefox',
+      outputDir: path.join(resultsRoot, 'firefox'),
+      use: { ...devices['Desktop Firefox'] },
+    },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    {
+      name: 'webkit',
+      outputDir: path.join(resultsRoot, 'webkit'),
+      use: { ...devices['Desktop Safari'] },
+    },
 
     /* Test against mobile viewports. */
     // {
@@ -86,14 +95,16 @@ module.exports = defineConfig({
     // },
 
     /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+    {
+      name: 'msedge',
+      outputDir: path.join(resultsRoot, 'msedge'),
+      use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    },
+    {
+      name: 'chrome',
+      outputDir: path.join(resultsRoot, 'chrome'),
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    },
   ],
 
   /* Run your local dev server before starting the tests */
