@@ -1,6 +1,11 @@
 // @ts-check
-const { test, expect, publishPost } = require('./post-helpers');
-const { images, pdf, images05, images06, generateUniqueTitle } = require('../../test-data/test-data');
+const { test, expect } = require('./post-helpers');
+const { test: baseTest } = require('@playwright/test');
+const fs = require('node:fs/promises');
+const path = require('node:path');
+const { randomUUID } = require('node:crypto');
+const { images, pdf, images05, images06 } = require('../../test-data/test-data');
+const { getTestAccount } = require('../../test-data/test-account');
 // ==============================
 // Login Test
 // ==============================
@@ -12,12 +17,13 @@ test.describe('ทดสอบขั้นตอนการเข้าสู�
   test('TC-POST01-001: สมาชิกเข้าสู่หน้าสร้างโพสต์', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'เข้าสู่ระบบ' }).click();
-    await page.getByRole('textbox', { name: 'อีเมล' }).fill('member01@test.com');
-    await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill('Test1234');
+    const account = getTestAccount();
+    await page.getByRole('textbox', { name: 'อีเมล' }).fill(account.email);
+    await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill(account.password);
     await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
 
     // ผลลัพธ์ที่คาดหวัง 1: เข้าสู่ระบบสำเร็จและแสดงหน้าหลัก
-    await expect(page).toHaveURL(/share-ed\.online\/(home)?\/?$/);
+    await expect(page).toHaveURL(/\/home\/?$/, { timeout: 20_000 });
     await expect(page.getByRole('heading', { name: 'ยินดีต้อนรับสู่ SHARE-ED' })).toBeVisible();
 
     // ผลลัพธ์ที่คาดหวัง 2: แสดงเมนูสร้างโพสต์หลังเข้าสู่ระบบ
@@ -25,7 +31,7 @@ test.describe('ทดสอบขั้นตอนการเข้าสู�
     await page.getByTestId('create-post-button').click();
 
     // ผลลัพธ์ที่คาดหวัง 3: แสดงหน้าสร้างโพสต์สำเร็จ
-    await expect(page).toHaveURL(/share-ed\.online\/create/);
+    await expect(page).toHaveURL(/\/create\/?$/, { timeout: 20_000 });
     await expect(page.getByRole('heading', { name: 'สร้างโพสต์สรุปความรู้' })).toBeVisible();
   });
 });
@@ -479,22 +485,114 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await expect(page.getByTestId('remove-pdf-button')).toBeVisible();
   });
 
-  // test('TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page, artifacts }) => {
-  //   test.setTimeout(120_000);
-  //   const title = generateUniqueTitle('TC-POST01-038 ทบทวนแคลคูลัส');
-  //   const postUrl = await publishPost(page, artifacts, {
-  //     title, summary: 'สรุปสูตรอนุพันธ์', withPdf: true, tag: '#สรุปย่อ',
-  //   });
-  //   await expect(page).toHaveURL(postUrl);
-  //   await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
-  //   await expect(page.getByText('คณิตศาสตร์', { exact: true }).first()).toBeVisible();
-  //   await expect(page.getByText('มัธยมศึกษาตอนปลาย', { exact: true }).first()).toBeVisible();
-  //   await expect(page.getByText('สรุปสูตรอนุพันธ์', { exact: true })).toBeVisible();
-  //   await expect(page.getByText('เนื้อหาตัวอย่างสำหรับทดสอบ TC-02', { exact: true })).toBeVisible();
-  //   await expect(page.getByRole('img', { name: 'gallery-0', exact: true })).toBeVisible();
-  //   await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
-  //   await expect(page.getByRole('button', { name: 'ดาวน์โหลด', exact: true })).toBeVisible();
-  //   await expect(page.getByText('#สรุปย่อ', { exact: true })).toBeVisible();
-  // });
+  baseTest('TC-POST01-038: เผยแพร่โพสต์สำเร็จเมื่อกรอกข้อมูลครบถ้วน', async ({ page }) => {
+    const runId = randomUUID().slice(0, 8);
+    const title = `TC-POST01-038 ทบทวนแคลคูลัส ${runId}`;
+    const summary = `สรุปสูตรอนุพันธ์ ${runId}`;
+    const content = `เนื้อหาตัวอย่างสำหรับทดสอบ TC-POST01-038 ${runId}`;
+    await page.getByTestId('cover-file-input').setInputFiles(images.coverPng);
+    await page.getByTestId('post-title-input').fill(title);
+    await page.getByTestId('education-level-select').selectOption({ label: 'มัธยมศึกษาตอนปลาย' });
+    await page.getByTestId('post-summary-input').fill(summary);
+    await page.getByTestId('category-tags-settings-button').click();
+    await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
+    await page.getByRole('button', { name: '#สรุปย่อ', exact: true }).click();
+    await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
+    await page.getByTestId('post-content-input').locator('[contenteditable="true"]').fill(content);
+    await page.getByTestId('pdf-file-input').setInputFiles(pdf.normal);
+    await page.getByTestId('supporting-images-file-input').setInputFiles(images.image01);
+    // เริ่มดัก response ก่อนกดเผยแพร่ เพื่อไม่พลาด response ที่ตอบกลับเร็ว
+    // Promise.all รอทั้ง response และการคลิกเสร็จ แล้วเก็บ response ตัวแรกใน createResponse
+    const [createResponse] = await Promise.all([
+      page.waitForResponse(response =>
+        // เลือกเฉพาะคำขอ POST ที่ส่งไปยัง API สร้างโพสต์
+        response.request().method() === 'POST' &&
+        // ใช้เฉพาะ path และตัด / ท้าย path เพื่อให้รองรับ /posts และ /posts/
+        new URL(response.url()).pathname.replace(/\/$/, '') === '/api/v1/posts',
+        // รอ response ได้สูงสุด 60 วินาที
+        { timeout: 60_000 },
+      ),
+      // กดเผยแพร่ผ่านหน้าเว็บจริง โดยไม่ได้ยิง API เพิ่มเอง
+      page.getByTestId('publish-post-button').click(),
+    ]);
+    // ตรวจ HTTP status: 201 Created หมายถึงสร้างข้อมูลใหม่สำเร็จ
+    expect(createResponse.status()).toBe(201);
+    // อ่าน JSON ที่ backend ส่งกลับ เพื่อตรวจผลการบันทึกโพสต์
+    const createdPost = await createResponse.json();
+    // Backend ต้องรายงานว่าการสร้างโพสต์สำเร็จ
+    expect(createdPost.success).toBe(true);
+    // ID โพสต์ต้องเป็นข้อความและไม่ว่าง ใช้เทียบกับ URL หน้ารายละเอียดต่อไป
+    expect(createdPost.data.id).toEqual(expect.any(String));
+    expect(createdPost.data.id.length).toBeGreaterThan(0);
+    // เก็บเฉพาะโพสต์ที่สร้างในรอบนี้ ให้เคส 039 ลบได้แม้การตรวจ UI ต่อจากนี้ล้มเหลว
+    // Playwright ล้าง outputDir ก่อนเริ่มรอบใหม่ จึงไม่ใช้ ID ของรอบเก่า
+    const recordPath = path.join(baseTest.info().project.outputDir, 'created-post-038.json');
+    await fs.mkdir(path.dirname(recordPath), { recursive: true });
+    await fs.writeFile(recordPath, JSON.stringify({ id: createdPost.data.id, title }));
+    // ตรวจสถานะใน response ว่าเผยแพร่เป็น ACTIVE ไม่ใช่แบบร่าง DRAFT
+    expect(createdPost.data.post_status).toBe('ACTIVE');
 
+    await expect(page.getByRole('dialog', { name: 'สำเร็จ!', exact: true })).toBeVisible({ timeout: 60_000 });
+    await expect(page.getByRole('dialog').getByText('สร้างโพสต์สรุปความรู้เรียบร้อยแล้ว', { exact: true })).toBeVisible();
+    await page.getByRole('button', { name: 'OK', exact: true }).click();
+    await page.goto('/home');
+    await page.getByRole('button').filter({ has: page.getByRole('img', { name: 'Profile', exact: true }) }).click();
+    await page.getByRole('link', { name: 'โปรไฟล์ของฉัน' }).click();
+    await page.getByRole('button', { name: 'โพสต์ของฉัน', exact: true }).click();
+    await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
+    await page.getByRole('heading', { name: title, exact: true }).click();
+    await expect(page).toHaveURL(url => url.pathname === `/post/${createdPost.data.id}`);
+    await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
+    await expect(page.getByText('คณิตศาสตร์', { exact: true }).first()).toBeVisible();
+    await expect(page.getByText('มัธยมศึกษาตอนปลาย', { exact: true }).first()).toBeVisible();
+    // จำกัดการตรวจให้อยู่ในส่วนของโพสต์นี้ ไม่ตรงกับข้อความบนการ์ดโพสต์อื่น
+    const summarySection = page.getByRole('heading', { name: 'บทสรุปย่อ', exact: true }).locator('..');
+    const contentSection = page.getByRole('heading', { name: 'รายละเอียดเพิ่มเติม', exact: true }).locator('..');
+    await expect(summarySection.getByText(summary, { exact: true })).toBeVisible();
+    await expect(contentSection.getByText(content, { exact: true })).toBeVisible();
+    await expect(page.getByRole('img', { name: 'gallery-0', exact: true })).toBeVisible();
+    await expect(page.getByText('document.pdf', { exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'ดาวน์โหลด', exact: true })).toBeVisible();
+    await expect(page.getByText('#สรุปย่อ', { exact: true })).toBeVisible();
+  });
+
+});
+
+// แยกจากชุดสร้างโพสต์เพื่อไม่ต้องเข้า /create ก่อนลบ และยังรันได้หาก 038 ตรวจ UI ไม่ผ่าน
+baseTest('TC-POST01-039: ลบโพสต์ทดสอบที่สร้างจากเคส 038', async ({ page }) => {
+  // เปิดเป็นค่าเริ่มต้น ปิดด้วย set DELETE_TEST_POST=0 ใน CMD
+  test.skip(process.env.DELETE_TEST_POST === '0', 'ปิดการลบโพสต์ทดสอบ');
+  const recordPath = path.join(baseTest.info().project.outputDir, 'created-post-038.json');
+  let record;
+  try {
+    record = JSON.parse(await fs.readFile(recordPath, 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      test.skip(true, 'ไม่มีโพสต์จากเคส 038 ในรอบนี้ ให้รัน 038 และ 039 พร้อมกัน');
+      return;
+    }
+    throw error;
+  }
+  expect(record.id).toMatch(/^[0-9a-f-]{36}$/i);
+  expect(record.title).toMatch(/^TC-POST01-038 /);
+  await page.goto(`/post/${record.id}`);
+  // ยืนยันชื่อและ ID ก่อนลบ ป้องกันการลบโพสต์อื่น
+  await expect(page).toHaveURL(url => url.pathname === `/post/${record.id}`);
+  await expect(page.getByRole('heading', { name: record.title, exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'ลบโพสต์', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: /คุณต้องการลบโพสต์/ })).toBeVisible();
+  const [deleteResponse] = await Promise.all([
+    page.waitForResponse(response => response.request().method() === 'DELETE' &&
+      new URL(response.url()).pathname === `/api/v1/posts/${record.id}`),
+    page.getByRole('button', { name: 'ใช่, ลบเลย', exact: true }).click(),
+  ]);
+  expect(deleteResponse.ok()).toBe(true);
+  await expect(page.getByRole('dialog', { name: 'ลบสำเร็จ!', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.goto('/home');
+  await page.getByRole('button').filter({ has: page.getByRole('img', { name: 'Profile', exact: true }) }).click();
+  await page.getByRole('link', { name: 'โปรไฟล์ของฉัน' }).click();
+  await page.getByRole('button', { name: 'โพสต์ของฉัน', exact: true }).click();
+  await expect(page.getByRole('heading', { name: record.title, exact: true })).toHaveCount(0);
+  await fs.unlink(recordPath);
 });

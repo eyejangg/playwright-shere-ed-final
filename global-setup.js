@@ -1,16 +1,10 @@
 const { chromium } = require('@playwright/test');
 const fs = require('node:fs/promises');
 const path = require('node:path');
+const { getTestAccount } = require('./test-data/test-account');
 
 async function globalSetup() {
-    // เครื่องของคุณใช้บัญชีจากไฟล์ ส่วน GitHub Actions ใช้ secrets
-    const account = process.env.CI
-        ? { email: process.env.MEMBER_EMAIL, password: process.env.MEMBER_PASSWORD }
-        : require('./test-account.local.json');
-
-    if (!account.email || !account.password) {
-        throw new Error('ไม่พบบัญชีทดสอบสำหรับล็อกอิน');
-    }
+    const account = getTestAccount();
 
     const statePath = path.join(__dirname, 'playwright', '.auth', 'member.json');
     await fs.mkdir(path.dirname(statePath), { recursive: true });

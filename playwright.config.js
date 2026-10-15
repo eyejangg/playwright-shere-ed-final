@@ -1,5 +1,7 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
+const path = require('node:path');
+const artifactsDir = path.resolve(__dirname, 'artifacts', 'playwright');
 
 /**
  * Read environment variables from file.
@@ -26,8 +28,11 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['list'], ['html', { open: 'never' }]],
-  outputDir: process.env.TEST_OUTPUT_DIR || 'test-results',
+  reporter: [['list'], ['html', {
+    open: 'never',
+    outputFolder: path.join(artifactsDir, 'report'),
+  }]],
+  outputDir: process.env.TEST_OUTPUT_DIR || path.join(artifactsDir, 'test-results'),
 
   // global setup: รันล็อกอินอัตโนมัติก่อนเริ่มเทสทุกครั้ง 
   globalSetup: require.resolve('./global-setup'),

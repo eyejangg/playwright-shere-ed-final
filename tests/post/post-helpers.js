@@ -47,7 +47,9 @@ function draftCard(page, title) {
  */
 async function openOwnProfileTab(page, tab) {
   await page.goto('/home');
-  await page.getByRole('button', { name: 'เมนูผู้ใช้' }).click();
+  await page.getByRole('button').filter({
+    has: page.getByRole('img', { name: 'Profile', exact: true }),
+  }).click();
   await page.getByRole('link', { name: tab === 'drafts' ? 'แบบร่างของฉัน' : 'โปรไฟล์ของฉัน' }).click();
   await expect(page.getByRole('button', { name: 'โพสต์ของฉัน' })).toBeVisible();
   await page.getByRole('button', { name: tab === 'drafts' ? 'แบบร่าง' : 'โพสต์ของฉัน', exact: true }).click();

@@ -4,14 +4,14 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
-const REPORT_PATH = path.join(ROOT_DIR, 'test-results', 'sync-run-report.json');
+const REPORT_PATH = path.join(ROOT_DIR, 'artifacts', 'playwright', 'sync-run-report.json');
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1iMx6hw7qZ9X4MU41BuvWgbgE3jcmv9vKXZJ-PA_P_cw/edit?gid=1221386414#gid=1221386414';
 
 console.log('====================================================');
 console.log('🚀 Step 1: Starting Playwright Test Execution...');
 console.log('====================================================');
 
-// Ensure test-results folder exists and remove previous report
+// Ensure the artifacts folder exists and remove the previous report
 fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
 if (fs.existsSync(REPORT_PATH)) {
   try { fs.unlinkSync(REPORT_PATH); } catch (e) {}
