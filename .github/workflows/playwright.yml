@@ -1,6 +1,9 @@
 name: SHARE-ED Automation Test Suite
 
 on:
+  push:
+    branches:
+      - 'work/**'
   pull_request:
     branches:
       - main
