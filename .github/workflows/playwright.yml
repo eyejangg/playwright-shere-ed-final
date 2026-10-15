@@ -3,6 +3,7 @@ name: SHARE-ED Automation Test Suite
 on:
   push:
     branches:
+      - main
       - 'work/**'
   pull_request:
     branches:
@@ -22,7 +23,6 @@ on:
           - delete
           - detail
           - all
-          - sync-sheet
 
 permissions:
   contents: read
@@ -76,8 +76,6 @@ jobs:
             npx playwright test tests/post/delete-post.spec.js --project=chromium
           elif [ "${{ github.event.inputs.test_suite }}" = "detail" ]; then
             npx playwright test tests/post/detail-post.spec.js --project=chromium
-          elif [ "${{ github.event.inputs.test_suite }}" = "sync-sheet" ]; then
-            npm run test:sync-sheet
           else
             npx playwright test tests/post/ --project=chromium --workers=1
           fi
