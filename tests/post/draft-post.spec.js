@@ -6,7 +6,7 @@ const {
 } = require('./post-helpers');
 
 test.describe('TC-POST02 แบบร่าง', () => {
-  test('TC-POST02-002,005,007,013,014,019,020: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh', async ({ page, artifacts }) => {
+  test('TC-POST02-002,004,005,007,008,011,015: บันทึกแบบร่างและตรวจข้อมูลหลัง Refresh', async ({ page, artifacts }) => {
     const title = generateUniqueTitle('TC-POST02-002 แบบร่าง');
     const summary = 'ข้อมูลแบบร่างต้องคงอยู่หลัง Refresh';
     const editUrl = await saveDraft(page, artifacts, { title, summary });
@@ -25,9 +25,9 @@ test.describe('TC-POST02 แบบร่าง', () => {
     await expect(page.getByRole('heading', { name: title, exact: true })).toHaveCount(0);
   });
 
-  test('TC-POST02-009: แก้ไขแบบร่างและบันทึกซ้ำใน URL เดิม', async ({ page, artifacts }) => {
-    const title = generateUniqueTitle('TC-POST02-009 แบบร่างเดิม');
-    const updatedTitle = generateUniqueTitle('TC-POST02-009 แบบร่างแก้ไข');
+  test('TC-POST02-013: แก้ไขแบบร่างและบันทึกซ้ำใน URL เดิม', async ({ page, artifacts }) => {
+    const title = generateUniqueTitle('TC-POST02-013 แบบร่างเดิม');
+    const updatedTitle = generateUniqueTitle('TC-POST02-013 แบบร่างแก้ไข');
     const editUrl = await saveDraft(page, artifacts, { title });
 
     artifacts.rename(title, updatedTitle);
@@ -45,9 +45,9 @@ test.describe('TC-POST02 แบบร่าง', () => {
     await expect(page.getByRole('heading', { name: title, exact: true })).toHaveCount(0);
   });
 
-  test('TC-POST02-011,012: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม', async ({ page, artifacts }) => {
+  test('TC-POST02-016,017: แบบร่างข้อมูลไม่ครบเผยแพร่ไม่ได้ แล้วเผยแพร่ด้วย ID เดิม', async ({ page, artifacts }) => {
     test.setTimeout(120_000);
-    const title = generateUniqueTitle('TC-POST02-011 เผยแพร่แบบร่าง');
+    const title = generateUniqueTitle('TC-POST02-016 เผยแพร่แบบร่าง');
     const editUrl = await saveDraft(page, artifacts, { title });
     const id = new URL(editUrl).pathname.split('/').pop();
     expect(id).toBeTruthy();
@@ -69,8 +69,8 @@ test.describe('TC-POST02 แบบร่าง', () => {
     artifacts.rememberUrl(title, page.url());
   });
 
-  test('TC-POST02-015: ลบแบบร่างของตนเอง', async ({ page, artifacts }) => {
-    const title = generateUniqueTitle('TC-POST02-015 ลบแบบร่าง');
+  test('TC-POST02-018: ลบแบบร่างของตนเอง', async ({ page, artifacts }) => {
+    const title = generateUniqueTitle('TC-POST02-018 ลบแบบร่าง');
     const editUrl = await saveDraft(page, artifacts, { title });
     await deleteCurrentPost(page);
     await openOwnProfileTab(page, 'drafts');

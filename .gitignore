@@ -8,6 +8,7 @@ node_modules/
 /playwright/.auth/
 .env
 /test-account.local.json
+/google-service-account.local.json
 /retest-artifacts/
 /scratch/
 /artifacts/

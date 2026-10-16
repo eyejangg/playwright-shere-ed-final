@@ -58,3 +58,36 @@ npx playwright test tests/post/draft-post.spec.js --project=chromium
 การ push ไป `main` หรือ branch `work/**` และการเปิด pull request เข้า `main` จะรันทุกชุดอัตโนมัติ เมื่อรันเสร็จ สามารถดาวน์โหลด `playwright-report` และ `playwright-test-results` จากหน้า run ใน Actions ได้
 
 การซิงก์ Google Sheet ยังไม่ได้เปิดใช้ใน Actions ให้ใช้รายงาน Playwright เป็นผลอ้างอิงของแต่ละรอบเทส
+
+## ซิงก์ผลลง Google Sheet จากเครื่อง
+
+คำสั่งนี้รันเทสใหม่หนึ่งรอบ แล้วอัปเดตเคส `TC-POST...` ในแท็บ `TC-02 สร้างโพสและจัดการโพสต์` เมื่อเทสในชุดที่เลือกผ่านครบและพบ Test Case ID ทุกตัวในชีท โดยจับคู่กับคอลัมน์ A และเขียน `Pass` ลงคอลัมน์ K, วันที่และเวลาสิ้นสุดการรันทดสอบตามเวลาไทยลงคอลัมน์ L และ `Automated` ลงคอลัมน์ M หากมีเทสเฟล ข้าม หรือหารหัสในชีทไม่พบ จะไม่เขียนชีทเลย ไม่แก้ Actual Result (คอลัมน์ J) และไม่ส่ง `TC-LIFE-001` ลงชีท การซิงก์ไม่ได้รันจาก GitHub Actions
+
+ตั้งค่าครั้งแรก:
+
+1. สร้าง Google Cloud project และเปิด **Google Sheets API**
+2. สร้าง **service account** และดาวน์โหลด JSON key มาไว้ที่โฟลเดอร์หลักในชื่อ `google-service-account.local.json`
+3. เปิดไฟล์ JSON แล้วคัดลอกค่า `client_email` ไปแชร์ Google Sheet ให้เป็น **Editor**
+4. เตรียม `test-account.local.json` ของบัญชีทดสอบตามขั้นตอนด้านบน
+
+ไฟล์ JSON key ทั้งสองถูก `.gitignore` ไว้ ห้าม commit หรือส่งต่อ private key
+
+ตรวจสิทธิ์อ่านชีทก่อน โดยไม่รันเทสและไม่เขียนชีท: `npm.cmd run test:sync-sheet -- --check-access`
+
+บน PowerShell ลองตรวจรายการที่จะอัปเดตโดยยังไม่เขียนชีท:
+
+```powershell
+npm.cmd run test:sync-sheet -- --suite=create --dry-run
+```
+
+เมื่อรายการตรงกับชีทแล้ว รันจริง:
+
+```powershell
+npm.cmd run test:sync-sheet -- --suite=create
+```
+
+เปลี่ยน `create` เป็น `draft`, `edit`, `delete`, `detail` หรือ `all` ได้ `all` รัน 49 เทส รวม `TC-LIFE-001` แต่จะไม่ส่งผลของ lifecycle ลงชีท คำสั่งจะรันเทสใหม่ทุกครั้งและสร้างรายงานที่ `artifacts/playwright/sync-run-report.json` เฉพาะ `TC-POST01-001` ถึง `TC-POST01-038` จะถูกส่งจากชุด create; `TC-POST01-039` ยังรันเพื่อลบโพสต์ทดสอบแต่ไม่ส่งลงชีท
+
+หากต้องการซิงก์ทุกชุดจากเครื่อง ให้ใช้ `npm.cmd run test:sync-sheet -- --suite=all` (ลองเพิ่ม `--dry-run` ก่อนเพื่อดูรายการโดยยังไม่เขียนชีท) ไม่ต้องเพิ่ม `TC-POST01-039` หรือ `TC-LIFE-001` ลงชีท
+
+หลังจาก dry-run หากต้องการใช้ผลจากรอบนั้นโดยไม่รันเทสซ้ำ ให้ใช้ `npm.cmd run test:sync-sheet -- --suite=draft --from-report` (เปลี่ยน suite ให้ตรงกับรอบที่รัน รวมถึง `all` ได้) รายงานต้องอายุไม่เกิน 24 ชั่วโมง มาจากชุดที่เลือก และต้องไม่เก่ากว่าการแก้ไฟล์เทส

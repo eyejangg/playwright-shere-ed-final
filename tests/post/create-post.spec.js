@@ -4,8 +4,7 @@ const { test: baseTest } = require('@playwright/test');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const { randomUUID } = require('node:crypto');
-const { images, pdf, images05, images06 } = require('../../test-data/test-data');
-const { getTestAccount } = require('../../test-data/test-account');
+const { images, pdf, images05, images06, generateUniqueTitle } = require('../../test-data/test-data');
 // ==============================
 // Login Test
 // ==============================
@@ -17,7 +16,10 @@ test.describe('ทดสอบขั้นตอนการเข้าสู�
   test('TC-POST01-001: สมาชิกเข้าสู่หน้าสร้างโพสต์', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'เข้าสู่ระบบ' }).click();
-    const account = getTestAccount();
+    const account = process.env.CI
+      ? { email: process.env.MEMBER_EMAIL, password: process.env.MEMBER_PASSWORD }
+      : require('../../test-account.local.json');
+    if (!account.email || !account.password) throw new Error('Missing test account credentials');
     await page.getByRole('textbox', { name: 'อีเมล' }).fill(account.email);
     await page.getByRole('textbox', { name: 'รหัสผ่าน' }).fill(account.password);
     await page.getByRole('button', { name: 'เข้าสู่ระบบ', exact: true }).click();
@@ -118,6 +120,7 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('category-select').selectOption({ label: 'คณิตศาสตร์' });
     await page.getByRole('button', { name: 'เสร็จสิ้น' }).or(page.getByTestId('confirm-category-tags-button')).first().click();
     await expect(page.getByText('คณิตศาสตร์', { exact: true }).last()).toBeVisible();
+    await expect(page.getByText('คณิตศาสตร์', { exact: true })).toHaveCount(1);
   });
 
   test('TC-POST01-005: แนบรูปหน้าปก PNG', async ({ page }) => {
@@ -154,11 +157,13 @@ test.describe('ทดสอบการสร้างโพสต์', () => {
     await page.getByTestId('supporting-images-file-input').setInputFiles(images05);
     // 1. ตรวจสอบว่าระบบขึ้นตัวเลขนับ 5/5
     await expect(page.getByText('รูปภาพประกอบ (5/5) *', { exact: true })).toBeVisible();
-    // 2. ตรวจว่ารูปแรก (img-0) และรูปสุดท้าย (img-4) แสดงบนหน้าจอ
-    await expect(page.getByRole('img', { name: 'img-0' })).toBeVisible();
-    await expect(page.getByRole('img', { name: 'img-4' })).toBeVisible();
-    await expect(page.getByTestId('remove-supporting-image-button-0')).toBeVisible();
-    await expect(page.getByTestId('remove-supporting-image-button-4')).toBeVisible();
+    // ตรวจพรีวิวและปุ่มนำออกของทุกรูปตาม Expected Result ในชีท
+    for (let index = 0; index < 5; index++) {
+      const preview = page.getByRole('img', { name: `img-${index}`, exact: true });
+      await expect(preview).toBeVisible();
+      await expect.poll(() => preview.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+      await expect(page.getByTestId(`remove-supporting-image-button-${index}`)).toBeVisible();
+    }
 
   });
 

@@ -1,256 +1,258 @@
-const { spawnSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
-const { chromium } = require('playwright');
+const { spawnSync } = require('node:child_process');
+const { createSign } = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
 
-const ROOT_DIR = path.resolve(__dirname, '..');
-const REPORT_PATH = path.join(ROOT_DIR, 'artifacts', 'playwright', 'sync-run-report.json');
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1iMx6hw7qZ9X4MU41BuvWgbgE3jcmv9vKXZJ-PA_P_cw/edit?gid=1221386414#gid=1221386414';
+const ROOT = path.resolve(__dirname, '..');
+const REPORT = path.join(ROOT, 'artifacts', 'playwright', 'sync-run-report.json');
+const DEFAULT_CREDENTIALS = path.join(ROOT, 'google-service-account.local.json');
+const SHEET_ID = process.env.GOOGLE_SHEET_ID || '1iMx6hw7qZ9X4MU41BuvWgbgE3jcmv9vKXZJ-PA_P_cw';
+const SHEET_GID = Number(process.env.GOOGLE_SHEET_GID || 1221386414);
+const SUITES = {
+  all: 'tests/post/', create: 'tests/post/create-post.spec.js',
+  draft: 'tests/post/draft-post.spec.js', edit: 'tests/post/edit-post.spec.js',
+  delete: 'tests/post/delete-post.spec.js', detail: 'tests/post/detail-post.spec.js',
+};
+const EXPECTED_RUN = {
+  all: { tests: 49, ids: 74 }, create: { tests: 39, ids: 38 },
+  draft: { tests: 4, ids: 11 }, edit: { tests: 2, ids: 14 },
+  delete: { tests: 2, ids: 9 }, detail: { tests: 1, ids: 2 },
+};
 
-console.log('====================================================');
-console.log('🚀 Step 1: Starting Playwright Test Execution...');
-console.log('====================================================');
-
-// Ensure the artifacts folder exists and remove the previous report
-fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
-if (fs.existsSync(REPORT_PATH)) {
-  try { fs.unlinkSync(REPORT_PATH); } catch (e) {}
+function parseArgs(args) {
+  const options = { suite: 'all', dryRun: false, checkAccess: false, fromReport: false };
+  for (const arg of args) {
+    if (arg === '--dry-run') options.dryRun = true;
+    else if (arg === '--check-access') options.checkAccess = true;
+    else if (arg === '--from-report') options.fromReport = true;
+    else if (arg.startsWith('--suite=')) options.suite = arg.slice('--suite='.length);
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  if (!SUITES[options.suite]) throw new Error(`Unknown suite: ${options.suite}`);
+  return options;
 }
 
-// Run Playwright tests with JSON reporter outputting to REPORT_PATH
-const isWindows = process.platform === 'win32';
-const npxCmd = isWindows ? 'npx.cmd' : 'npx';
-
-const testArgs = [
-  'playwright',
-  'test',
-  'tests/post',
-  '--project=chromium',
-  '--workers=1',
-  '--reporter=list,json'
-];
-
-console.log('Running:', `${npxCmd} ${testArgs.join(' ')}`);
-
-const runResult = spawnSync(npxCmd, testArgs, {
-  cwd: ROOT_DIR,
-  shell: true,
-  stdio: 'inherit',
-  env: {
-    ...process.env,
-    PLAYWRIGHT_JSON_OUTPUT_NAME: REPORT_PATH
+function verifyReportSuite(report, suite) {
+  if (!report.stats?.startTime || Date.now() - Date.parse(report.stats.startTime) > 24 * 60 * 60 * 1000) {
+    throw new Error('Saved Playwright report is missing a valid run time or is older than 24 hours');
   }
-});
-
-let reportData = null;
-if (fs.existsSync(REPORT_PATH)) {
-  try {
-    reportData = JSON.parse(fs.readFileSync(REPORT_PATH, 'utf8'));
-  } catch (e) {
-    console.warn('Could not parse report file:', e.message);
+  const files = (report.suites || []).map(item => String(item.file || '').replaceAll('\\', '/'));
+  const expected = suite === 'all'
+    ? [...Object.entries(SUITES).filter(([name]) => name !== 'all').map(([, file]) => file), 'tests/post/lifecycle-flow.spec.js']
+    : [SUITES[suite]];
+  const expectedFiles = expected.map(file => file.replace(/^tests\//, ''));
+  if (files.length !== expectedFiles.length || files.some(file => !expectedFiles.includes(file))) {
+    throw new Error(`Saved report does not match --suite=${suite}`);
   }
-}
-
-if (!reportData && runResult.stdout) {
-  try {
-    const out = runResult.stdout.toString();
-    const jsonStart = out.indexOf('{');
-    const jsonEnd = out.lastIndexOf('}');
-    if (jsonStart !== -1 && jsonEnd !== -1) {
-      reportData = JSON.parse(out.slice(jsonStart, jsonEnd + 1));
-      fs.writeFileSync(REPORT_PATH, JSON.stringify(reportData, null, 2), 'utf8');
+  const started = Date.parse(report.stats.startTime);
+  for (const file of expected) {
+    if (fs.statSync(path.join(ROOT, file)).mtimeMs > started) {
+      throw new Error(`Saved report predates test changes in ${file}; rerun the selected suite`);
     }
-  } catch (err) {
-    console.warn('Could not parse JSON report from stdout:', err.message);
   }
 }
 
-console.log('\n====================================================');
-console.log('📊 Step 2: Processing Test Results...');
-console.log('====================================================');
+function caseIds(title) {
+  const match = title.match(/\b(TC-POST\d{2}-)(\d{3}(?:,\d{3})*)\b/);
+  return match ? match[2].split(',').map(number => `${match[1]}${number}`)
+    .filter(id => id !== 'TC-POST01-039') : [];
+}
 
-// Collect test statuses from reportData
-const testStatusMap = {};
-if (reportData && reportData.suites) {
+function reportResults(report) {
+  if (!Array.isArray(report.suites)) throw new Error('Invalid Playwright JSON report');
+  const results = new Map();
   function walk(suites) {
     for (const suite of suites) {
       for (const spec of suite.specs || []) {
-        const t = spec.tests?.[0];
-        const res = t?.results?.at(-1);
-        const status = res?.status || 'unknown';
-        const match = spec.title.match(/TC-POST(\d{2})-([0-9,]+)/);
-        if (match) {
-          const prefix = `TC-POST${match[1]}`;
-          const numbers = match[2].split(',');
-          for (const num of numbers) {
-            testStatusMap[`${prefix}-${num.trim()}`] = status;
+        for (const test of spec.tests || []) {
+          const last = test.results?.at(-1)?.status;
+          if (last !== 'passed' || test.status === 'flaky') continue;
+          for (const id of caseIds(spec.title)) {
+            if (results.has(id)) throw new Error(`Duplicate TC ID in test report: ${id}`);
+            results.set(id, 'Pass');
           }
         }
       }
       walk(suite.suites || []);
     }
   }
-  walk(reportData.suites);
+  walk(report.suites);
+  return results;
 }
 
-console.log(`Processed ${Object.keys(testStatusMap).length} test cases from report.`);
+function verifyCompleteReport(report, suite, results) {
+  const expected = EXPECTED_RUN[suite];
+  const stats = report.stats || {};
+  if (stats.expected !== expected.tests || stats.unexpected !== 0 ||
+      stats.skipped !== 0 || stats.flaky !== 0 || results.size !== expected.ids) {
+    throw new Error(`Incomplete ${suite} run: expected ${expected.tests} passed tests and ${expected.ids} TC IDs; got ${stats.expected || 0} passed, ${stats.unexpected || 0} failed, ${stats.skipped || 0} skipped, ${stats.flaky || 0} flaky, ${results.size} TC IDs. Sheet was not changed.`);
+  }
+}
 
-// Static mapping of specs
-const specs = [
-  'create-post.spec.js',
-  'draft-post.spec.js',
-  'edit-post.spec.js',
-  'delete-post.spec.js',
-  'detail-post.spec.js',
-  'lifecycle-flow.spec.js'
-];
-const testDir = path.join(ROOT_DIR, 'tests', 'post');
-const specMap = {};
+function sheetRows(values) {
+  const rows = new Map();
+  for (let index = 1; index < values.length; index++) {
+    const id = String(values[index]?.[0] || '').trim();
+    if (!/^TC-POST\d{2}-\d{3}$/.test(id)) continue;
+    if (rows.has(id)) throw new Error(`Duplicate TC ID in Google Sheet: ${id}`);
+    rows.set(id, index + 1);
+  }
+  return rows;
+}
 
-for (const specFile of specs) {
-  const filePath = path.join(testDir, specFile);
-  if (!fs.existsSync(filePath)) continue;
-  const c = fs.readFileSync(filePath, 'utf8');
-  const spLines = c.split('\n');
-  spLines.forEach((line, idx) => {
-    const testMatch = line.match(/test\s*\(\s*['"`](TC-[^'"`]+)['"`]/);
-    if (testMatch) {
-      const title = testMatch[1];
-      const m = title.match(/TC-POST(\d{2})-([0-9,]+)/);
-      if (m) {
-        const prefix = `TC-POST${m[1]}`;
-        const numbers = m[2].split(',');
-        for (const num of numbers) {
-          const tcId = `${prefix}-${num.trim()}`;
-          if (!specMap[tcId]) specMap[tcId] = [];
-          specMap[tcId].push({ file: `tests/post/${specFile}`, line: idx + 1, testTitle: title });
-        }
-      }
-    }
+function formatRunTime(report) {
+  const started = Date.parse(report.stats?.startTime);
+  if (!Number.isFinite(started)) throw new Error('Playwright report has no valid start time');
+  const duration = Number(report.stats?.duration || 0);
+  const finished = new Date(started + Math.max(0, duration));
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Bangkok', day: 'numeric', month: 'long', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(finished).map(part => [part.type, part.value]));
+  return `${parts.day} ${parts.month} ${parts.year} ${parts.hour}:${parts.minute}`;
+}
+
+function makeUpdates(results, rows, runTime, tabTitle) {
+  const updates = [];
+  const missing = [];
+  const quotedTab = `'${tabTitle.replaceAll("'", "''")}'`;
+  for (const [id, status] of results) {
+    if (status !== 'Pass' || !/^TC-POST\d{2}-\d{3}$/.test(id)) continue;
+    const row = rows.get(id);
+    if (!row) { missing.push(id); continue; }
+    updates.push({ range: `${quotedTab}!K${row}`, values: [['Pass']] });
+    updates.push({ range: `${quotedTab}!L${row}`, values: [[runTime]] });
+    updates.push({ range: `${quotedTab}!M${row}`, values: [['Automated']] });
+  }
+  return { updates, missing };
+}
+
+function loadCredentials() {
+  const file = path.resolve(process.env.GOOGLE_SERVICE_ACCOUNT_FILE || DEFAULT_CREDENTIALS);
+  if (!fs.existsSync(file)) throw new Error(`Missing Google service account file: ${file}`);
+  const credentials = JSON.parse(fs.readFileSync(file, 'utf8'));
+  if (credentials.type !== 'service_account' || !credentials.client_email || !credentials.private_key) {
+    throw new Error('Google credential file must contain a service account email and private key');
+  }
+  return credentials;
+}
+
+async function accessToken(credentials) {
+  const now = Math.floor(Date.now() / 1000);
+  const tokenUri = 'https://oauth2.googleapis.com/token';
+  const encode = value => Buffer.from(JSON.stringify(value)).toString('base64url');
+  const input = `${encode({ alg: 'RS256', typ: 'JWT' })}.${encode({
+    iss: credentials.client_email,
+    scope: 'https://www.googleapis.com/auth/spreadsheets',
+    aud: tokenUri, iat: now, exp: now + 3600,
+  })}`;
+  const signer = createSign('RSA-SHA256');
+  signer.update(input);
+  signer.end();
+  const assertion = `${input}.${signer.sign(credentials.private_key, 'base64url')}`;
+  const response = await fetch(tokenUri, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer', assertion }),
   });
+  const body = await response.json();
+  if (!response.ok || !body.access_token) throw new Error(`Google authentication failed (${response.status}): ${body.error || 'no access token'}`);
+  return body.access_token;
 }
 
-// Generate TSV for K1:Q118
-// Columns: K (Pass/Fail), L (Date), M (Automated / Manual), N (Spec File), O (Test Name), P (Notes), Q (clear)
-const matrix = [];
-matrix.push([
-  'Pass/Fail',
-  'Date',
-  'Automated / Manual',
-  'Automation Spec File',
-  'Automation Test Name',
-  'Automation Notes',
-  ''
-]);
-
-const todayStr = '30 September 2026';
-
-// Read all 117 cases from template
-const casesFile = path.join(ROOT_DIR, 'retest-artifacts', 'pass_fail_and_cols.tsv');
-let originalRows = [];
-if (fs.existsSync(casesFile)) {
-  originalRows = fs.readFileSync(casesFile, 'utf8').split(/\r?\n/).map(l => l.split('\t'));
+async function sheetsRequest(url, token, options = {}) {
+  const response = await fetch(url, {
+    ...options,
+    headers: { Authorization: `Bearer ${token}`, ...(options.headers || {}) },
+  });
+  const body = await response.json();
+  if (!response.ok) throw new Error(`Google Sheets API ${response.status}: ${body.error?.message || 'request failed'}`);
+  return body;
 }
 
-for (let i = 1; i <= 117; i++) {
-  const orig = originalRows[i] || [];
-  // Derive TC ID by standard sequence
-  let tcId = '';
-  if (i <= 38) tcId = `TC-POST01-${String(i).padStart(3, '0')}`;
-  else if (i <= 58) tcId = `TC-POST02-${String(i - 38).padStart(3, '0')}`;
-  else if (i <= 83) tcId = `TC-POST03-${String(i - 58).padStart(3, '0')}`;
-  else if (i <= 95) {
-    const post4 = ['001','002','003','004','005','006','007','008','009','010','012','014','015'];
-    tcId = `TC-POST04-${post4[i - 84] || '001'}`;
-  } else {
-    const post5 = ['001','002','003','004','005','006','007','008','009','010','011','012','013','014','015','016','017','018','020','021','022'];
-    tcId = `TC-POST05-${post5[i - 96] || '001'}`;
-  }
-
-  const autoInfo = specMap[tcId];
-  let passFail = orig[0] || 'Pass';
-  let date = orig[1] || todayStr;
-  let autoStatus = orig[2] || 'Manual';
-  let autoFile = orig[3] || '-';
-  let autoTestName = orig[4] || '-';
-  let autoNotes = orig[5] || 'ทดสอบแบบ Manual เท่านั้น';
-
-  if (autoInfo && autoInfo.length > 0) {
-    autoStatus = 'Automated';
-    date = todayStr;
-    autoFile = autoInfo.map(a => a.file).join(', ');
-    autoTestName = autoInfo.map(a => a.testTitle).join(' | ');
-
-    // Check if test was executed in this run
-    const actualStatus = testStatusMap[tcId];
-    if (actualStatus) {
-      if (actualStatus === 'passed') {
-        passFail = 'Pass';
-        autoNotes = orig[5] || 'Playwright assertion ผ่านสมบูรณ์';
-      } else if (actualStatus === 'failed') {
-        passFail = 'Fail';
-        if (tcId === 'TC-POST01-036') {
-          autoNotes = 'Defect: เว็บยอมรับแท็ก 11 ตัวอักษร (#1234567890) ไม่ปฏิเสธตามข้อกำหนด 10 ตัวอักษร';
-        } else if (tcId === 'TC-POST04-005' || tcId === 'TC-POST04-006' || tcId === 'TC-POST04-014') {
-          autoNotes = 'Defect: หน้า Explore และประวัติยังพบค้างจาก Server Cache แม้ลบสำเร็จ';
-        } else {
-          autoNotes = 'Playwright assertion ไม่ผ่าน';
-        }
-      }
+async function main() {
+  const options = parseArgs(process.argv.slice(2));
+  const credentials = loadCredentials();
+  if (options.checkAccess) {
+    const token = await accessToken(credentials);
+    const base = `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(SHEET_ID)}`;
+    const metadata = await sheetsRequest(`${base}?fields=sheets(properties(sheetId,title))`, token);
+    const sheet = metadata.sheets?.find(item => item.properties?.sheetId === SHEET_GID)?.properties;
+    if (!sheet) throw new Error(`Sheet tab gid ${SHEET_GID} was not found`);
+    const tab = `'${sheet.title.replaceAll("'", "''")}'`;
+    const header = await sheetsRequest(`${base}/values/${encodeURIComponent(`${tab}!A1:M1`)}`, token);
+    const columns = header.values?.[0] || [];
+    if (columns[0] !== 'Test Case ID' || columns[10] !== 'Pass/Fail' || columns[12] !== 'Automated / Manual') {
+      throw new Error('Sheet columns A, K and M do not match the expected headers');
     }
+    console.log(`Google Sheet access confirmed: ${sheet.title} (read-only check)`);
+    return;
   }
+  let runStatus = 0;
+  if (!options.fromReport) {
+    fs.mkdirSync(path.dirname(REPORT), { recursive: true });
+    fs.rmSync(REPORT, { force: true });
+    const run = spawnSync(process.execPath, [
+      path.join(ROOT, 'node_modules', 'playwright', 'cli.js'),
+      'test', SUITES[options.suite], '--project=chromium', '--workers=1', '--reporter=list,json,html',
+    ], {
+      cwd: ROOT,
+      stdio: 'inherit',
+      env: {
+        ...process.env,
+        PLAYWRIGHT_JSON_OUTPUT_FILE: REPORT,
+        PLAYWRIGHT_HTML_OUTPUT_DIR: path.join(ROOT, 'artifacts', 'playwright', 'report'),
+        PLAYWRIGHT_HTML_OPEN: 'never',
+      },
+    });
+    if (run.error) throw run.error;
+    if (run.signal) throw new Error(`Playwright was interrupted by ${run.signal}`);
+    runStatus = run.status || 0;
+  }
+  if (!fs.existsSync(REPORT)) throw new Error(`No Playwright JSON report was found: ${REPORT}`);
 
-  matrix.push([
-    passFail,
-    date,
-    autoStatus,
-    autoFile,
-    autoTestName,
-    autoNotes,
-    ''
-  ]);
+  const report = JSON.parse(fs.readFileSync(REPORT, 'utf8'));
+  if (options.fromReport) verifyReportSuite(report, options.suite);
+  const results = reportResults(report);
+  verifyCompleteReport(report, options.suite, results);
+
+  const token = await accessToken(credentials);
+  const base = `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(SHEET_ID)}`;
+  const metadata = await sheetsRequest(`${base}?fields=sheets(properties(sheetId,title,gridProperties(rowCount)))`, token);
+  const sheet = metadata.sheets?.find(item => item.properties?.sheetId === SHEET_GID)?.properties;
+  if (!sheet) throw new Error(`Sheet tab gid ${SHEET_GID} was not found`);
+  const tab = `'${sheet.title.replaceAll("'", "''")}'`;
+  const header = await sheetsRequest(`${base}/values/${encodeURIComponent(`${tab}!A1:M1`)}`, token);
+  const columns = header.values?.[0] || [];
+  if (columns[0] !== 'Test Case ID' || columns[10] !== 'Pass/Fail' || columns[12] !== 'Automated / Manual') {
+    throw new Error('Sheet columns A, K and M do not match the expected headers');
+  }
+  const idData = await sheetsRequest(`${base}/values/${encodeURIComponent(`${tab}!A1:A${sheet.gridProperties.rowCount}`)}`, token);
+  const rows = sheetRows(idData.values || []);
+  const runTime = formatRunTime(report);
+  const { updates, missing } = makeUpdates(results, rows, runTime, sheet.title);
+  if (missing.length) throw new Error(`TC IDs missing from sheet: ${missing.join(', ')}. Sheet was not changed.`);
+
+  console.log(`Passed TC-POST IDs: ${results.size}; matched sheet rows: ${updates.length / 3}; missing TC IDs: ${missing.length}`);
+  if (missing.length) console.warn(`Missing in sheet: ${missing.join(', ')}`);
+  if (options.dryRun) {
+    console.log(`Dry run: no cells changed. Planned K, L and M updates: ${JSON.stringify(updates)}`);
+  } else if (updates.length) {
+    const response = await sheetsRequest(`${base}/values:batchUpdate`, token, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ valueInputOption: 'RAW', data: updates }),
+    });
+    if (response.totalUpdatedCells !== updates.length) {
+      throw new Error(`Google Sheets updated ${response.totalUpdatedCells || 0} of ${updates.length} cells`);
+    }
+    console.log(`Marked ${updates.length / 3} passed rows in Google Sheet: ${sheet.title}`);
+  }
+  if (runStatus !== 0) process.exitCode = runStatus;
 }
 
-const tsvContent = matrix.map(r => r.join('\t')).join('\r\n');
+if (require.main === module) {
+  main().catch(error => { console.error(error.message); process.exitCode = 1; });
+}
 
-console.log('\n====================================================');
-console.log('🌐 Step 3: Syncing Results to Google Sheets...');
-console.log('====================================================');
-
-(async () => {
-  const browser = await chromium.launch({ headless: true });
-  try {
-    const context = await browser.newContext({
-      permissions: ['clipboard-read', 'clipboard-write'],
-      viewport: { width: 1920, height: 1080 }
-    });
-    const page = await context.newPage();
-
-    console.log('Connecting to Google Sheet...');
-    await page.goto(SHEET_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
-    await page.waitForSelector('#t-name-box', { timeout: 30000 });
-    await page.waitForTimeout(3000);
-
-    const nameBox = page.locator('#t-name-box');
-    await nameBox.click();
-    await page.keyboard.press('Control+A');
-    await page.keyboard.type('K1');
-    await page.keyboard.press('Enter');
-    await page.waitForTimeout(1000);
-
-    await page.evaluate((text) => navigator.clipboard.writeText(text), tsvContent);
-    await page.keyboard.press('Control+V');
-    await page.waitForTimeout(5000);
-
-    const screenshotPath = path.join(ROOT_DIR, 'retest-artifacts', 'sheet_after_sync.png');
-    await page.screenshot({ path: screenshotPath });
-    console.log('📸 Screenshot captured:', screenshotPath);
-
-    console.log('✅ Google Sheet Updated and Saved Successfully!');
-    console.log('👉 URL: ' + SHEET_URL);
-  } catch (err) {
-    console.error('❌ Failed to update Google Sheet:', err.message);
-  } finally {
-    await browser.close();
-  }
-})();
+module.exports = { caseIds, reportResults, verifyCompleteReport, sheetRows, makeUpdates, formatRunTime, parseArgs, verifyReportSuite };

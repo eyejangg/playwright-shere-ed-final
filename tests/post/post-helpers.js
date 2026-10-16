@@ -211,8 +211,21 @@ async function saveDraft(page, artifacts, { title, summary }) {
 async function deleteCurrentPost(page) {
   await page.getByRole('button', { name: 'ลบโพสต์' }).click();
   await expect(page.getByRole('dialog', { name: /คุณต้องการลบโพสต์/ })).toBeVisible();
-  await page.getByRole('button', { name: 'ใช่, ลบเลย' }).click();
-  await dismissSuccess(page, 'ลบสำเร็จ!');
+  const deleteStatuses = [];
+  const recordDeleteResponse = response => {
+    if (response.request().method() === 'DELETE' && new URL(response.url()).pathname.includes('/posts/')) {
+      deleteStatuses.push(response.status());
+    }
+  };
+  page.on('response', recordDeleteResponse);
+  try {
+    await page.getByRole('button', { name: 'ใช่, ลบเลย' }).click();
+    await dismissSuccess(page, 'ลบสำเร็จ!');
+  } catch (error) {
+    throw new Error(`Delete confirmation failed; DELETE response statuses: ${deleteStatuses.join(', ') || 'none observed'}`, { cause: error });
+  } finally {
+    page.off('response', recordDeleteResponse);
+  }
 }
 
 // =============================================================================

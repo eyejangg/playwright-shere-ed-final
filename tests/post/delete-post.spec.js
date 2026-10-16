@@ -14,6 +14,8 @@ test.describe('TC-POST04 ลบโพสต์', () => {
     await page.getByRole('button', { name: 'ลบโพสต์' }).click();
     await expect(page.getByRole('dialog', { name: /คุณต้องการลบโพสต์/ })).toBeVisible();
     await expect(page.getByRole('dialog').getByText(title, { exact: false })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'ใช่, ลบเลย' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'ยกเลิก' })).toBeVisible();
 
     await page.getByRole('button', { name: 'ยกเลิก' }).click();
     await expect(page.getByRole('dialog', { name: /คุณต้องการลบโพสต์/ })).toBeHidden();

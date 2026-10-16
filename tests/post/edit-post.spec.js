@@ -32,6 +32,7 @@ test.describe('TC-POST03 แก้ไขโพสต์', () => {
     await expect(page.getByText('บทสรุปที่แก้ไขแล้ว', { exact: true })).toBeVisible();
     const cover = page.getByRole('img', { name: updatedTitle, exact: true });
     await expect(cover).toBeVisible();
+    await expect.poll(() => cover.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
     expect(await cover.getAttribute('src')).not.toBe(originalCover);
     const updatedCover = await cover.getAttribute('src');
     await page.reload();
